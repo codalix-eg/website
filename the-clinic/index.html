@@ -303,16 +303,16 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
   .demo .chartlet { font-size: 110px; }
 }
 </style>
-<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}.home{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--f-mono);font-size:13px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:6px 12px 6px 8px;direction:ltr}.home img{width:18px;height:auto}.home:hover{color:var(--text);border-color:var(--text)}@media (max-width:640px){.brand small{display:none}}</style>
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}.crumb{flex:none;display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);white-space:nowrap;direction:ltr}html[dir=rtl] .crumb{direction:rtl}.crumb a{text-decoration:none;color:var(--muted);display:inline-flex;align-items:center;gap:7px;padding:6px 8px;border-radius:10px}.crumb a:hover{color:var(--text);background:rgba(127,127,127,.12)}.crumb .home img{width:22px;height:22px;max-width:none;flex:none}.crumb .home span{font-weight:600;color:var(--text)}.crumb i{font-style:normal;opacity:.4}@media (max-width:760px){.crumb .home span,.crumb .crumb-p,.crumb i:last-child{display:none}.brand{white-space:nowrap}}@media (max-width:640px){.brand small{display:none}}</style>
 </head>
 <body>
 
 
 <header class="nav" id="nav">
   <div class="wrap">
+    <nav class="crumb" aria-label="Codalix"><a class="home" href="/" title="Codalix"><img src="/img/codalix-mark.svg" alt=""><span>Codalix</span></a><i aria-hidden="true">/</i><a class="crumb-p" href="/#products">Products</a><i aria-hidden="true">/</i></nav>
     <a class="brand" href="#top" aria-label="The Clinic by Codalix"><svg class="cmark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#1d2b3a"/><g class="blades"><path d="M50 12A38 38 0 0 1 83 31L58 46Z" fill="#f08a24"/><path d="M83 31A38 38 0 0 1 83 69L62 54Z" fill="#e5502b"/><path d="M83 69A38 38 0 0 1 50 88L50 60Z" fill="#f08a24"/><path d="M50 88A38 38 0 0 1 17 69L42 54Z" fill="#e5502b"/><path d="M17 69A38 38 0 0 1 17 31L38 46Z" fill="#f08a24"/></g><circle cx="50" cy="50" r="10" fill="#1d2b3a"/></svg><b>The Clinic</b><small>by Codalix</small></a>
     <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Music"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="w1" d="M16.5 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M19 7a7 7 0 0 1 0 10"/><path class="x" d="M17 9l5 6M22 9l-5 6"/></svg></button>
-    <a class="home" href="/" title="Codalix"><img src="/img/codalix-mark.svg" alt="">Codalix</a>
     <button class="lang" id="lang" type="button">English</button>
     <a class="btn btn-mint" href="#demo" data-t="cta">اطلب Demo</a>
   </div>

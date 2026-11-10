@@ -134,6 +134,14 @@ img { display: block; max-width: 100%; }
 .flow b { display: block; font-weight: 500; font-size: 20px; }
 .flow span { color: var(--muted-dark); font-size: 15.5px; }
 
+
+/* ONTAP icon: light sweep and glow on hover */
+.oglow { position: relative; display: inline-block; flex: none; line-height: 0; border-radius: 10px; overflow: hidden; transition: box-shadow .35s ease, transform .35s ease; }
+.oglow img { display: block; }
+.oglow::after { content: ""; position: absolute; inset: -20%; background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .75) 50%, transparent 65%); transform: translateX(-130%); pointer-events: none; }
+.oglow-on:hover .oglow, .oglow-on:focus-visible .oglow { box-shadow: 0 0 0 2px rgba(56, 211, 220, .55), 0 0 26px 4px rgba(56, 211, 220, .55); transform: scale(1.06); }
+.oglow-on:hover .oglow::after, .oglow-on:focus-visible .oglow::after { transform: translateX(130%); transition: transform .8s ease; }
+@media (prefers-reduced-motion: reduce) { .oglow, .oglow::after { transition: none !important; } .oglow-on:hover .oglow::after { transform: translateX(-130%); } }
 /* Screen 4: products */
 .ptabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 560px; }
 .ptabs button { position: relative; overflow: hidden; display: flex; align-items: center; gap: 12px; text-align: start; font-family: var(--f); border: 1px solid rgba(11, 30, 56, .14); background: rgba(255, 255, 255, .5); color: var(--ink); padding: 12px 14px; border-radius: 16px; cursor: pointer; transition: background .2s, border-color .2s, box-shadow .2s; }
@@ -328,7 +336,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
     <div class="inner">
       <div class="copy product">
         <span class="kicker" data-t="k3">المنتجات</span>
-        <div class="ptabs" role="tablist"><button type="button" role="tab" class="on" data-prod="clinic" aria-selected="true"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#1d2b3a"/><g class="blades"><path d="M50 12A38 38 0 0 1 83 31L58 46Z" fill="#f08a24"/><path d="M83 31A38 38 0 0 1 83 69L62 54Z" fill="#e5502b"/><path d="M83 69A38 38 0 0 1 50 88L50 60Z" fill="#f08a24"/><path d="M50 88A38 38 0 0 1 17 69L42 54Z" fill="#e5502b"/><path d="M17 69A38 38 0 0 1 17 31L38 46Z" fill="#f08a24"/></g><circle cx="50" cy="50" r="10" fill="#1d2b3a"/></svg><span><b>The Clinic</b><small data-t="pt1">عيادات العيون</small></span><i></i></button><button type="button" role="tab" data-prod="osm" aria-selected="false"><img src="/img/osm-icon.png" alt=""><span><b>ONTAP Share Manager</b><small data-t="pt2">File shares على NetApp</small></span><i></i></button></div>
+        <div class="ptabs" role="tablist"><button type="button" role="tab" class="on" data-prod="clinic" aria-selected="true"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#1d2b3a"/><g class="blades"><path d="M50 12A38 38 0 0 1 83 31L58 46Z" fill="#f08a24"/><path d="M83 31A38 38 0 0 1 83 69L62 54Z" fill="#e5502b"/><path d="M83 69A38 38 0 0 1 50 88L50 60Z" fill="#f08a24"/><path d="M50 88A38 38 0 0 1 17 69L42 54Z" fill="#e5502b"/><path d="M17 69A38 38 0 0 1 17 31L38 46Z" fill="#f08a24"/></g><circle cx="50" cy="50" r="10" fill="#1d2b3a"/></svg><span><b>The Clinic</b><small data-t="pt1">عيادات العيون</small></span><i></i></button><button type="button" role="tab" class="oglow-on" data-prod="osm" aria-selected="false"><span class="oglow"><img src="/img/osm-icon.png" alt=""></span><span><b>ONTAP Share Manager</b><small data-t="pt2">File shares على NetApp</small></span><i></i></button></div>
         <div class="pp" data-prod="clinic">
         <span class="badge"><svg class="cmark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#1d2b3a"/><g class="blades"><path d="M50 12A38 38 0 0 1 83 31L58 46Z" fill="#f08a24"/><path d="M83 31A38 38 0 0 1 83 69L62 54Z" fill="#e5502b"/><path d="M83 69A38 38 0 0 1 50 88L50 60Z" fill="#f08a24"/><path d="M50 88A38 38 0 0 1 17 69L42 54Z" fill="#e5502b"/><path d="M17 69A38 38 0 0 1 17 31L38 46Z" fill="#f08a24"/></g><circle cx="50" cy="50" r="10" fill="#1d2b3a"/></svg>Ophthalmology EMR</span>
         <h2 class="name" id="h-products">The Clinic</h2>
@@ -338,7 +346,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
         <div class="actions"><a class="btn btn-fill" href="/the-clinic/" data-t="a3">صفحة The Clinic</a><a class="btn btn-line" href="#contact" data-go="4" data-t="a4">اطلب Demo</a></div>
         </div>
         <div class="pp" data-prod="osm" hidden>
-        <span class="badge"><img class="oicon" src="/img/osm-icon.png" alt="">Storage · NetApp ONTAP</span>
+        <span class="badge oglow-on"><span class="oglow"><img class="oicon" src="/img/osm-icon.png" alt=""></span>Storage · NetApp ONTAP</span>
         <h2 class="name">ONTAP Share Manager</h2>
         <p class="slogan osm" data-t="osl">ONTAP file shares. Finally simple</p>
         <p class="lede" data-t="ol">برنامج واحد على Windows تعمل بيه Shares، وتدي Permissions من الـ Active Directory، وتنقل الـ Windows File Servers لـ ONTAP، وتعرف مين مسح أو غيّر إيه.</p>
@@ -572,6 +580,7 @@ document.body.addEventListener('scroll', () => {
   if (window.particles) window.particles.setShape(atTop ? 'x' : 'free', screens[cur].classList.contains('light'));
 }, { passive: true });
 addEventListener('hashchange', () => { const i = names.indexOf(location.hash.slice(1)); if (i >= 0) go(i, true); });
+if (location.hash === '#ontap') { const t = document.querySelector('.ptabs button[data-prod="osm"]'); if (t) { showProd(t); history.replaceState(null, '', '#products'); } }
 
 /* ---------- Particle field ---------- */
 window.particles = (function () {
@@ -678,7 +687,7 @@ window.particles = (function () {
   });
 })();
 applyLang(); mode();
-{ const i = names.indexOf(location.hash.slice(1)); if (i > 0 && !scrollMode()) { screens[0].classList.remove('cur'); screens[i].classList.add('cur'); cur = i; } }
+{ const i = names.indexOf(location.hash === '#ontap' ? 'products' : location.hash.slice(1)); if (i > 0 && !scrollMode()) { screens[0].classList.remove('cur'); screens[i].classList.add('cur'); cur = i; } }
 chrome();
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => window.particles.retarget());
 </script>

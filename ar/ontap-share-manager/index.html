@@ -123,6 +123,34 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: 
 footer a { text-decoration: none; display: inline-flex; align-items: center; gap: 8px; color: var(--text); }
 footer a img { width: 18px; }
 
+
+/* ONTAP icon: light sweep and glow on hover */
+.oglow { position: relative; display: inline-block; flex: none; line-height: 0; border-radius: 10px; overflow: hidden; transition: box-shadow .35s ease, transform .35s ease; }
+.oglow img { display: block; }
+.oglow::after { content: ""; position: absolute; inset: -20%; background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, .75) 50%, transparent 65%); transform: translateX(-130%); pointer-events: none; }
+.oglow-on:hover .oglow, .oglow-on:focus-visible .oglow { box-shadow: 0 0 0 2px rgba(56, 211, 220, .55), 0 0 26px 4px rgba(56, 211, 220, .55); transform: scale(1.06); }
+.oglow-on:hover .oglow::after, .oglow-on:focus-visible .oglow::after { transform: translateX(130%); transition: transform .8s ease; }
+@media (prefers-reduced-motion: reduce) { .oglow, .oglow::after { transition: none !important; } .oglow-on:hover .oglow::after { transform: translateX(-130%); } }
+
+.crumb { flex: none; display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); white-space: nowrap; direction: ltr; }
+html[dir="rtl"] .crumb { direction: rtl; }
+.crumb a { text-decoration: none; color: var(--muted); display: inline-flex; align-items: center; gap: 7px; padding: 6px 8px; border-radius: 10px; }
+.crumb a:hover { color: var(--text); background: rgba(234, 243, 251, .07); }
+.crumb .home img { width: 22px; height: 22px; max-width: none; flex: none; }
+.crumb .home span { font-weight: 600; color: var(--text); }
+.crumb i { font-style: normal; opacity: .4; }
+.brand .oglow img { width: 32px; height: 32px; }
+
+/* Shorts */
+.shorts-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 920px; }
+.short { position: relative; aspect-ratio: 9 / 16; border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); background: #000; padding: 0; cursor: pointer; font-family: inherit; color: #fff; text-align: start; }
+.short img, .short video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.short .pl { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: rgba(8, 26, 51, .6); border: 2px solid rgba(255, 255, 255, .85); transition: transform .2s; }
+.short .pl::after { content: ""; position: absolute; left: 25px; top: 19px; border-left: 20px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent; }
+.short:hover .pl { transform: scale(1.08); }
+.short b { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 16px 16px; font-weight: 500; font-size: 16px; background: linear-gradient(transparent, rgba(8, 26, 51, .92)); }
+.short.playing .pl, .short.playing b { display: none; }
+
 /* Reveal on scroll */
 .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
 .rv.in { opacity: 1; transform: none; }
@@ -134,16 +162,18 @@ footer a img { width: 18px; }
   .hero .visual, html[dir="rtl"] .hero .visual { transform: none; }
   .feats, .steps { grid-template-columns: 1fr; }
   .feat, .feat + .feat, html[dir="rtl"] .feat { padding: 22px 0; border-inline-start: 0; }
-  .top .home span { display: none; }
+  
 }
 @media (max-width: 560px) { .top .cta { display: none; } .brand small { display: none; } .brand { font-size: 15px; gap: 8px; } .top .wrap { gap: 8px; } .hero { padding-top: 40px; } section { padding: 56px 0; } }
+@media (max-width: 760px) { .crumb .home span, .crumb .crumb-p, .crumb i:last-child { display: none; } .shorts-row { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; } }
+@media (max-width: 420px) { .brand > span:last-child { font-size: 14px; } .top .wrap { gap: 6px; } .crumb { gap: 2px; } }
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="/img/osm-icon.png" alt=""><span>ONTAP Share Manager <small>by Codalix</small></span></a>
-    <a class="pill home" href="/ar/" title="Codalix"><img src="/img/codalix-mark.svg" alt=""><span>Codalix</span></a>
+    <nav class="crumb" aria-label="Codalix"><a class="home" href="/ar/" title="Codalix"><img src="/img/codalix-mark.svg" alt=""><span>Codalix</span></a><i aria-hidden="true">/</i><a class="crumb-p" href="/ar/#ontap">المنتجات</a><i aria-hidden="true">/</i></nav>
+    <a class="brand oglow-on" href="#top"><span class="oglow"><img src="/img/osm-icon.png" alt=""></span><span>ONTAP Share Manager</span></a>
     <button class="pill" id="lang" type="button">عربي</button>
     <a class="cta" href="#demo" data-t="cta">Book a demo</a>
   </div>
@@ -174,6 +204,17 @@ footer a img { width: 18px; }
 
   <section class="film" id="film" hidden>
     <div class="wrap"><div class="film-frame rv" id="filmFrame"></div></div>
+  </section>
+
+  <section id="shorts">
+    <div class="wrap">
+      <div class="head rv"><h2 data-t="shh">Shorts</h2><p data-t="shp">One job each, in 16 seconds</p></div>
+      <div class="shorts-row rv">
+        <button class="short" type="button" data-src="/media/osm-short-private-folder.mp4"><img src="/img/osm-short-1.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh1">A private folder in one click</b></button>
+        <button class="short" type="button" data-src="/media/osm-short-size-limit.mp4"><img src="/img/osm-short-2.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh2">Cap a folder's size</b></button>
+        <button class="short" type="button" data-src="/media/osm-short-restore.mp4"><img src="/img/osm-short-3.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh3">Bring back yesterday's version</b></button>
+      </div>
+    </div>
   </section>
 
   <section id="jobs">
@@ -278,7 +319,7 @@ footer a img { width: 18px; }
 <script>
 const FILM = { src: '/media/ontap-share-manager.mp4', poster: '/img/osm-poster.jpg' };
 const AR = {
-  cta: 'احجز Demo', h1: 'الـ File Shares على ONTAP <span>بقت سهلة</span>',
+  cta: 'احجز Demo', shh: 'Shorts', shp: 'كل فيديو شغلانة واحدة في 16 ثانية', sh1: 'فولدر خاص بضغطة واحدة', sh2: 'حد أقصى لحجم الفولدر', sh3: 'رجّع نسخة إمبارح', h1: 'الـ File Shares على ONTAP <span>بقت سهلة</span>',
   lede: 'برنامج واحد على Windows تعمل بيه Shares، وتدي Permissions من الـ Active Directory، وتنقل الـ File Servers، وتعرف مين عمل إيه.',
   meta: 'مفيش حاجة تتسطب على الـ NetApp · ONTAP 9.11.1 أو أحدث · Windows 10/11',
   c1: 'الفولدرات: المساحة، والحد الأقصى، وآخر Backup', c2: 'New Group Folder: صلاحية لكل واحد في الجروب', c3: 'خطة الـ Migration قبل ما تبدأ', c4: 'Share Auditing: مين مسح إيه ومن أنهي جهاز',
@@ -327,6 +368,17 @@ if (FILM.src) {
   const v = document.createElement('video'); v.controls = true; v.playsInline = true; v.preload = 'metadata'; v.src = FILM.src; if (FILM.poster) v.poster = FILM.poster;
   document.getElementById('filmFrame').appendChild(v); document.getElementById('film').hidden = false;
 }
+
+
+/* Shorts play in place; only one at a time */
+document.querySelectorAll('.short').forEach((b) => b.addEventListener('click', () => {
+  if (b.classList.contains('playing')) return;
+  document.querySelectorAll('.short.playing').forEach((o) => { o.classList.remove('playing'); const v = o.querySelector('video'); if (v) v.remove(); });
+  document.querySelectorAll('video').forEach((v) => v.pause());
+  const v = document.createElement('video'); v.src = b.dataset.src; v.controls = true; v.playsInline = true; v.autoplay = true;
+  v.addEventListener('ended', () => { b.classList.remove('playing'); v.remove(); });
+  b.appendChild(v); b.classList.add('playing'); v.play().catch(() => {});
+}));
 
 /* Reveal on scroll */
 const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
