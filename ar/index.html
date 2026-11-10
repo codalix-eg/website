@@ -138,7 +138,10 @@ img { display: block; max-width: 100%; }
 .product { display: grid; gap: 20px; }
 .badge { display: inline-flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; direction: ltr; justify-self: start; }
 html[dir="rtl"] .badge { justify-self: end; }
-.badge img { width: 40px; height: 40px; }
+.badge .cmark { width: 40px; height: 40px; flex: none; }
+.blades { transform-origin: 50px 50px; transition: transform .6s ease; }
+@media (prefers-reduced-motion: reduce) { .blades { transition: none; } }
+.product:hover .blades { transform: rotate(72deg); }
 .slogan { font-weight: 600; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.45; color: var(--text-light); padding-inline-start: 14px; border-inline-start: 3px solid var(--clinic); }
 .product .name { font-weight: 600; font-size: clamp(42px, 4.6vw, 72px); line-height: 1.05; direction: ltr; letter-spacing: -0.02em; }
 html[dir="rtl"] .product .name { text-align: right; }
@@ -310,7 +313,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
     <div class="inner">
       <div class="copy product">
         <span class="kicker" data-t="k3">المنتجات</span>
-        <span class="badge"><img src="/img/clinic-icon.png" alt="">Ophthalmology EMR</span>
+        <span class="badge"><svg class="cmark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#1d2b3a"/><g class="blades"><path d="M50 12A38 38 0 0 1 83 31L58 46Z" fill="#f08a24"/><path d="M83 31A38 38 0 0 1 83 69L62 54Z" fill="#e5502b"/><path d="M83 69A38 38 0 0 1 50 88L50 60Z" fill="#f08a24"/><path d="M50 88A38 38 0 0 1 17 69L42 54Z" fill="#e5502b"/><path d="M17 69A38 38 0 0 1 17 31L38 46Z" fill="#f08a24"/></g><circle cx="50" cy="50" r="10" fill="#1d2b3a"/></svg>Ophthalmology EMR</span>
         <h2 class="name" id="h-products">The Clinic</h2>
         <p class="slogan" data-t="sl">برامج العيادات القديمة اتعملت بإيد مهندسين. The Clinic عمله دكتور</p>
         <p class="lede" data-t="l3">برنامج عيادات العيون: الحجز، والـ Reception، والـ Exam sheet، وفحص المبتسرين، والقطرة، والتقرير، على جهازين في نفس العيادة</p>
