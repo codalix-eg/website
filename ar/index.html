@@ -135,6 +135,13 @@ img { display: block; max-width: 100%; }
 .flow span { color: var(--muted-dark); font-size: 15.5px; }
 
 /* Screen 4: products */
+.ptabs { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(11, 30, 56, .07); justify-self: start; direction: ltr; flex-wrap: wrap; }
+html[dir="rtl"] .ptabs { justify-self: end; }
+.ptabs button { font-family: var(--f); font-size: 14px; font-weight: 500; border: 0; background: none; color: var(--muted-light); padding: 8px 16px; border-radius: 999px; cursor: pointer; }
+.ptabs button.on { background: #fff; color: var(--ink); box-shadow: 0 4px 14px -6px rgba(8, 26, 51, .35); }
+.pp { display: grid; gap: 20px; }
+.badge .oicon { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+.slogan.osm { border-inline-start-color: var(--cyan); }
 .product { display: grid; gap: 20px; }
 .badge { display: inline-flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; direction: ltr; justify-self: start; }
 html[dir="rtl"] .badge { justify-self: end; }
@@ -181,11 +188,11 @@ html[dir="rtl"] .way .addr { text-align: right; }
 .mailbig:hover .mb-addr, .mailbig:focus-visible .mb-addr { background-position: 0 0; }
 .mailbig:hover .mb-ic { transform: rotate(-8deg) scale(1.05); }
 .mailbig:focus-visible { outline: 2px solid var(--cyan); outline-offset: 6px; border-radius: 8px; }
-.next { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; max-width: 640px; border-top: 1px solid rgba(234, 243, 251, .12); }
-.next li { padding: 18px 16px 0 0; font-size: 15px; line-height: 1.55; color: var(--muted-dark); }
-html[dir="rtl"] .next li { padding: 18px 0 0 16px; }
-.next b { display: block; font-weight: 600; font-size: 13px; color: var(--cyan); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
-@media (max-width: 700px) { .next { grid-template-columns: 1fr; } .next li { padding: 14px 0 0; } .mailbig .mb-ic { width: 46px; height: 46px; border-radius: 14px; } .mailbig::after { left: 64px; } }
+.nextsteps { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; max-width: 640px; border-top: 1px solid rgba(234, 243, 251, .12); }
+.nextsteps li { padding: 18px 16px 0 0; font-size: 15px; line-height: 1.55; color: var(--muted-dark); }
+html[dir="rtl"] .nextsteps li { padding: 18px 0 0 16px; }
+.nextsteps b { display: block; font-weight: 600; font-size: 13px; color: var(--cyan); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+@media (max-width: 700px) { .nextsteps { grid-template-columns: 1fr; } .nextsteps li { padding: 14px 0 0; } .mailbig .mb-ic { width: 46px; height: 46px; border-radius: 14px; } .mailbig::after { left: 64px; } }
 .copybtn { font-family: var(--f); font-size: 13px; color: inherit; background: none; border: 1px solid rgba(234, 243, 251, .25); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
 .foot { position: absolute; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); inset-inline: 0; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted-dark); }
 
@@ -313,23 +320,38 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
     <div class="inner">
       <div class="copy product">
         <span class="kicker" data-t="k3">المنتجات</span>
+        <div class="ptabs" role="tablist"><button type="button" role="tab" class="on" data-prod="clinic" aria-selected="true">The Clinic</button><button type="button" role="tab" data-prod="osm" aria-selected="false">ONTAP Share Manager</button></div>
+        <div class="pp" data-prod="clinic">
         <span class="badge"><svg class="cmark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="42" fill="#1d2b3a"/><g class="blades"><path d="M50 12A38 38 0 0 1 83 31L58 46Z" fill="#f08a24"/><path d="M83 31A38 38 0 0 1 83 69L62 54Z" fill="#e5502b"/><path d="M83 69A38 38 0 0 1 50 88L50 60Z" fill="#f08a24"/><path d="M50 88A38 38 0 0 1 17 69L42 54Z" fill="#e5502b"/><path d="M17 69A38 38 0 0 1 17 31L38 46Z" fill="#f08a24"/></g><circle cx="50" cy="50" r="10" fill="#1d2b3a"/></svg>Ophthalmology EMR</span>
         <h2 class="name" id="h-products">The Clinic</h2>
         <p class="slogan" data-t="sl">برامج العيادات القديمة اتعملت بإيد مهندسين. The Clinic عمله دكتور</p>
         <p class="lede" data-t="l3">برنامج عيادات العيون: الحجز، والـ Reception، والـ Exam sheet، وفحص المبتسرين، والقطرة، والتقرير، على جهازين في نفس العيادة</p>
         <div class="facts"><span data-t="t2">ROP screening</span><span data-t="t5">على مقاسك</span><span data-t="t3">جهاز الدكتور والـ Reception</span><span data-t="t1">عربي وإنجليزي</span><span data-t="t4">نقل من البرامج القديمة</span></div>
         <div class="actions"><a class="btn btn-fill" href="/ar/the-clinic/" data-t="a3">صفحة The Clinic</a><a class="btn btn-line" href="#contact" data-go="4" data-t="a4">اطلب Demo</a></div>
-        <p class="next" data-t="nx">ده أول منتج. <b>اللي جاي ممكن يكون لمجالك</b></p>
+        </div>
+        <div class="pp" data-prod="osm" hidden>
+        <span class="badge"><img class="oicon" src="/img/osm-icon.svg" alt="">Storage · NetApp ONTAP</span>
+        <h2 class="name">ONTAP Share Manager</h2>
+        <p class="slogan osm" data-t="osl">ONTAP file shares. Finally simple</p>
+        <p class="lede" data-t="ol">برنامج واحد على Windows تعمل بيه Shares، وتدي Permissions من الـ Active Directory، وتنقل الـ Windows File Servers لـ ONTAP، وتعرف مين مسح أو غيّر إيه.</p>
+        <div class="facts"><span>Active Directory</span><span>Migration</span><span>Share Auditing</span><span>Quotas · Snapshots</span></div>
+        <div class="actions"><a class="btn btn-fill" href="/ar/ontap-share-manager/" data-t="oa">صفحة ONTAP Share Manager</a><a class="btn btn-line" href="#contact" data-go="4" data-t="a4">اطلب Demo</a></div>
+        </div>
+        <p class="next" data-t="nx">منتجين لحد دلوقتي. <b>اللي جاي ممكن يكون لمجالك</b></p>
       </div>
       <div class="visual">
         <div class="laptop" id="laptop">
           <div class="lid"><div class="glass" id="glass">
-            <img class="on" src="/img/rop.jpg" alt="" data-cap="capR">
-            <img src="/img/reception.jpg" alt="" data-cap="capA" loading="lazy">
-            <img src="/img/acuity.jpg" alt="" data-cap="capB" loading="lazy">
-            <img src="/img/refraction.jpg" alt="" data-cap="capC" loading="lazy">
-            <img src="/img/photo.jpg" alt="" data-cap="capD" loading="lazy">
-            <img src="/img/report.jpg" alt="" data-cap="capE" loading="lazy">
+            <img class="on" src="/img/rop.jpg" alt="" data-cap="capR" data-prod="clinic">
+            <img src="/img/reception.jpg" alt="" data-cap="capA" data-prod="clinic" loading="lazy">
+            <img src="/img/acuity.jpg" alt="" data-cap="capB" data-prod="clinic" loading="lazy">
+            <img src="/img/refraction.jpg" alt="" data-cap="capC" data-prod="clinic" loading="lazy">
+            <img src="/img/photo.jpg" alt="" data-cap="capD" data-prod="clinic" loading="lazy">
+            <img src="/img/report.jpg" alt="" data-cap="capE" data-prod="clinic" loading="lazy">
+            <img src="/img/osm-folders.jpg" alt="" data-cap="oc1" data-prod="osm" loading="lazy">
+            <img src="/img/osm-group.jpg" alt="" data-cap="oc2" data-prod="osm" loading="lazy">
+            <img src="/img/osm-plan.jpg" alt="" data-cap="oc3" data-prod="osm" loading="lazy">
+            <img src="/img/osm-audit.jpg" alt="" data-cap="oc4" data-prod="osm" loading="lazy">
           </div></div>
           <div class="base"></div>
         </div>
@@ -349,7 +371,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
         <div class="ways">
         </div>
         <a class="mailbig" id="em" href="#"><span class="mb-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span><span class="mb-addr" id="emText"></span></a>
-        <ol class="next">
+        <ol class="nextsteps">
           <li><b>1</b><span data-t="nx1">ابعتلنا اللي محتاجه في سطرين</span></li>
           <li><b>2</b><span data-t="nx2">هنرد عليك بنفسنا، مش رد آلي</span></li>
           <li><b>3</b><span data-t="nx3">نتفق على مكالمة ونوريك البرنامج</span></li>
@@ -386,12 +408,12 @@ const EN = {
   f4t: 'We hand over and stay', f4p: 'Signed updates that install in one click, and support from the same people who built it',
   k3: 'Products', sl: 'Old clinic software was built by engineers. The Clinic was built by a doctor', l3: 'Eye clinic software: bookings, reception, the exam sheet, ROP screening, dilating drops and reports, on two computers in the same clinic',
   t1: 'Arabic and English', t2: 'ROP screening', t3: 'Doctor and reception computers', t4: 'Brings in your old data', t5: 'Made to fit you',
-  a3: 'The Clinic page', a4: 'Book a demo', nx: 'This is our first product. <b>The next one could be for your field</b>',
+  a3: 'The Clinic page', a4: 'Book a demo', nx: 'Two products so far. <b>The next one could be for your field</b>', osl: 'ONTAP file shares. Finally simple', ol: 'One Windows app to create shares, set permissions from Active Directory, migrate Windows file servers to ONTAP and see who deleted or changed what.', oa: 'ONTAP Share Manager page', oc1: 'Folders: capacity, size limits and the last backup', oc2: 'New Group Folder: one permission per person', oc3: 'A Windows file server migration plan', oc4: 'Share Auditing: who deleted what, from which PC',
   capR: 'ROP screening on the ICROP3 clock', capA: 'Reception: bookings, requests and the queue', capB: 'Visual acuity in the exam order', capC: 'Refraction with SE worked out', capD: 'Bookings read from a photo of paper', capE: 'The report, written from the exam',
   k4: 'Contact', h4: 'Got work <strong>that needs software?</strong>', l4: 'Tell us how your work runs, or book a demo of The Clinic. We reply ourselves',
   nx1: 'Tell us what you need in a couple of lines', nx2: 'We reply ourselves, not a bot', nx3: 'We set up a call and show you the software', waT: 'WhatsApp', emT: 'Email', copy: 'Copy', copied: 'Copied', made: 'Made in Egypt', hint: 'Scroll to turn the screen'
 };
-const AR = { capR: 'فحص المبتسرين (ROP) على ساعة الـ ICROP3', capA: 'الـ Reception: الحجوزات والطلبات والدور', capB: 'الـ Visual acuity بترتيب الكشف', capC: 'الـ Refraction والـ SE بيتحسب لوحده', capD: 'حجوزات مقروءة من صورة ورقة', capE: 'التقرير مكتوب من الكشف نفسه', copied: 'اتنسخ' };
+const AR = { capR: 'فحص المبتسرين (ROP) على ساعة الـ ICROP3', capA: 'الـ Reception: الحجوزات والطلبات والدور', capB: 'الـ Visual acuity بترتيب الكشف', capC: 'الـ Refraction والـ SE بيتحسب لوحده', capD: 'حجوزات مقروءة من صورة ورقة', capE: 'التقرير مكتوب من الكشف نفسه', osl: 'الـ File Shares على ONTAP بقت سهلة', oc1: 'الفولدرات: المساحة والحد الأقصى وآخر Backup', oc2: 'New Group Folder: صلاحية لكل واحد', oc3: 'خطة نقل Windows File Server', oc4: 'Share Auditing: مين مسح إيه ومن أنهي جهاز', copied: 'اتنسخ' };
 document.querySelectorAll('[data-t]').forEach((el) => { if (!(el.dataset.t in AR)) AR[el.dataset.t] = el.innerHTML; });
 
 let lang = 'ar';
@@ -430,10 +452,11 @@ let cur = 0, busy = false;
 const scrollMode = () => innerWidth < 960 || innerHeight < 620;
 
 /* ---------- Laptop: the screens flip like pages ---------- */
-const glassImgs = [...document.querySelectorAll('#glass img')];
+const allImgs = [...document.querySelectorAll('#glass img')]; let prod = 'clinic', glassImgs = allImgs.filter((im) => im.dataset.prod === prod);
 const dots = document.getElementById('dots');
 let shot = 0, shotTimer = null;
-glassImgs.forEach((_, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', String(i + 1)); b.addEventListener('click', () => showShot(i, true)); dots.appendChild(b); });
+function makeDots() { dots.innerHTML = ''; glassImgs.forEach((_, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', String(i + 1)); b.addEventListener('click', () => showShot(i, true)); dots.appendChild(b); }); }
+makeDots();
 function setCaption() { const d = lang === 'en' ? EN : AR; document.getElementById('cap').textContent = d[glassImgs[shot].dataset.cap] || ''; [...dots.children].forEach((b, i) => b.classList.toggle('on', i === shot)); }
 function showShot(i, user) {
   if (i === shot) return;
@@ -444,6 +467,15 @@ function showShot(i, user) {
 }
 function startShots() { clearInterval(shotTimer); if (!reduce) shotTimer = setInterval(() => showShot((shot + 1) % glassImgs.length), 3200); }
 startShots(); setCaption();
+/* Products: one tab per product; the laptop shows that product's screens */
+document.querySelectorAll('.ptabs button').forEach((t) => t.addEventListener('click', () => {
+  if (t.dataset.prod === prod) return;
+  prod = t.dataset.prod;
+  document.querySelectorAll('.ptabs button').forEach((x) => { const on = x === t; x.classList.toggle('on', on); x.setAttribute('aria-selected', on); });
+  document.querySelectorAll('.pp').forEach((pp) => { pp.hidden = pp.dataset.prod !== prod; });
+  allImgs.forEach((im) => im.classList.remove('on', 'out'));
+  glassImgs = allImgs.filter((im) => im.dataset.prod === prod); shot = 0; glassImgs[0].classList.add('on'); makeDots(); setCaption(); startShots();
+}));
 
 /* ---------- Screen changes: a diagonal wipe along the X ---------- */
 const rail = document.getElementById('rail');

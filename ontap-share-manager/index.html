@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/img/osm-icon.svg">
+<link rel="apple-touch-icon" href="/img/osm-icon-512.png">
+<link rel="canonical" href="https://codalix.org/ontap-share-manager/">
+<link rel="alternate" hreflang="ar" href="https://codalix.org/ar/ontap-share-manager/">
+<link rel="alternate" hreflang="en" href="https://codalix.org/ontap-share-manager/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://codalix.org/ontap-share-manager/">
+<meta property="og:image" content="https://codalix.org/img/osm-folders.jpg">
+<title>ONTAP Share Manager · Codalix</title>
+<meta name="description" content="ONTAP Share Manager by Codalix: create shares, set permissions from Active Directory, migrate Windows file servers to ONTAP and see who changed what.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap">
+<style>
+:root {
+  --ink: #081A33; --ink-2: #0B2140; --panel: #0E2546; --line: rgba(234, 243, 251, .12); --line-2: rgba(234, 243, 251, .2);
+  --text: #EAF3FB; --muted: #9DB2C8; --blue: #1C63B7; --cyan: #38D3DC; --ok: #3FCB8E;
+  --grad: linear-gradient(110deg, #1C63B7, #38D3DC);
+  --f: "Readex Pro", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--ink); color: var(--text); font-family: var(--f); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+.wrap { width: min(1180px, 100% - 40px); margin: 0 auto; }
+[hidden] { display: none !important; }
+
+/* Top bar */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(8, 26, 51, .82); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 12px; height: 66px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 17px; margin-inline-end: auto; direction: ltr; white-space: nowrap; }
+.brand img { width: 32px; height: 32px; border-radius: 8px; }
+.brand small { font-weight: 400; color: var(--muted); font-size: 13px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 14px; color: var(--muted); border: 1px solid var(--line-2); border-radius: 999px; padding: 7px 14px; background: none; font-family: inherit; cursor: pointer; white-space: nowrap; }
+.pill:hover { color: var(--text); border-color: var(--text); }
+.pill img { width: 16px; height: 16px; }
+.cta { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 600; font-size: 15px; color: #fff; background: var(--grad); border-radius: 999px; padding: 10px 20px; white-space: nowrap; box-shadow: 0 12px 28px -14px rgba(56, 211, 220, .8); transition: transform .2s ease; }
+.cta:hover { transform: translateY(-2px); }
+.cta.big { font-size: 17px; padding: 14px 28px; }
+
+/* Hero */
+.hero { padding: 72px 0 40px; position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: -20% -10% auto 40%; height: 680px; background: radial-gradient(closest-side, rgba(56, 211, 220, .16), transparent); pointer-events: none; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
+.hero h1 { font-size: clamp(40px, 5.4vw, 72px); line-height: 1.04; letter-spacing: -0.025em; font-weight: 600; margin: 0 0 20px; }
+.hero h1 span { display: block; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p.lede { color: var(--muted); font-size: 19px; max-width: 34em; margin: 0 0 28px; }
+.hero .meta { margin-top: 22px; font-size: 14px; color: var(--muted); }
+.window { border-radius: 14px; border: 1px solid var(--line-2); background: #0F1C27; overflow: hidden; box-shadow: 0 50px 100px -40px rgba(0, 0, 0, .9), 0 0 0 1px rgba(56, 211, 220, .08); }
+.window .bar { height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #0B1620; border-bottom: 1px solid var(--line); }
+.window .bar i { width: 10px; height: 10px; border-radius: 50%; background: #2A3A4C; }
+.window .shots { position: relative; aspect-ratio: 1920 / 860; }
+.window .shots img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; opacity: 0; transition: opacity .8s ease; }
+.window .shots img.on { opacity: 1; }
+.hero .visual { transform: perspective(1600px) rotateY(-9deg) rotateX(3deg); transform-origin: left center; transition: transform .8s ease; }
+html[dir="rtl"] .hero .visual { transform: perspective(1600px) rotateY(9deg) rotateX(3deg); transform-origin: right center; }
+.hero .visual:hover { transform: none; }
+.shot-cap { margin-top: 14px; font-size: 14px; color: var(--muted); min-height: 1.6em; }
+
+/* Section heads */
+section { padding: 80px 0; }
+.head { max-width: 720px; margin-bottom: 40px; }
+.head h2 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.12; letter-spacing: -0.02em; font-weight: 600; margin: 0 0 12px; }
+.head p { color: var(--muted); margin: 0; font-size: 18px; }
+
+/* Film */
+.film { padding-top: 20px; }
+.film-frame { border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); background: #000; aspect-ratio: 16 / 9; }
+.film-frame video { width: 100%; height: 100%; display: block; }
+
+/* Jobs: real sequences */
+.job { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 48px; align-items: center; padding: 34px 0; border-top: 1px solid var(--line); }
+.job:nth-child(even) .copy { order: 2; }
+.job h3 { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; margin: 0 0 18px; font-weight: 600; }
+.job ol { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 12px; }
+.job li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; color: var(--muted); }
+.job li::before { counter-increment: s; content: counter(s); width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(56, 211, 220, .5); color: var(--cyan); display: grid; place-items: center; font-size: 14px; font-weight: 600; }
+.job li b { color: var(--text); font-weight: 500; }
+.job .pics { display: grid; gap: 14px; }
+.job .pics .window { transform: none; }
+.job .pics .window img { width: 100%; }
+.job .pics .small { width: 72%; justify-self: end; margin-top: -18%; position: relative; }
+html[dir="rtl"] .job .pics .small { justify-self: start; }
+
+/* Features */
+.feats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.feat { padding: 28px 26px 28px 0; border-bottom: 1px solid var(--line); }
+html[dir="rtl"] .feat { padding: 28px 0 28px 26px; }
+.feat + .feat { padding-inline-start: 26px; border-inline-start: 1px solid var(--line); }
+.feat:nth-child(3n + 1) { padding-inline-start: 0; border-inline-start: 0; }
+.feat h3 { font-size: 20px; font-weight: 500; margin: 0 0 8px; }
+.feat p { margin: 0; color: var(--muted); font-size: 16px; }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; counter-reset: st; }
+.step { border-radius: 18px; border: 1px solid var(--line); background: var(--ink-2); padding: 24px; }
+.step::before { counter-increment: st; content: counter(st); display: block; font-size: 44px; font-weight: 600; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 12px; }
+.step b { display: block; font-size: 20px; font-weight: 500; margin-bottom: 6px; }
+.step span { color: var(--muted); font-size: 16px; }
+
+/* FAQ */
+.faq { display: grid; gap: 10px; max-width: 860px; }
+.faq details { border: 1px solid var(--line); border-radius: 14px; background: var(--ink-2); padding: 0 20px; }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 0; font-weight: 500; font-size: 18px; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--cyan); font-size: 22px; line-height: 1; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq p { margin: 0 0 18px; color: var(--muted); }
+
+/* Final CTA */
+.final { text-align: center; padding: 90px 0; background: radial-gradient(60% 80% at 50% 100%, rgba(28, 99, 183, .3), transparent); }
+.final h2 { font-size: clamp(32px, 4vw, 54px); letter-spacing: -0.02em; margin: 0 0 10px; font-weight: 600; }
+.final p { color: var(--muted); margin: 0 0 28px; font-size: 18px; }
+.final .mail { display: block; margin-top: 18px; color: var(--muted); font-size: 15px; direction: ltr; }
+footer { border-top: 1px solid var(--line); padding: 26px 0 36px; color: var(--muted); font-size: 13px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+footer a { text-decoration: none; display: inline-flex; align-items: center; gap: 8px; color: var(--text); }
+footer a img { width: 18px; }
+
+/* Reveal on scroll */
+.rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .hero .visual { transform: none !important; } html { scroll-behavior: auto; } }
+
+@media (max-width: 960px) {
+  .hero .wrap, .job { grid-template-columns: 1fr; gap: 28px; }
+  .job:nth-child(even) .copy { order: 0; }
+  .hero .visual, html[dir="rtl"] .hero .visual { transform: none; }
+  .feats, .steps { grid-template-columns: 1fr; }
+  .feat, .feat + .feat, html[dir="rtl"] .feat { padding: 22px 0; border-inline-start: 0; }
+  .top .home span { display: none; }
+}
+@media (max-width: 560px) { .top .cta { display: none; } .brand small { display: none; } .brand { font-size: 15px; gap: 8px; } .top .wrap { gap: 8px; } .hero { padding-top: 40px; } section { padding: 56px 0; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="/img/osm-icon.svg" alt=""><span>ONTAP Share Manager <small>by Codalix</small></span></a>
+    <a class="pill home" href="/" title="Codalix"><img src="/img/codalix-mark.svg" alt=""><span>Codalix</span></a>
+    <button class="pill" id="lang" type="button">عربي</button>
+    <a class="cta" href="#demo" data-t="cta">Book a demo</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="copy">
+        <h1 data-t="h1">ONTAP file shares. <span>Finally simple</span></h1>
+        <p class="lede" data-t="lede">One Windows app to create shares, set permissions from Active Directory, migrate Windows file servers and see who changed what.</p>
+        <a class="cta big" href="#demo" data-t="cta">Book a demo</a>
+        <p class="meta" data-t="meta">Nothing to install on the NetApp · ONTAP 9.11.1 or later · Windows 10/11</p>
+      </div>
+      <div class="visual">
+        <div class="window"><div class="bar"><i></i><i></i><i></i></div>
+          <div class="shots" id="shots">
+            <img class="on" src="/img/osm-folders.jpg" alt="" data-cap="c1">
+            <img src="/img/osm-group.jpg" alt="" data-cap="c2" loading="lazy">
+            <img src="/img/osm-plan.jpg" alt="" data-cap="c3" loading="lazy">
+            <img src="/img/osm-audit.jpg" alt="" data-cap="c4" loading="lazy">
+          </div>
+        </div>
+        <p class="shot-cap" id="shotCap"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="film" id="film" hidden>
+    <div class="wrap"><div class="film-frame rv" id="filmFrame"></div></div>
+  </section>
+
+  <section id="jobs">
+    <div class="wrap">
+      <div class="head rv"><h2 data-t="jh">Three jobs, start to finish</h2><p data-t="jp">The real screens, the real buttons. What used to take System Manager, the CLI and NTFS rights separately now takes one window.</p></div>
+      <div class="jobs">
+        <article class="job rv">
+          <div class="copy">
+            <h3 data-t="j1">Create a share and give a group access</h3>
+            <ol>
+              <li><span data-t="j1a">In <b>Folders</b>, pick the SVM and volume, then <b>New Group Folder</b></span></li>
+              <li><span data-t="j1b">Pick the security group from Active Directory. Its members appear in a table</span></li>
+              <li><span data-t="j1c">Tick <b>Full</b>, <b>Modify</b> or <b>Read</b> for each person, or tick a column for everyone</span></li>
+              <li><span data-t="j1d"><b>Create folder + share + permissions</b>. The folder, the NTFS permissions and the Share are made together, and Everyone is removed</span></li>
+            </ol>
+          </div>
+          <div class="pics"><div class="window"><div class="bar"><i></i><i></i><i></i></div><img src="/img/osm-group.jpg" alt="" loading="lazy"></div><div class="window small"><img src="/img/osm-created.jpg" alt="" loading="lazy"></div></div>
+        </article>
+        <article class="job rv">
+          <div class="copy">
+            <h3 data-t="j2">Migrate a Windows file server to ONTAP</h3>
+            <ol>
+              <li><span data-t="j2a">In <b>Migration</b>, type the server name and press <b>Scan source</b>. Its shares are listed and measured</span></li>
+              <li><span data-t="j2b"><b>Add whole share</b> or <b>Choose folders...</b>, then pick the destination volume and names</span></li>
+              <li><span data-t="j2c"><b>Check the plan</b> flags names that already exist and long paths</span></li>
+              <li><span data-t="j2d"><b>Start migration</b> copies data, NTFS permissions, owner and quotas, checks every folder file by file, then creates its Share</span></li>
+            </ol>
+          </div>
+          <div class="pics"><div class="window"><div class="bar"><i></i><i></i><i></i></div><img src="/img/osm-plan.jpg" alt="" loading="lazy"></div><div class="window small"><img src="/img/osm-migrated.jpg" alt="" loading="lazy"></div></div>
+        </article>
+        <article class="job rv">
+          <div class="copy">
+            <h3 data-t="j3">Find out who deleted a file</h3>
+            <ol>
+              <li><span data-t="j3a">In <b>Share Auditing</b>, press <b>+ Watch a folder</b> once. ONTAP auditing is switched on for you</span></li>
+              <li><span data-t="j3b">Pick <b>Today</b>, <b>7 days</b> or <b>30 days</b> and choose <b>Deleted</b>, or search for the file</span></li>
+              <li><span data-t="j3c">Each line shows the user, the time, the file and the PC it came from</span></li>
+              <li><span data-t="j3d">Need it back? <b>Restore</b> brings an older version next to the original, without overwriting anything</span></li>
+            </ol>
+          </div>
+          <div class="pics"><div class="window"><div class="bar"><i></i><i></i><i></i></div><img src="/img/osm-audit.jpg" alt="" loading="lazy"></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="head rv"><h2 data-t="fh">Everything a file server admin expects</h2><p data-t="fp">Built around the way Windows admins already work, on top of ONTAP.</p></div>
+      <div class="feats rv">
+        <div class="feat"><h3 data-t="f1t">Shares in one click</h3><p data-t="f1p">Create the folder, the NTFS permissions and the Share together, for a user, a group or a whole department.</p></div>
+        <div class="feat"><h3 data-t="f2t">Built on Active Directory</h3><p data-t="f2p">Pick users and security groups from AD and give each person Read, Modify or Full Control. No typing names, no CLI.</p></div>
+        <div class="feat"><h3 data-t="f3t">Migrate from Windows file servers</h3><p data-t="f3p">Copy data, NTFS permissions, shares and quotas to ONTAP. Every folder is checked file by file before it goes live.</p></div>
+        <div class="feat"><h3 data-t="f4t">See who did what</h3><p data-t="f4p">Who deleted, renamed, moved or changed a file, and from which PC. Every admin action is logged too, across all admins.</p></div>
+        <div class="feat"><h3 data-t="f5t">Quotas, snapshots and restore</h3><p data-t="f5p">Set folder size limits, block file types and bring back an older version of a file without touching the original.</p></div>
+        <div class="feat"><h3 data-t="f6t">Nothing to install on the NetApp</h3><p data-t="f6p">Talks to ONTAP over its REST API and to AD over LDAPS. Passwords are never saved.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="head rv"><h2 data-t="hh">How it works</h2></div>
+      <div class="steps rv">
+        <div class="step"><b data-t="s1t">Connect</b><span data-t="s1p">Install the app on your admin PC and sign in to your NetApp and your domain controller.</span></div>
+        <div class="step"><b data-t="s2t">Pick</b><span data-t="s2p">Choose the folder, the people from Active Directory and their access.</span></div>
+        <div class="step"><b data-t="s3t">Done</b><span data-t="s3p">The folder, permissions and Share are created, and every step is in the audit log.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="head rv"><h2 data-t="qh">Questions admins ask</h2></div>
+      <div class="faq rv">
+        <details><summary data-t="q1">Does it install anything on our NetApp or domain controllers?</summary><p data-t="a1">No. It runs on the admin's Windows PC and uses the ONTAP REST API and a read-only AD account.</p></details>
+        <details><summary data-t="q2">Which ONTAP versions are supported?</summary><p data-t="a2">ONTAP 9.11.1 or later with SMB, NTFS volumes and an SVM joined to Active Directory.</p></details>
+        <details><summary data-t="q3">Is migration really one click?</summary><p data-t="a3">You scan the Windows file server and check the plan first. After that, Start migration copies every folder with its NTFS permissions and checks each one.</p></details>
+        <details><summary data-t="q4">Can it tell me who deleted a file on a share?</summary><p data-t="a4">Yes. Share Auditing uses ONTAP's own audit log to show deletes, renames, moves, changes and refused delete attempts, with the user and the PC.</p></details>
+        <details><summary data-t="q5">Who controls what each admin can do?</summary><p data-t="a5">Your ONTAP roles. The app does only what the signed-in NetApp account is allowed to do, and logs every change.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="demo">
+    <div class="wrap rv">
+      <h2 data-t="dh">See it on your own shares</h2>
+      <p data-t="dp">Book a demo with the Codalix team. We call you and show it on a test volume</p>
+      <a class="cta big" id="mailBtn" href="mailto:support@codalix.org" data-t="cta">Book a demo</a>
+      <span class="mail">support@codalix.org</span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/"><img src="/img/codalix-mark.svg" alt="">Codalix</a>
+    <span data-t="tm">NetApp and ONTAP are trademarks of NetApp, Inc. Codalix is not affiliated with NetApp.</span>
+  </div>
+</footer>
+
+<script>
+const FILM = { src: '', poster: '' };
+const AR = {
+  cta: 'احجز Demo', h1: 'الـ File Shares على ONTAP <span>بقت سهلة</span>',
+  lede: 'برنامج واحد على Windows تعمل بيه Shares، وتدي Permissions من الـ Active Directory، وتنقل الـ File Servers، وتعرف مين عمل إيه.',
+  meta: 'مفيش حاجة تتسطب على الـ NetApp · ONTAP 9.11.1 أو أحدث · Windows 10/11',
+  c1: 'الفولدرات: المساحة، والحد الأقصى، وآخر Backup', c2: 'New Group Folder: صلاحية لكل واحد في الجروب', c3: 'خطة الـ Migration قبل ما تبدأ', c4: 'Share Auditing: مين مسح إيه ومن أنهي جهاز',
+  jh: '3 شغلانات من أولها لآخرها', jp: 'الشاشات الحقيقية والزراير الحقيقية. اللي كان محتاج System Manager والـ CLI والـ NTFS rights كل واحد لوحده، بقى شباك واحد.',
+  j1: 'تعمل Share وتدي جروب صلاحية', j1a: 'من <b>Folders</b> اختار الـ SVM والـ Volume، وبعدين <b>New Group Folder</b>', j1b: 'اختار الـ Security Group من الـ Active Directory، وأعضاؤه بيظهروا في جدول', j1c: 'علّم <b>Full</b> أو <b>Modify</b> أو <b>Read</b> لكل واحد، أو علّم العمود كله للكل', j1d: '<b>Create folder + share + permissions</b>: الفولدر والـ NTFS permissions والـ Share بيتعملوا مرة واحدة، والـ Everyone بيتشال',
+  j2: 'تنقل Windows File Server لـ ONTAP', j2a: 'من <b>Migration</b> اكتب اسم السيرفر واضغط <b>Scan source</b>، والـ Shares بتاعته بتظهر بأحجامها', j2b: '<b>Add whole share</b> أو <b>Choose folders...</b>، وبعدين اختار الـ Volume والأسامي', j2c: '<b>Check the plan</b> بيعلّم على الأسامي الموجودة قبل كده والـ Paths الطويلة', j2d: '<b>Start migration</b> بينقل الداتا والـ NTFS permissions والـ Owner والـ Quotas، ويراجع كل فولدر فايل فايل، وبعدين يعمل الـ Share',
+  j3: 'تعرف مين مسح فايل', j3a: 'من <b>Share Auditing</b> اضغط <b>+ Watch a folder</b> مرة واحدة، والـ ONTAP auditing بيتفعّل لوحده', j3b: 'اختار <b>Today</b> أو <b>7 days</b> أو <b>30 days</b> واختار <b>Deleted</b>، أو دوّر على اسم الفايل', j3c: 'كل سطر فيه اليوزر والوقت والفايل والجهاز اللي جه منه', j3d: 'عايزه يرجع؟ <b>Restore</b> بيرجّع نسخة قديمة جنب الأصلي من غير ما يمسح حاجة',
+  fh: 'كل اللي أدمن الـ File Server متعود عليه', fp: 'معمول على طريقة أدمنز Windows، وشغال فوق ONTAP.',
+  f1t: 'Share بضغطة واحدة', f1p: 'الفولدر والـ NTFS permissions والـ Share بيتعملوا مرة واحدة، ليوزر أو جروب أو قسم كامل.',
+  f2t: 'شغال على الـ Active Directory', f2p: 'بتختار اليوزرز والـ Security Groups من الـ AD، وكل واحد تديله Read أو Modify أو Full Control. من غير كتابة أسامي ولا CLI.',
+  f3t: 'Migration من الـ Windows File Server', f3p: 'بينقل الداتا والـ NTFS permissions والـ Shares والـ Quotas لـ ONTAP، وبيراجع كل فولدر فايل فايل قبل ما يشتغل.',
+  f4t: 'تعرف مين عمل إيه', f4p: 'مين مسح أو غيّر اسم أو نقل أو عدّل فايل، ومن أنهي جهاز. وكل حاجة الأدمنز بيعملوها متسجلة كمان.',
+  f5t: 'Quotas وSnapshots وRestore', f5p: 'تحط حد أقصى لحجم الفولدر، وتمنع أنواع فايلات، وترجّع نسخة قديمة من فايل من غير ما تلمس الأصلي.',
+  f6t: 'مفيش حاجة تتسطب على الـ NetApp', f6p: 'بيكلم ONTAP بالـ REST API والـ AD بالـ LDAPS، والباسوردات عمرها ما بتتحفظ.',
+  hh: 'بيشتغل إزاي', s1t: 'اتصل', s1p: 'سطّب البرنامج على جهاز الأدمن، وادخل على الـ NetApp والـ Domain Controller.', s2t: 'اختار', s2p: 'حدد الفولدر والناس من الـ Active Directory وصلاحية كل واحد.', s3t: 'خلصت', s3p: 'الفولدر والـ Permissions والـ Share بيتعملوا، وكل خطوة بتتسجل في الـ Audit Log.',
+  qh: 'أسئلة الأدمنز', q1: 'هو بيسطّب حاجة على الـ NetApp أو الـ Domain Controllers؟', a1: 'لأ. بيشتغل على جهاز الأدمن بس، وبيستخدم الـ ONTAP REST API وأكونت AD بصلاحية قراءة بس.',
+  q2: 'بيشتغل مع أنهي إصدارات ONTAP؟', a2: 'ONTAP 9.11.1 أو أحدث، فيه SMB وVolumes بـ NTFS، والـ SVM عامل Join على الـ Active Directory.',
+  q3: 'الـ Migration فعلاً بضغطة واحدة؟', a3: 'الأول بتعمل Scan للـ File Server وتراجع الخطة. بعدها Start migration بتنقل كل الفولدرات بالـ NTFS permissions وتراجع كل واحد.',
+  q4: 'أقدر أعرف مين مسح فايل من على الـ Share؟', a4: 'أيوه. الـ Share Auditing بيقرا الـ Audit Log بتاع ONTAP نفسه، ويوريك المسح والـ Rename والنقل والتعديل ومحاولات المسح المرفوضة، باليوزر والجهاز.',
+  q5: 'مين بيتحكم في كل أدمن يقدر يعمل إيه؟', a5: 'الـ Roles بتاعة ONTAP. البرنامج بيعمل بس اللي أكونت الـ NetApp مسموحله بيه، وبيسجل كل تغيير.',
+  dh: 'شوفه على الـ Shares بتاعتك', dp: 'احجز Demo مع فريق Codalix. هنكلمك ونوريهولك على Volume تجريبي',
+  tm: 'NetApp وONTAP علامات تجارية مملوكة لـ NetApp, Inc. وCodalix مش تابعة لـ NetApp.'
+};
+const EN = { c1: 'Folders: capacity, size limits and the last backup', c2: 'New Group Folder: one permission per person in the group', c3: 'The migration plan, checked before it starts', c4: 'Share Auditing: who deleted what, from which PC' };
+document.querySelectorAll('[data-t]').forEach((el) => { if (!(el.dataset.t in EN)) EN[el.dataset.t] = el.innerHTML; });
+let lang = 'en';
+function applyLang() {
+  const d = lang === 'ar' ? AR : EN;
+  document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-t]').forEach((el) => { if (d[el.dataset.t] != null) el.innerHTML = d[el.dataset.t]; });
+  document.getElementById('lang').textContent = lang === 'ar' ? 'English' : 'عربي';
+  const subj = lang === 'ar' ? 'طلب Demo لـ ONTAP Share Manager' : 'ONTAP Share Manager demo';
+  document.getElementById('mailBtn').href = 'mailto:support@codalix.org?subject=' + encodeURIComponent(subj);
+  setCap();
+}
+document.getElementById('lang').addEventListener('click', () => { location.href = '/ar/ontap-share-manager/' + location.hash; });
+
+/* Hero screens fade one into the next */
+const shots = [...document.querySelectorAll('#shots img')]; let cur = 0;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function setCap() { const d = lang === 'ar' ? AR : EN; document.getElementById('shotCap').textContent = d[shots[cur].dataset.cap] || ''; }
+if (!reduce) setInterval(() => { shots[cur].classList.remove('on'); cur = (cur + 1) % shots.length; shots[cur].classList.add('on'); setCap(); }, 3600);
+
+/* Film appears once it exists */
+if (FILM.src) {
+  const v = document.createElement('video'); v.controls = true; v.playsInline = true; v.preload = 'metadata'; v.src = FILM.src; if (FILM.poster) v.poster = FILM.poster;
+  document.getElementById('filmFrame').appendChild(v); document.getElementById('film').hidden = false;
+}
+
+/* Reveal on scroll */
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach((el) => io.observe(el));
+applyLang();
+</script>
+</body>
+</html>
