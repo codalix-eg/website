@@ -78,7 +78,7 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) { .logo .mk { animation: none; background-position: 60% 0; } }
 .logo b { font-weight: 600; font-size: 21px; letter-spacing: .01em; }
 .links { display: flex; gap: 6px; }
-.links a { text-decoration: none; font-size: 15px; font-weight: 400; padding: 7px 14px; border-radius: 999px; opacity: .72; transition: opacity .2s ease, background .2s ease; }
+.links a { white-space: nowrap; text-decoration: none; font-size: 15px; font-weight: 400; padding: 7px 14px; border-radius: 999px; opacity: .72; transition: opacity .2s ease, background .2s ease; }
 .links a:hover { opacity: 1; }
 .links a.cur { opacity: 1; background: rgba(56, 211, 220, .14); }
 .top.on-light .links a.cur { background: rgba(28, 99, 183, .12); }
@@ -262,7 +262,8 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
     <a href="#home" data-go="0" data-t="nav0">الرئيسية</a>
     <a href="#build" data-go="1" data-t="nav1">بنعمل إيه</a>
     <a href="#approach" data-go="2" data-t="nav2">طريقتنا</a>
-    <a href="#products" data-go="3" data-t="nav3">المنتجات</a>
+    <a href="#products" data-go="3" data-t="nav3">The Clinic</a>
+    <a href="#ontap" data-go="4" data-t="nav5">ONTAP</a>
     <a href="#contact" data-go="5" data-t="nav4">تواصل</a>
   </nav>
   <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Music"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="w1" d="M16.5 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M19 7a7 7 0 0 1 0 10"/><path class="x" d="M17 9l5 6M22 9l-5 6"/></svg></button>
@@ -410,7 +411,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
 const CONTACT = { whatsapp: '', email: 'support@codalix.org' };
 
 const EN = {
-  nav0: 'Home', nav1: 'What we build', nav2: 'How we work', nav3: 'Products', nav4: 'Contact',
+  nav0: 'Home', nav1: 'What we build', nav2: 'How we work', nav3: 'The Clinic', nav4: 'Contact', nav5: 'ONTAP',
   k0: 'An Egyptian software company', h0: 'We write software <strong>that works in real life</strong>',
   l0: 'We build products and systems inside the place where the work happens, next to the people who will use them, until the software runs the way their work runs',
   a0: 'See our products', a1: 'Talk to us', pl: '<b>The Clinic:</b> old clinic software was built by engineers. This one was built by a doctor',
