@@ -69,7 +69,13 @@ img { display: block; max-width: 100%; }
 .top { position: fixed; z-index: 30; top: env(safe-area-inset-top, 0px); left: 0; right: 0; display: flex; align-items: center; gap: 24px; padding-block: 22px; transition: color .6s ease; }
 .top.on-light { color: var(--text-light); }
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; direction: ltr; margin-inline-end: auto; }
-.logo img { width: 34px; height: auto; }
+.logo .mk { width: 34px; height: 34px; flex: none; display: block;
+  -webkit-mask: url(/img/codalix-mark.svg) center / contain no-repeat; mask: url(/img/codalix-mark.svg) center / contain no-repeat;
+  background: linear-gradient(115deg, #1C63B7 0%, #38D3DC 38%, #F2FFFF 47%, #38D3DC 56%, #1C63B7 100%) 0 0 / 320% 100%;
+  animation: mkShine 5.5s ease-in-out infinite; filter: drop-shadow(0 0 0 rgba(56, 211, 220, 0)); }
+.logo:hover .mk { animation-duration: 1.4s; }
+@keyframes mkShine { 0%, 62% { background-position: 100% 0; filter: drop-shadow(0 0 0 rgba(56, 211, 220, 0)); } 80% { filter: drop-shadow(0 0 7px rgba(56, 211, 220, .75)); } 100% { background-position: 0 0; filter: drop-shadow(0 0 0 rgba(56, 211, 220, 0)); } }
+@media (prefers-reduced-motion: reduce) { .logo .mk { animation: none; background-position: 60% 0; } }
 .logo b { font-weight: 600; font-size: 21px; letter-spacing: .01em; }
 .links { display: flex; gap: 6px; }
 .links a { text-decoration: none; font-size: 15px; font-weight: 400; padding: 7px 14px; border-radius: 999px; opacity: .72; transition: opacity .2s ease, background .2s ease; }
@@ -162,6 +168,21 @@ html[dir="rtl"] .product .name { text-align: right; }
 .way b { display: block; font-weight: 500; font-size: 17px; }
 .way .addr { display: block; font-size: 14px; color: var(--muted-dark); direction: ltr; overflow-wrap: anywhere; }
 html[dir="rtl"] .way .addr { text-align: right; }
+.mailbig { justify-self: start; display: inline-flex; align-items: center; gap: 18px; margin-top: 14px; text-decoration: none; direction: ltr; position: relative; padding-bottom: 10px; max-width: 100%; }
+.mailbig .mb-ic { width: 58px; height: 58px; flex: none; border-radius: 18px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #1C63B7, #38D3DC); box-shadow: 0 10px 30px -10px rgba(56, 211, 220, .6); transition: transform .3s; }
+.mailbig .mb-ic svg { width: 26px; height: 26px; }
+.mailbig .mb-addr { font-size: clamp(24px, 3.1vw, 44px); font-weight: 600; letter-spacing: -.01em; overflow-wrap: anywhere;
+  background: linear-gradient(100deg, #EAF3FB 0%, #EAF3FB 40%, #38D3DC 50%, #EAF3FB 60%, #EAF3FB 100%) 100% 0 / 260% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; transition: background-position .9s ease; }
+.mailbig::after { content: ""; position: absolute; left: 76px; right: 0; bottom: 0; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #1C63B7, #38D3DC); transform: scaleX(.18); transform-origin: left; transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+.mailbig:hover::after, .mailbig:focus-visible::after { transform: none; }
+.mailbig:hover .mb-addr, .mailbig:focus-visible .mb-addr { background-position: 0 0; }
+.mailbig:hover .mb-ic { transform: rotate(-8deg) scale(1.05); }
+.mailbig:focus-visible { outline: 2px solid var(--cyan); outline-offset: 6px; border-radius: 8px; }
+.next { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; max-width: 640px; border-top: 1px solid rgba(234, 243, 251, .12); }
+.next li { padding: 18px 16px 0 0; font-size: 15px; line-height: 1.55; color: var(--muted-dark); }
+html[dir="rtl"] .next li { padding: 18px 0 0 16px; }
+.next b { display: block; font-weight: 600; font-size: 13px; color: var(--cyan); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+@media (max-width: 700px) { .next { grid-template-columns: 1fr; } .next li { padding: 14px 0 0; } .mailbig .mb-ic { width: 46px; height: 46px; border-radius: 14px; } .mailbig::after { left: 64px; } }
 .copybtn { font-family: var(--f); font-size: 13px; color: inherit; background: none; border: 1px solid rgba(234, 243, 251, .25); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
 .foot { position: absolute; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); inset-inline: 0; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted-dark); }
 
@@ -221,7 +242,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
 </script>
 
 <header class="top gut" id="top">
-  <a class="logo" href="#home" data-go="0"><img src="/img/codalix-mark.svg" alt=""><b>Codalix</b></a>
+  <a class="logo" href="#home" data-go="0"><i class="mk" aria-hidden="true"></i><b>Codalix</b></a>
   <nav class="links" aria-label="Sections">
     <a href="#home" data-go="0" data-t="nav0">الرئيسية</a>
     <a href="#build" data-go="1" data-t="nav1">بنعمل إيه</a>
@@ -241,13 +262,12 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
     <div class="inner">
       <div class="copy">
         <span class="kicker" data-t="k0">شركة برمجيات مصرية</span>
-        <h1 class="display" id="h-home" data-t="h0">بنكتب software <strong>بيشتغل في الواقع.</strong></h1>
-        <p class="lede" data-t="l0">بنبني منتجات وأنظمة جوه مكان الشغل نفسه، قاعدين جنب الناس اللي هتستعملها، لحد ما البرنامج يمشي زي ما شغلهم بيمشي.</p>
+        <h1 class="display" id="h-home" data-t="h0">بنكتب software <strong>بيشتغل في الواقع</strong></h1>
+        <p class="lede" data-t="l0">بنبني منتجات وأنظمة جوه مكان الشغل نفسه، قاعدين جنب الناس اللي هتستعملها، لحد ما البرنامج يمشي زي ما شغلهم بيمشي</p>
         <div class="actions">
           <a class="btn btn-fill" href="#products" data-go="3" data-t="a0">شوف منتجاتنا</a>
           <a class="btn btn-line" href="#contact" data-go="4" data-t="a1">كلّمنا</a>
         </div>
-        <a class="prodline" href="#products" data-go="3"><img src="/img/clinic-icon.png" alt=""><span data-t="pl"><b>The Clinic:</b> برامج العيادات القديمة اتعملت بإيد مهندسين. ده عمله دكتور.</span></a>
       </div>
       <div class="visual shape-space" aria-hidden="true"></div>
     </div>
@@ -258,12 +278,12 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
     <div class="inner"><div class="build">
       <div class="copy" style="max-width: 760px">
         <span class="kicker" data-t="k1">بنعمل إيه</span>
-        <h2 class="h2" id="h-build" data-t="h1">برامج بتتعمل <strong>لشغل حقيقي</strong>، مش لعرض تقديمي.</h2>
+        <h2 class="h2" id="h-build" data-t="h1">برامج بتتعمل <strong>لشغل حقيقي</strong>، مش لعرض تقديمي</h2>
       </div>
       <div class="cols visual">
-        <div class="col"><h3 data-t="c1t">منتجات جاهزة</h3><p data-t="c1p">برامج كاملة لمجال واحد، بتتسطّب وتشتغل من أول يوم، وبتكبر بالتحديثات.</p><span class="eg" data-t="c1e">زي The Clinic لعيادات العيون</span></div>
-        <div class="col"><h3 data-t="c2t">عيادتك على مقاسك… عيادتك ببصمتك</h3><p data-t="c2p">بنظبط البرنامج على طريقة شغلك، فيبقى بصمتك إنت مش نسخة من حد تاني. ولو شغلك ليه طريقة خاصة، بنبني حواليها.</p><span class="eg" data-t="c2e">Customization · Your workflow</span></div>
-        <div class="col"><h3 data-t="c3t">وبذكاء</h3><p data-t="c3p">قراءة الورق من صورة، والبحث الذكي جوه مراجعك الطبية، شغالين جوه البرنامج نفسه.</p><span class="eg" data-t="c3e">Photo reading · Smart search</span></div>
+        <div class="col"><h3 data-t="c1t">منتجات جاهزة</h3><p data-t="c1p">برامج كاملة لمجال واحد، بتتسطّب وتشتغل من أول يوم، وبتكبر بالتحديثات</p><span class="eg" data-t="c1e">زي The Clinic لعيادات العيون</span></div>
+        <div class="col"><h3 data-t="c2t">عيادتك على مقاسك… عيادتك ببصمتك</h3><p data-t="c2p">بنظبط البرنامج على طريقة شغلك، فيبقى بصمتك إنت مش نسخة من حد تاني. ولو شغلك ليه طريقة خاصة، بنبني حواليها</p><span class="eg" data-t="c2e">Customization · Your workflow</span></div>
+        <div class="col"><h3 data-t="c3t">وبذكاء</h3><p data-t="c3p">قراءة الورق من صورة، والبحث الذكي جوه مراجعك الطبية، شغالين جوه البرنامج نفسه</p><span class="eg" data-t="c3e">Photo reading · Smart search</span></div>
       </div>
     </div></div>
   </section>
@@ -273,14 +293,14 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
     <div class="inner">
       <div class="copy">
         <span class="kicker" data-t="k2">طريقتنا</span>
-        <h2 class="h2" id="h-approach" data-t="h2">البرنامج بيتعمل <strong>جوه الشغل</strong>، مش جنبه.</h2>
-        <p class="lede" data-t="l2">The Clinic اتعمل جوه عيادة عيون شغالة، والدكتور راجع كل شاشة بإيده. وده نفس اللي بنعمله مع أي حد بنشتغل معاه.</p>
+        <h2 class="h2" id="h-approach" data-t="h2">البرنامج بيتعمل <strong>جوه الشغل</strong>، مش جنبه</h2>
+        <p class="lede" data-t="l2">The Clinic اتعمل جوه عيادة عيون شغالة، والدكتور راجع كل شاشة بإيده. وده نفس اللي بنعمله مع أي حد بنشتغل معاه</p>
       </div>
       <ol class="flow visual">
-        <li><div><b data-t="f1t">نقعد في مكان الشغل</b><span data-t="f1p">نشوف اليوم بيمشي إزاي، ومين بيعمل إيه، وإيه اللي بيعطّل.</span></div></li>
-        <li><div><b data-t="f2t">نبني أول نسخة بسرعة</b><span data-t="f2p">نسخة بتشتغل فعلاً، مش رسومات، عشان تجرّبها على شغلك.</span></div></li>
-        <li><div><b data-t="f3t">نراجعها معاك شاشة شاشة</b><span data-t="f3p">كل ملاحظة بتتنفذ، لحد ما البرنامج يبقى زي ما إنت عايزه.</span></div></li>
-        <li><div><b data-t="f4t">نسلّم ونفضل معاك</b><span data-t="f4p">تحديثات موقّعة بتتركب بضغطة، ودعم بنفس الناس اللي بنوا البرنامج.</span></div></li>
+        <li><div><b data-t="f1t">نقعد في مكان الشغل</b><span data-t="f1p">نشوف اليوم بيمشي إزاي، ومين بيعمل إيه، وإيه اللي بيعطّل</span></div></li>
+        <li><div><b data-t="f2t">نبني أول نسخة بسرعة</b><span data-t="f2p">نسخة بتشتغل فعلاً، مش رسومات، عشان تجرّبها على شغلك</span></div></li>
+        <li><div><b data-t="f3t">نراجعها معاك شاشة شاشة</b><span data-t="f3p">كل ملاحظة بتتنفذ، لحد ما البرنامج يبقى زي ما إنت عايزه</span></div></li>
+        <li><div><b data-t="f4t">نسلّم ونفضل معاك</b><span data-t="f4p">تحديثات موقّعة بتتركب بضغطة، ودعم بنفس الناس اللي بنوا البرنامج</span></div></li>
       </ol>
     </div>
   </section>
@@ -292,11 +312,11 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
         <span class="kicker" data-t="k3">المنتجات</span>
         <span class="badge"><img src="/img/clinic-icon.png" alt="">Ophthalmology EMR</span>
         <h2 class="name" id="h-products">The Clinic</h2>
-        <p class="slogan" data-t="sl">برامج العيادات القديمة اتعملت بإيد مهندسين. The Clinic عمله دكتور.</p>
-        <p class="lede" data-t="l3">برنامج عيادات العيون: الحجز، والـ Reception، والـ Exam sheet، وفحص المبتسرين، والقطرة، والتقرير، على جهازين في نفس العيادة.</p>
+        <p class="slogan" data-t="sl">برامج العيادات القديمة اتعملت بإيد مهندسين. The Clinic عمله دكتور</p>
+        <p class="lede" data-t="l3">برنامج عيادات العيون: الحجز، والـ Reception، والـ Exam sheet، وفحص المبتسرين، والقطرة، والتقرير، على جهازين في نفس العيادة</p>
         <div class="facts"><span data-t="t2">ROP screening</span><span data-t="t5">على مقاسك</span><span data-t="t3">جهاز الدكتور والـ Reception</span><span data-t="t1">عربي وإنجليزي</span><span data-t="t4">نقل من البرامج القديمة</span></div>
         <div class="actions"><a class="btn btn-fill" href="/the-clinic/" data-t="a3">صفحة The Clinic</a><a class="btn btn-line" href="#contact" data-go="4" data-t="a4">اطلب Demo</a></div>
-        <p class="next" data-t="nx">ده أول منتج. <b>اللي جاي ممكن يكون لمجالك.</b></p>
+        <p class="next" data-t="nx">ده أول منتج. <b>اللي جاي ممكن يكون لمجالك</b></p>
       </div>
       <div class="visual">
         <div class="laptop" id="laptop">
@@ -322,14 +342,15 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
       <div class="copy">
         <span class="kicker" data-t="k4">تواصل</span>
         <h2 class="display" id="h-contact" data-t="h4">عندك شغل <strong>محتاج برنامج؟</strong></h2>
-        <p class="lede" data-t="l4">احكيلنا شغلك بيمشي إزاي، أو اطلب Demo لـ The Clinic. بنرد بنفسنا.</p>
+        <p class="lede" data-t="l4">احكيلنا شغلك بيمشي إزاي، أو اطلب Demo لـ The Clinic. بنرد بنفسنا</p>
         <div class="ways">
-          <a class="way" id="em" href="#">
-            <span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span>
-            <span><b data-t="emT">إيميل</b><span class="addr" id="emText"></span></span>
-            <button class="copybtn" type="button" data-copy="em" data-t="copy">نسخ</button>
-          </a>
         </div>
+        <a class="mailbig" id="em" href="#"><span class="mb-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span><span class="mb-addr" id="emText"></span></a>
+        <ol class="next">
+          <li><b>1</b><span data-t="nx1">ابعتلنا اللي محتاجه في سطرين</span></li>
+          <li><b>2</b><span data-t="nx2">هنرد عليك بنفسنا، مش رد آلي</span></li>
+          <li><b>3</b><span data-t="nx3">نتفق على مكالمة ونوريك البرنامج</span></li>
+        </ol>
       </div>
       <div class="visual shape-space" aria-hidden="true"></div>
     </div>
@@ -347,25 +368,25 @@ const CONTACT = { whatsapp: '', email: 'support@codalix.org' };
 
 const EN = {
   nav0: 'Home', nav1: 'What we build', nav2: 'How we work', nav3: 'Products', nav4: 'Contact',
-  k0: 'An Egyptian software company', h0: 'We write software <strong>that works in real life.</strong>',
-  l0: 'We build products and systems inside the place where the work happens, next to the people who will use them, until the software runs the way their work runs.',
-  a0: 'See our products', a1: 'Talk to us', pl: '<b>The Clinic:</b> old clinic software was built by engineers. This one was built by a doctor.',
-  k1: 'What we build', h1: 'Software made <strong>for real work</strong>, not for a slide deck.',
-  c1t: 'Ready products', c1p: 'Complete software for one field that installs and works from day one, and grows with updates.', c1e: 'Like The Clinic for eye clinics',
-  c2t: 'Your clinic, your fit. Your clinic, your fingerprint.', c2p: "We tailor the software to the way you work, so it carries your fingerprint, not someone else's. If your work has its own way, we build around it.", c2e: 'Customization · Your workflow',
-  c3t: 'And smart', c3p: 'Reading paper from a photo and smart search inside your reference books run inside the program itself.', c3e: 'Photo reading · Smart search',
-  k2: 'How we work', h2: 'Software is built <strong>inside the work</strong>, not beside it.',
-  l2: 'The Clinic was built inside a working eye clinic, and the doctor reviewed every screen by hand. We work the same way with everyone we build for.',
-  f1t: 'We sit where the work happens', f1p: 'We watch how the day runs, who does what, and what slows it down.',
-  f2t: 'We build a first version fast', f2p: 'A version that actually works, not drawings, so you can try it on your own work.',
-  f3t: 'We review it with you, screen by screen', f3p: 'Every note gets done until the software is the way you want it.',
-  f4t: 'We hand over and stay', f4p: 'Signed updates that install in one click, and support from the same people who built it.',
-  k3: 'Products', sl: 'Old clinic software was built by engineers. The Clinic was built by a doctor.', l3: 'Eye clinic software: bookings, reception, the exam sheet, ROP screening, dilating drops and reports, on two computers in the same clinic.',
+  k0: 'An Egyptian software company', h0: 'We write software <strong>that works in real life</strong>',
+  l0: 'We build products and systems inside the place where the work happens, next to the people who will use them, until the software runs the way their work runs',
+  a0: 'See our products', a1: 'Talk to us', pl: '<b>The Clinic:</b> old clinic software was built by engineers. This one was built by a doctor',
+  k1: 'What we build', h1: 'Software made <strong>for real work</strong>, not for a slide deck',
+  c1t: 'Ready products', c1p: 'Complete software for one field that installs and works from day one, and grows with updates', c1e: 'Like The Clinic for eye clinics',
+  c2t: 'Your clinic, your fit. Your clinic, your fingerprint', c2p: "We tailor the software to the way you work, so it carries your fingerprint, not someone else's. If your work has its own way, we build around it", c2e: 'Customization · Your workflow',
+  c3t: 'And smart', c3p: 'Reading paper from a photo and smart search inside your reference books run inside the program itself', c3e: 'Photo reading · Smart search',
+  k2: 'How we work', h2: 'Software is built <strong>inside the work</strong>, not beside it',
+  l2: 'The Clinic was built inside a working eye clinic, and the doctor reviewed every screen by hand. We work the same way with everyone we build for',
+  f1t: 'We sit where the work happens', f1p: 'We watch how the day runs, who does what, and what slows it down',
+  f2t: 'We build a first version fast', f2p: 'A version that actually works, not drawings, so you can try it on your own work',
+  f3t: 'We review it with you, screen by screen', f3p: 'Every note gets done until the software is the way you want it',
+  f4t: 'We hand over and stay', f4p: 'Signed updates that install in one click, and support from the same people who built it',
+  k3: 'Products', sl: 'Old clinic software was built by engineers. The Clinic was built by a doctor', l3: 'Eye clinic software: bookings, reception, the exam sheet, ROP screening, dilating drops and reports, on two computers in the same clinic',
   t1: 'Arabic and English', t2: 'ROP screening', t3: 'Doctor and reception computers', t4: 'Brings in your old data', t5: 'Made to fit you',
-  a3: 'The Clinic page', a4: 'Book a demo', nx: 'This is our first product. <b>The next one could be for your field.</b>',
+  a3: 'The Clinic page', a4: 'Book a demo', nx: 'This is our first product. <b>The next one could be for your field</b>',
   capR: 'ROP screening on the ICROP3 clock', capA: 'Reception: bookings, requests and the queue', capB: 'Visual acuity in the exam order', capC: 'Refraction with SE worked out', capD: 'Bookings read from a photo of paper', capE: 'The report, written from the exam',
-  k4: 'Contact', h4: 'Got work <strong>that needs software?</strong>', l4: 'Tell us how your work runs, or book a demo of The Clinic. We reply ourselves.',
-  waT: 'WhatsApp', emT: 'Email', copy: 'Copy', copied: 'Copied', made: 'Made in Egypt', hint: 'Scroll to turn the screen'
+  k4: 'Contact', h4: 'Got work <strong>that needs software?</strong>', l4: 'Tell us how your work runs, or book a demo of The Clinic. We reply ourselves',
+  nx1: 'Tell us what you need in a couple of lines', nx2: 'We reply ourselves, not a bot', nx3: 'We set up a call and show you the software', waT: 'WhatsApp', emT: 'Email', copy: 'Copy', copied: 'Copied', made: 'Made in Egypt', hint: 'Scroll to turn the screen'
 };
 const AR = { capR: 'فحص المبتسرين (ROP) على ساعة الـ ICROP3', capA: 'الـ Reception: الحجوزات والطلبات والدور', capB: 'الـ Visual acuity بترتيب الكشف', capC: 'الـ Refraction والـ SE بيتحسب لوحده', capD: 'حجوزات مقروءة من صورة ورقة', capE: 'التقرير مكتوب من الكشف نفسه', copied: 'اتنسخ' };
 document.querySelectorAll('[data-t]').forEach((el) => { if (!(el.dataset.t in AR)) AR[el.dataset.t] = el.innerHTML; });
@@ -561,6 +582,7 @@ window.particles = (function () {
   }
   function tick(t) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    const cyc = 6000, ph = (t % cyc) / cyc, sweep = ph < 0.35 ? -H * 0.35 - 200 + (ph / 0.35) * (W + H * 0.35 + 400) : -99999;
     for (const p of P) {
       const k = p.free ? 0.004 : 0.055;
       let ax = (p.tx - p.x) * k, ay = (p.ty - p.y) * k;
@@ -569,7 +591,9 @@ window.particles = (function () {
       if (d2 < 9000) { const f = (9000 - d2) / 9000 * 2.2; const d = Math.sqrt(d2) || 1; ax += dx / d * f; ay += dy / d * f; }
       p.vx = (p.vx + ax) * 0.82; p.vy = (p.vy + ay) * 0.82;
       p.x += p.vx; p.y += p.vy;
-      const tw = 0.65 + 0.35 * Math.sin(t / 600 + p.h * 20);
+      let tw = 0.65 + 0.35 * Math.sin(t / 600 + p.h * 20);
+      const glow = p.free ? 0 : 0.8 * Math.exp(-Math.pow(((p.x - p.y * 0.35) - sweep) / 55, 2));
+      if (glow > 0.05) { ctx.fillStyle = light ? `rgba(28,99,183,${glow})` : `rgba(235,255,255,${glow})`; const g = p.r * (1.6 + glow * 1.6); ctx.fillRect(p.x - (g - p.r * 1.6) / 2, p.y - (g - p.r * 1.6) / 2, g, g); continue; }
       if (light) ctx.fillStyle = p.h > 0.5 ? `rgba(28,99,183,${(p.free ? .18 : .75) * tw})` : `rgba(8,26,51,${(p.free ? .12 : .55) * tw})`;
       else ctx.fillStyle = p.h > 0.5 ? `rgba(56,211,220,${(p.free ? .3 : .9) * tw})` : `rgba(120,170,235,${(p.free ? .25 : .75) * tw})`;
       ctx.fillRect(p.x, p.y, p.r * 1.6, p.r * 1.6);
