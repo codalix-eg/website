@@ -428,11 +428,11 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
         <div class="soon" id="filmSoon">The Clinic · 1:00</div>
       </div>
       <div class="shorts rv">
-        <h3 data-t="shTitle">فيديوهات قصيرة</h3>
+        <h3 data-t="shTitle">Shorts</h3>
         <div class="short-row">
-          <button class="short" type="button" data-src="/media/children.mp4"><img src="/img/poster-children.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh1">للأطفال كمان</b><i>0:16</i></button>
-          <button class="short" type="button" data-src="/media/prescription.mp4"><img src="/img/poster-prescription.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh2">الروشتة في ثواني</b><i>0:16</i></button>
-          <button class="short" type="button" data-src="/media/patient-file.mp4"><img src="/img/poster-patient-file.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh3">ملف المريض كله قدامك</b><i>0:16</i></button>
+          <button class="short" type="button" data-src="/media/short-prescription.mp4"><img src="/img/poster-short-1.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh1">الروشتة في ثواني</b><i>0:16</i></button>
+          <button class="short" type="button" data-src="/media/short-operation.mp4"><img src="/img/poster-short-2.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh2">العملية من الكشف للخزنة</b><i>0:16</i></button>
+          <button class="short" type="button" data-src="/media/short-close-day.mp4"><img src="/img/poster-short-3.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh3">اقفل يومك بضغطة</b><i>0:16</i></button>
         </div>
       </div>
     </div>
@@ -624,7 +624,7 @@ const EN = {
   fitEyebrow: 'Made to fit', fitTitle: 'Your clinic, your fit. Your clinic, your fingerprint',
   fitP: "Just as The Clinic was shaped by one doctor's hand, we shape it around your clinic: the exam order, the medications you write, how your printouts look, your prices and hours. If you need something that isn't there, we'll talk about it",
   fc1: 'Exam order', fc2: 'Medication stamps', fc3: 'Printouts with your name and logo', fc4: 'Prices and hours', fc5: 'Your reference books',
-  shTitle: 'Short films', sh1: 'Children too', sh2: 'Prescription in seconds', sh3: 'The whole patient file',
+  shTitle: 'Shorts', sh1: 'Prescription in seconds', sh2: 'From exam to cashier', sh3: 'Close your day in one click',
   fmEyebrow: 'The film', fmTitle: 'The Clinic in one minute',
   dyEyebrow: 'One clinic day', dyTitle: 'From the first booking in the morning to the last report at night',
   b1t: 'Bookings arrive on their own', b1p: 'Your assistant books from their phone while away from the clinic, and the booking waits for reception to confirm it with one click',
@@ -714,7 +714,7 @@ apply();
   });
 })();
 
-/* Short films: a card turns into its video when tapped; only one plays at a time, and the music steps aside. */
+/* Shorts: a card turns into its video when tapped; only one plays at a time, and the music steps aside. */
 document.querySelectorAll('.short').forEach((card) => card.addEventListener('click', () => {
   if (card.classList.contains('playing')) return;
   document.querySelectorAll('.short.playing video, #filmFrame video').forEach((v) => v.pause());
