@@ -15,7 +15,7 @@
 
 <title>The Clinic by Codalix</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="The Clinic — برنامج عيادات العيون اللي كل شاشة فيه راجعها دكتور وغيّرها بإيده. شغال من غير نت، والداتا جوه عيادتك.">
+<meta name="description" content="The Clinic — برنامج عيادات العيون اللي كل شاشة فيه راجعها دكتور وغيّرها بإيده. برامج العيادات القديمة اتعملت بإيد مهندسين، وThe Clinic عمله دكتور.">
 <meta property="og:title" content="The Clinic — made by a doctor, for doctors">
 <meta property="og:description" content="برنامج عيادات العيون اللي كل شاشة فيه راجعها دكتور وغيّرها بإيده.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,6 +96,8 @@ html[dir="rtl"] .eyebrow { font-family: var(--f-body); letter-spacing: 0; font-s
 .chart .r3 > span { font-size: clamp(30px, 4.6vw, 62px); background: linear-gradient(90deg, var(--mint), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .chart .r4 > span { font-size: clamp(23px, 3.3vw, 44px); }
 .chart .r5 > span { font-size: clamp(19px, 2.4vw, 31px); }
+html[lang="en"] .chart .r1 > span { font-size: clamp(44px, 6.4vw, 92px); }
+html[lang="en"] .chart .r2 > span { font-size: clamp(34px, 5vw, 70px); }
 .chart .r5 > span em { font-style: normal; font-family: var(--f-hand); color: var(--pen); font-size: 1.35em; line-height: 1; }
 .focus .row > span { animation: focus 1.9s cubic-bezier(.3, .6, .2, 1) both; }
 .focus .r2 > span { animation-delay: .12s; } .focus .r3 > span { animation-delay: .24s; } .focus .r4 > span { animation-delay: .36s; } .focus .r5 > span { animation-delay: .48s; }
@@ -148,6 +150,25 @@ html[lang="en"] .notes li span { font-size: 29px; line-height: 1.15; }
 .notes li small { display: block; font-family: var(--f-body); font-size: 14px; color: var(--muted); margin-top: 4px; }
 .signoff { margin-top: 30px; padding-top: 22px; border-top: 1px dashed var(--line-2); color: var(--muted); font-size: 15px; }
 .signoff b { color: var(--text); font-family: var(--f-display); font-weight: 600; }
+
+/* ---------- ROP ---------- */
+.slogan { display: block; color: var(--text); font-weight: 600; margin-bottom: 6px; }
+.rop-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 60px); align-items: center; }
+.rop-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.rop-list li { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.rop-list b { font-family: var(--f-display); font-weight: 600; font-size: 19px; }
+.rop-list span { grid-column: 1 / -1; color: var(--muted); font-size: 15.5px; }
+.rop-list .k { font-style: normal; grid-column: 2; grid-row: 1; align-self: center; font-family: var(--f-mono); font-size: 12px; color: var(--mint); border: 1px solid rgba(69, 215, 182, .4); border-radius: 8px; padding: 3px 8px; direction: ltr; white-space: nowrap; }
+/* ---------- Made to fit ---------- */
+.fit { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; padding: clamp(28px, 4.5vw, 64px); border-radius: 28px; border: 1px solid var(--line-2);
+  background: radial-gradient(60% 120% at 0% 50%, rgba(255, 91, 61, .12), transparent 60%), var(--panel); }
+.fit svg { width: clamp(120px, 15vw, 210px); height: auto; }
+.fit svg path { fill: none; stroke: var(--pen); stroke-width: 3; stroke-linecap: round; }
+.fit h2 { font-size: clamp(30px, 3.8vw, 48px); font-weight: 900; line-height: 1.2; }
+.fit p { color: var(--muted); margin-top: 14px; max-width: 62ch; }
+.fit .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.fit .chips span { font-size: 14px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--text); }
+@media (max-width: 980px) { .rop-grid, .fit { grid-template-columns: 1fr; } .fit svg { width: 110px; } }
 
 /* ---------- Film ---------- */
 .film { display: grid; gap: 26px; }
@@ -286,7 +307,7 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
           <span class="row r4"><span data-t="c4">وغيّرها</span><small>6/9</small></span>
           <span class="row r5"><span data-t="c5"><em>بإيده.</em></span><small>6/6</small></span>
         </h1>
-        <p class="lede" data-t="lede">The Clinic متعملش في مكتب programmers. اتعمل جوه عيادة عيون شغالة، ودكتور قعد على كل شاشة لحد ما بقت ماشية بالظبط زي الكشف.</p>
+        <p class="lede" data-t="lede"><strong class="slogan">برامج العيادات القديمة اتعملت بإيد مهندسين. The Clinic عمله دكتور.</strong> قعد على كل شاشة جوه عيادة عيون شغالة، لحد ما بقت ماشية بالظبط زي الكشف.</p>
         <div class="hero-cta">
           <a class="btn btn-mint" href="#demo" data-t="cta2">اطلب Demo بمكالمة</a>
           <a class="btn btn-ghost" href="#film"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg><span data-t="watch">اتفرج في دقيقة</span></a>
@@ -338,6 +359,40 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
             <li class="d4"><i>4</i><div><span data-t="n4">الـ SE بيتحسب لوحده.</span></div></li>
           </ol>
           <p class="signoff" data-t="signoff">وده على كل شاشة، من الـ History لحد التقرير. <b>مفيش خانة اتحطت عشان شكلها حلو.</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="rop" aria-labelledby="rop-title" style="padding-top: 0">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow" data-t="ropEyebrow">فحص المبتسرين</span>
+        <h2 id="rop-title" data-t="ropTitle">فحص المبتسرين (ROP)… معمول زي ما الدكتور بيفحص.</h2>
+        <p data-t="ropLede">دوس ROP screening، والبرنامج يجهّز الكشف كله للمبتسر: الـ Fundus الأول، وكل الباقي مقفول لحد ما تحتاجه.</p>
+      </div>
+      <div class="rop-grid">
+        <div class="monitor rv"><div class="shot"><img src="/img/rop.jpg" alt="ROP findings (ICROP3) في The Clinic" width="1600" height="1483" loading="lazy"></div></div>
+        <ul class="rop-list rv">
+          <li><b data-t="r1b">عمر الحمل ووزن الولادة</b><em class="k">GA · BW</em><span data-t="r1s">بالأسابيع والجرام، أول ما تفعّل الفحص.</span></li>
+          <li><b data-t="r2b">العين مرسومة على الساعة</b><em class="k">ICROP3</em><span data-t="r2s">دوس على الساعات المصابة في كل عين، والـ Zone والـ Stage والـ Plus جنبها.</span></li>
+          <li><b data-t="r3b">A-ROP والـ Notch والنزيف</b><em class="k">Signs</em><span data-t="r3s">كل علامة ليها زرار، من غير كتابة.</span></li>
+          <li><b data-t="r4b">قطرة الـ ROP جاهزة</b><em class="k">Cyclophrine ×2</em><span data-t="r4s">خطة توسيع الـ ROP بتوصل الـ Reception بالجولات والتنبيه.</span></li>
+          <li><b data-t="r5b">بيتكتب لوحده</b><em class="k">Chief complaint</em><span data-t="r5s">ROP screening بتتكتب في الشكوى أول ما تفعّله.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="fit" aria-labelledby="fit-title" style="padding-top: 0">
+    <div class="wrap">
+      <div class="fit rv">
+        <svg viewBox="0 0 120 140" aria-hidden="true"><path d="M60 14c-26 0-46 20-46 46v20"/><path d="M60 26c-19 0-34 15-34 34v34"/><path d="M60 38c-12 0-22 10-22 22v46"/><path d="M60 50c-6 0-10 4-10 10v58"/><path d="M60 60v66"/><path d="M60 50c6 0 10 4 10 10v40"/><path d="M60 38c12 0 22 10 22 22v52"/><path d="M60 26c19 0 34 15 34 34v26"/><path d="M60 14c26 0 46 20 46 46v8"/></svg>
+        <div>
+          <span class="eyebrow" data-t="fitEyebrow">على مقاسك</span>
+          <h2 id="fit-title" data-t="fitTitle" style="margin-top: 12px">البرنامج بصمتك إنت، مش نسخة من حد تاني.</h2>
+          <p data-t="fitP">زي ما The Clinic اتظبط على إيد دكتور، بنظبطه على عيادتك: ترتيب الكشف، والأدوية اللي بتكتبها، وشكل الورق المطبوع، والأسعار والمواعيد. ولو محتاج حاجة مش موجودة، نتكلم فيها.</p>
+          <div class="chips"><span data-t="fc1">ترتيب الكشف</span><span data-t="fc2">Stamps الأدوية</span><span data-t="fc3">الطباعة باسمك ولوجوك</span><span data-t="fc4">الأسعار والمواعيد</span><span data-t="fc5">مراجعك الطبية</span></div>
         </div>
       </div>
     </div>
@@ -418,10 +473,10 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
       </div>
       <div class="also rv">
         <article class="card">
-          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3 data-t="a1t">من غير نت</h3>
-          <p data-t="a1p">شغال على أجهزة العيادة. ملفات مرضاك جوه عيادتك، مش على سيرفر بره.</p>
-          <span class="spec">Offline · Local network</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M8 7h6"/></svg></div>
+          <h3 data-t="a1t">مراجعك جوه الكشف</h3>
+          <p data-t="a1p">ضيف كتبك المرجعية مرة واحدة، وابحث فيها من جوه الكشف، وضيف الـ Differential بضغطة.</p>
+          <span class="spec">Clinical guide · Your books</span>
         </article>
         <article class="card">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
@@ -478,7 +533,7 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
         <h2 id="faq-title" data-t="fqTitle">قبل ما تسأل.</h2>
       </div>
       <div class="faq">
-        <details><summary data-t="q1">محتاج إنترنت؟</summary><p data-t="q1a">لأ. البرنامج شغال على أجهزة العيادة من غير إنترنت. النت بيفرق بس في الحجز من الموبايل وإنت بره العيادة.</p></details>
+        <details><summary data-t="q1">ينفع البرنامج يتظبط على عيادتي؟</summary><p data-t="q1a">أيوه، وده جزء من الفكرة. في المكالمة بنعرف طريقة شغلك، وبنظبط البرنامج عليها.</p></details>
         <details><summary data-t="q2">ملفات المرضى بتتحفظ فين؟</summary><p data-t="q2a">على أجهزة عيادتك نفسها، مش على سيرفر بره، ومعاها نسخة احتياطية.</p></details>
         <details><summary data-t="q3">بينقل الداتا من برنامجي القديم؟</summary><p data-t="q3a">أيوه، بننقل المرضى والزيارات. في المكالمة بنشوف برنامجك إيه، ونقولك بالظبط إيه اللي هيتنقل.</p></details>
         <details><summary data-t="q4">محتاج أجهزة معينة؟</summary><p data-t="q4a">أي كمبيوتر Windows عادي للدكتور، وجهاز تاني للـ Reception لو حابب، على نفس شبكة العيادة.</p></details>
@@ -525,12 +580,22 @@ const FILM = { src: '/media/the-clinic.mp4', poster: '/img/poster.jpg' };
 const EN = {
   cta: 'Book a demo', eyebrow: 'Software for eye clinics',
   c1: 'Every screen', c2: 'was reviewed', c3: 'and reworked', c4: "by a doctor's", c5: '<em>own hand.</em>',
-  lede: "The Clinic wasn't built in a software office. It was built inside a working eye clinic, where a doctor sat with every screen until it followed the exam exactly.",
+  lede: '<strong class="slogan">Old clinic software was built by engineers. The Clinic was built by a doctor.</strong> He sat with every screen inside a working eye clinic until it followed the exam exactly.',
   cta2: 'Book a demo call', watch: 'Watch in one minute',
   rpEyebrow: 'The red pen', rpTitle: 'Every screen went through the <span class="pen">red pen</span> before it reached you.',
   rpLede: 'This is the real refraction screen. Everything on it moved to its place because a doctor said "this gets written first."',
   n1: 'Same order as the exam: VA, then refraction.', n2: 'What changed since the last visit sits right at the top.', n3: 'Type OD, it copies to OS, then fine-tune.', n4: 'SE works itself out.',
   signoff: 'The same goes for every screen, from history to the report. <b>No field is there just because it looks nice.</b>',
+  ropEyebrow: 'ROP screening', ropTitle: 'ROP screening, laid out the way the doctor examines.',
+  ropLede: 'Press ROP screening and the whole exam is set up for a premature baby: fundus first, everything else folded until you need it.',
+  r1b: 'Gestational age and birth weight', r1s: 'In weeks and grams, as soon as you turn screening on.',
+  r2b: 'The eye drawn on the clock', r2s: 'Tap the clock hours involved in each eye, with zone, stage and plus beside it.',
+  r3b: 'A-ROP, notch, haemorrhage', r3s: 'Each sign has its own button, no typing.',
+  r4b: 'ROP drops ready', r4s: 'The ROP dilating plan reaches reception with rounds and a chime.',
+  r5b: 'Written for you', r5s: 'ROP screening goes into the chief complaint as soon as you turn it on.',
+  fitEyebrow: 'Made to fit', fitTitle: "Software that carries your fingerprint, not someone else's.",
+  fitP: "Just as The Clinic was shaped by one doctor's hand, we shape it around your clinic: the exam order, the medications you write, how your printouts look, your prices and hours. If you need something that isn't there, we'll talk about it.",
+  fc1: 'Exam order', fc2: 'Medication stamps', fc3: 'Printouts with your name and logo', fc4: 'Prices and hours', fc5: 'Your reference books',
   fmEyebrow: 'The film', fmTitle: 'The Clinic in one minute.',
   dyEyebrow: 'One clinic day', dyTitle: 'From the first booking in the morning to the last report at night.',
   b1t: 'Bookings arrive on their own.', b1p: 'Your assistant books from their phone while away from the clinic, and the booking waits for reception to confirm it with one click.',
@@ -539,7 +604,7 @@ const EN = {
   b4t: 'You choose the drops. Reception keeps track.', b4p: 'Standard, ROP or fundus exam. Reception gets a chime for every round, and the timer starts after the last one.',
   b5t: 'Report and prescription, ready.', b5p: 'The report is written from the exam itself and every line can be edited before printing. Glasses print as clear Distance and Near rows.',
   alEyebrow: 'And also', alTitle: 'The small things that matter at the end of the day.',
-  a1t: 'No internet needed', a1p: "Runs on your clinic's computers. Patient files stay in your clinic, not on an outside server.",
+  a1t: 'Your references inside the exam', a1p: 'Add your reference books once, search them from inside the exam, and add to the differential in one click.',
   a2t: 'Your old data comes with you', a2p: 'We move patients and visits from your old program, and you check every name before it goes in.',
   a3t: 'Two computers, one clinic', a3p: "Reception sees every patient's status while you're in the exam room, without anyone calling out.",
   a4t: 'Operations in two letters', a4p: 'Type two letters and the operation appears, from Phaco to PPV. Any new name is remembered for next time.',
@@ -550,7 +615,7 @@ const EN = {
   s2t: 'A call where we show you around', s2p: 'We walk through a full clinic day with you, from booking to report.',
   s3t: 'We install and move your data', s3p: "On your clinic's computers, with your files from your old program.",
   fqEyebrow: 'Common questions', fqTitle: 'Before you ask.',
-  q1: 'Does it need the internet?', q1a: "No. It runs on your clinic's computers without internet. Internet only matters for phone bookings made from outside the clinic.",
+  q1: 'Can it be tailored to my clinic?', q1a: "Yes, that's part of the idea. On the call we learn how you work and set the program up around it.",
   q2: 'Where are patient files kept?', q2a: "On your clinic's own computers, not on an outside server, with a backup.",
   q3: 'Can it bring in data from my old program?', q3a: 'Yes, we move patients and visits. On the call we look at your program and tell you exactly what will come across.',
   q4: 'Do I need special computers?', q4a: 'Any ordinary Windows computer for the doctor, and a second one for reception if you like, on the clinic network.',

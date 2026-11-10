@@ -14,7 +14,7 @@
 <style>[hidden]{display:none!important}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>Codalix (English)</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Codalix is an Egyptian software company building products and systems inside the place where the work happens. Our first product: The Clinic, for eye clinics.">
+<meta name="description" content="Codalix is an Egyptian software company. Our first product, The Clinic, is eye clinic software built by a doctor.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap">
@@ -110,6 +110,7 @@ img { display: block; max-width: 100%; }
 .badge { display: inline-flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; direction: ltr; justify-self: start; }
 html[dir="rtl"] .badge { justify-self: end; }
 .badge img { width: 40px; height: 40px; }
+.slogan { font-weight: 600; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.45; color: var(--text-light); padding-inline-start: 14px; border-inline-start: 3px solid var(--clinic); }
 .product .name { font-weight: 600; font-size: clamp(42px, 4.6vw, 72px); line-height: 1.05; direction: ltr; letter-spacing: -0.02em; }
 html[dir="rtl"] .product .name { text-align: right; }
 .facts { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -225,8 +226,8 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
       </div>
       <div class="cols visual">
         <div class="col"><h3 data-t="c1t">منتجات جاهزة</h3><p data-t="c1p">برامج كاملة لمجال واحد، بتتسطّب وتشتغل من أول يوم، وبتكبر بالتحديثات.</p><span class="eg" data-t="c1e">زي The Clinic لعيادات العيون</span></div>
-        <div class="col"><h3 data-t="c2t">أنظمة على مقاسك</h3><p data-t="c2p">لو شغلك ليه طريقة خاصة، بنبني النظام حواليها بدل ما نغيّرها.</p><span class="eg" data-t="c2e">Desktop · Web · شبكة داخلية</span></div>
-        <div class="col"><h3 data-t="c3t">من غير نت، وبذكاء</h3><p data-t="c3p">برامجنا بتشتغل على أجهزتك من غير إنترنت، والداتا بتفضل عندك. وفيها ذكاء اصطناعي شغال على الجهاز نفسه.</p><span class="eg" data-t="c3e">قراءة الصور · بحث ذكي · Offline</span></div>
+        <div class="col"><h3 data-t="c2t">على مقاسك، ببصمتك</h3><p data-t="c2p">بنظبط البرنامج على طريقة شغلك، فيبقى بصمتك إنت مش نسخة من حد تاني. ولو شغلك ليه طريقة خاصة، بنبني حواليها.</p><span class="eg" data-t="c2e">Customization · Your workflow</span></div>
+        <div class="col"><h3 data-t="c3t">وبذكاء</h3><p data-t="c3p">قراءة الورق من صورة، والبحث الذكي جوه مراجعك الطبية، شغالين جوه البرنامج نفسه.</p><span class="eg" data-t="c3e">Photo reading · Smart search</span></div>
       </div>
     </div></div>
   </section>
@@ -255,15 +256,17 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
         <span class="kicker" data-t="k3">المنتجات</span>
         <span class="badge"><img src="/img/clinic-icon.png" alt="">Ophthalmology EMR</span>
         <h2 class="name" id="h-products">The Clinic</h2>
-        <p class="lede" data-t="l3">برنامج عيادات العيون: الحجز، والـ Reception، والـ Exam sheet، والقطرة، والتقرير، على جهازين في نفس العيادة ومن غير نت.</p>
-        <div class="facts"><span data-t="t1">عربي وإنجليزي</span><span data-t="t2">من غير نت</span><span data-t="t3">جهاز الدكتور والـ Reception</span><span data-t="t4">نقل من البرامج القديمة</span></div>
+        <p class="slogan" data-t="sl">برامج العيادات القديمة اتعملت بإيد مهندسين. The Clinic عمله دكتور.</p>
+        <p class="lede" data-t="l3">برنامج عيادات العيون: الحجز، والـ Reception، والـ Exam sheet، وفحص المبتسرين، والقطرة، والتقرير، على جهازين في نفس العيادة.</p>
+        <div class="facts"><span data-t="t2">ROP screening</span><span data-t="t5">على مقاسك</span><span data-t="t3">جهاز الدكتور والـ Reception</span><span data-t="t1">عربي وإنجليزي</span><span data-t="t4">نقل من البرامج القديمة</span></div>
         <div class="actions"><a class="btn btn-fill" href="/the-clinic/" data-t="a3">صفحة The Clinic</a><a class="btn btn-line" href="#contact" data-go="4" data-t="a4">اطلب Demo</a></div>
         <p class="next" data-t="nx">ده أول منتج. <b>اللي جاي ممكن يكون لمجالك.</b></p>
       </div>
       <div class="visual">
         <div class="laptop" id="laptop">
           <div class="lid"><div class="glass" id="glass">
-            <img class="on" src="/img/reception.jpg" alt="" data-cap="capA">
+            <img class="on" src="/img/rop.jpg" alt="" data-cap="capR">
+            <img src="/img/reception.jpg" alt="" data-cap="capA" loading="lazy">
             <img src="/img/acuity.jpg" alt="" data-cap="capB" loading="lazy">
             <img src="/img/refraction.jpg" alt="" data-cap="capC" loading="lazy">
             <img src="/img/photo.jpg" alt="" data-cap="capD" loading="lazy">
@@ -313,22 +316,22 @@ const EN = {
   a0: 'See our products', a1: 'Talk to us',
   k1: 'What we build', h1: 'Software made <strong>for real work</strong>, not for a slide deck.',
   c1t: 'Ready products', c1p: 'Complete software for one field that installs and works from day one, and grows with updates.', c1e: 'Like The Clinic for eye clinics',
-  c2t: 'Systems that fit you', c2p: 'If your work has its own way of doing things, we build the system around it instead of changing it.', c2e: 'Desktop · Web · Local network',
-  c3t: 'Offline, and smart', c3p: 'Our software runs on your computers without internet, and your data stays with you. AI features run on the computer itself.', c3e: 'Photo reading · Smart search · Offline',
+  c2t: 'Made to fit, with your fingerprint', c2p: "We tailor the software to the way you work, so it carries your fingerprint, not someone else's. If your work has its own way, we build around it.", c2e: 'Customization · Your workflow',
+  c3t: 'And smart', c3p: 'Reading paper from a photo and smart search inside your reference books run inside the program itself.', c3e: 'Photo reading · Smart search',
   k2: 'How we work', h2: 'Software is built <strong>inside the work</strong>, not beside it.',
   l2: 'The Clinic was built inside a working eye clinic, and the doctor reviewed every screen by hand. We work the same way with everyone we build for.',
   f1t: 'We sit where the work happens', f1p: 'We watch how the day runs, who does what, and what slows it down.',
   f2t: 'We build a first version fast', f2p: 'A version that actually works, not drawings, so you can try it on your own work.',
   f3t: 'We review it with you, screen by screen', f3p: 'Every note gets done until the software is the way you want it.',
   f4t: 'We hand over and stay', f4p: 'Signed updates that install in one click, and support from the same people who built it.',
-  k3: 'Products', l3: 'Eye clinic software: bookings, reception, the exam sheet, dilating drops and reports, on two computers in the same clinic and without internet.',
-  t1: 'Arabic and English', t2: 'Works offline', t3: 'Doctor and reception computers', t4: 'Brings in your old data',
+  k3: 'Products', sl: 'Old clinic software was built by engineers. The Clinic was built by a doctor.', l3: 'Eye clinic software: bookings, reception, the exam sheet, ROP screening, dilating drops and reports, on two computers in the same clinic.',
+  t1: 'Arabic and English', t2: 'ROP screening', t3: 'Doctor and reception computers', t4: 'Brings in your old data', t5: 'Made to fit you',
   a3: 'The Clinic page', a4: 'Book a demo', nx: 'This is our first product. <b>The next one could be for your field.</b>',
-  capA: 'Reception: bookings, requests and the queue', capB: 'Visual acuity in the exam order', capC: 'Refraction with SE worked out', capD: 'Bookings read from a photo of paper', capE: 'The report, written from the exam',
+  capR: 'ROP screening on the ICROP3 clock', capA: 'Reception: bookings, requests and the queue', capB: 'Visual acuity in the exam order', capC: 'Refraction with SE worked out', capD: 'Bookings read from a photo of paper', capE: 'The report, written from the exam',
   k4: 'Contact', h4: 'Got work <strong>that needs software?</strong>', l4: 'Tell us how your work runs, or book a demo of The Clinic. We reply ourselves.',
   waT: 'WhatsApp', emT: 'Email', copy: 'Copy', copied: 'Copied', made: 'Made in Egypt', hint: 'Scroll to turn the screen'
 };
-const AR = { capA: 'الـ Reception: الحجوزات والطلبات والدور', capB: 'الـ Visual acuity بترتيب الكشف', capC: 'الـ Refraction والـ SE بيتحسب لوحده', capD: 'حجوزات مقروءة من صورة ورقة', capE: 'التقرير مكتوب من الكشف نفسه', copied: 'اتنسخ' };
+const AR = { capR: 'فحص المبتسرين (ROP) على ساعة الـ ICROP3', capA: 'الـ Reception: الحجوزات والطلبات والدور', capB: 'الـ Visual acuity بترتيب الكشف', capC: 'الـ Refraction والـ SE بيتحسب لوحده', capD: 'حجوزات مقروءة من صورة ورقة', capE: 'التقرير مكتوب من الكشف نفسه', copied: 'اتنسخ' };
 document.querySelectorAll('[data-t]').forEach((el) => { if (!(el.dataset.t in AR)) AR[el.dataset.t] = el.innerHTML; });
 
 let lang = 'en';
