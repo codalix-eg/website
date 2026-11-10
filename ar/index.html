@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/png" href="/img/codalix-mark.png">
+<link rel="canonical" href="https://codalix.org/ar/">
+<link rel="alternate" hreflang="ar" href="https://codalix.org/ar/">
+<link rel="alternate" hreflang="en" href="https://codalix.org/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://codalix.org/ar/">
+<meta property="og:image" content="https://codalix.org/img/poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>[hidden]{display:none!important}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Codalix</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Codalix — شركة برمجيات مصرية بتبني منتجات وأنظمة بتشتغل في مكان الشغل نفسه. أول منتجاتنا: The Clinic لعيادات العيون.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap">
+<style>
+/* Layout: five full screens that change with a diagonal wipe cut along the two strokes of the Codalix X.
+   A single particle field lives behind every screen and re-forms into a new shape for each one. */
+:root {
+  --ink: #081A33;
+  --ink-2: #0E2546;
+  --ice: #E9F1F8;
+  --ice-2: #D6E4F1;
+  --blue: #1C63B7;
+  --cyan: #38D3DC;
+  --text-dark: #EAF3FB;
+  --text-light: #0B1E38;
+  --muted-dark: #8EA6C4;
+  --muted-light: #4C6382;
+  --clinic: #F28C28;
+  --f: "Readex Pro", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--ink); color: var(--text-dark); font-family: var(--f); font-weight: 300; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--ink); }
+body.scrollmode { overflow-x: hidden; overflow-y: auto; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+img { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
+.gut { padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+
+/* ---------- Top bar ---------- */
+.top { position: fixed; z-index: 30; top: env(safe-area-inset-top, 0px); left: 0; right: 0; display: flex; align-items: center; gap: 24px; padding-block: 22px; transition: color .6s ease; }
+.top.on-light { color: var(--text-light); }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; direction: ltr; margin-inline-end: auto; }
+.logo img { width: 34px; height: auto; }
+.logo b { font-weight: 600; font-size: 21px; letter-spacing: .01em; }
+.links { display: flex; gap: 6px; }
+.links a { text-decoration: none; font-size: 15px; font-weight: 400; padding: 7px 14px; border-radius: 999px; opacity: .72; transition: opacity .2s ease, background .2s ease; }
+.links a:hover { opacity: 1; }
+.links a.cur { opacity: 1; background: rgba(56, 211, 220, .14); }
+.top.on-light .links a.cur { background: rgba(28, 99, 183, .12); }
+.lang { font-family: var(--f); font-size: 14px; color: inherit; background: none; border: 1px solid currentColor; border-radius: 999px; padding: 6px 14px; cursor: pointer; opacity: .8; }
+.lang:hover { opacity: 1; }
+
+/* ---------- Screens ---------- */
+#stage { position: fixed; inset: 0; }
+.screen { position: absolute; inset: 0; overflow: hidden; display: grid; align-items: center; padding-top: calc(env(safe-area-inset-top, 0px) + 84px); padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 40px); visibility: hidden; }
+.screen.dark { background: var(--ink); color: var(--text-dark); }
+.screen.light { background: var(--ice); color: var(--text-light); }
+.screen.cur, .screen.enter, .screen.leave { visibility: visible; }
+.screen.cur { z-index: 2; }
+.screen.leave { z-index: 2; }
+.screen.enter { z-index: 3; }
+.inner { width: 100%; max-width: 1280px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
+.copy { display: grid; gap: 22px; align-content: center; max-width: 620px; }
+.kicker { font-size: 15px; font-weight: 500; color: var(--cyan); }
+.light .kicker { color: var(--blue); }
+.display { font-weight: 200; font-size: clamp(44px, 5.6vw, 88px); line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance; }
+.display strong { font-weight: 600; }
+.h2 { font-weight: 300; font-size: clamp(34px, 3.8vw, 58px); line-height: 1.18; text-wrap: balance; }
+.h2 strong { font-weight: 600; }
+.lede { font-size: clamp(17px, 1.35vw, 20px); color: var(--muted-dark); max-width: 54ch; }
+.light .lede { color: var(--muted-light); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f); font-size: 16px; font-weight: 500; text-decoration: none; border-radius: 999px; padding: 14px 26px; border: 1px solid transparent; cursor: pointer; transition: transform .25s ease, background .25s ease, border-color .25s ease; }
+.btn-fill { background: linear-gradient(120deg, var(--blue), var(--cyan)); color: #fff; }
+.btn-fill:hover { transform: translateY(-2px); }
+.btn-line { border-color: currentColor; color: inherit; background: transparent; }
+.btn-line:hover { background: rgba(255, 255, 255, .06); }
+.light .btn-line:hover { background: rgba(8, 26, 51, .05); }
+
+/* Screen 2: what we build — three plain columns divided by the X's diagonal */
+.build { display: grid; gap: 34px; }
+.build .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid rgba(11, 30, 56, .16); }
+.build .col { padding: 28px clamp(16px, 2vw, 30px) 8px; display: grid; gap: 10px; align-content: start; border-inline-start: 1px solid rgba(11, 30, 56, .12); }
+.build .col:first-child { border-inline-start: 0; padding-inline-start: 0; }
+.build .col h3 { font-size: 23px; font-weight: 500; }
+.build .col p { color: var(--muted-light); font-size: 16px; }
+.build .col .eg { font-size: 14px; color: var(--blue); }
+.build .inner { grid-template-columns: 1fr; }
+
+/* Screen 3: how we work — a real sequence */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; counter-reset: f; }
+.flow li { display: grid; grid-template-columns: 54px 1fr; gap: 16px; align-items: start; padding: 14px 0; border-bottom: 1px solid rgba(234, 243, 251, .1); }
+.flow li::before { counter-increment: f; content: counter(f); width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(56, 211, 220, .5); color: var(--cyan); display: grid; place-items: center; font-weight: 500; font-size: 16px; }
+.flow b { display: block; font-weight: 500; font-size: 20px; }
+.flow span { color: var(--muted-dark); font-size: 15.5px; }
+
+/* Screen 4: products */
+.product { display: grid; gap: 20px; }
+.badge { display: inline-flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; direction: ltr; justify-self: start; }
+html[dir="rtl"] .badge { justify-self: end; }
+.badge img { width: 40px; height: 40px; }
+.product .name { font-weight: 600; font-size: clamp(42px, 4.6vw, 72px); line-height: 1.05; direction: ltr; letter-spacing: -0.02em; }
+html[dir="rtl"] .product .name { text-align: right; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; }
+.facts span { font-size: 14px; padding: 6px 14px; border-radius: 999px; background: rgba(28, 99, 183, .09); color: var(--blue); }
+.next { margin-top: 10px; padding-top: 18px; border-top: 1px dashed rgba(11, 30, 56, .2); color: var(--muted-light); font-size: 15.5px; }
+.next b { color: var(--text-light); font-weight: 500; }
+.laptop { position: relative; width: 100%; max-width: 100%; perspective: 1600px; }
+.laptop .lid { position: relative; border-radius: 18px 18px 6px 6px; padding: 12px 12px 14px; background: linear-gradient(180deg, #1B2B44, #0B1628); box-shadow: 0 50px 90px -40px rgba(8, 26, 51, .6); }
+.laptop .glass { position: relative; aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; background: #0F1C21; transform-style: preserve-3d; }
+.laptop .glass img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; backface-visibility: hidden; transform-origin: 50% 0%; transition: transform .9s cubic-bezier(.6, .05, .25, 1), opacity .9s ease; opacity: 0; transform: rotateX(-88deg); }
+.laptop .glass img.on { opacity: 1; transform: rotateX(0deg); }
+.laptop .glass img.out { opacity: 0; transform: rotateX(88deg); transform-origin: 50% 100%; }
+.laptop .base { height: 16px; margin: 0 -5%; border-radius: 0 0 22px 22px; background: linear-gradient(180deg, #C9D6E4, #93A6BC); }
+.laptop .base::after { content: ""; display: block; width: 18%; height: 6px; margin: 0 auto; border-radius: 0 0 8px 8px; background: rgba(8, 26, 51, .25); }
+.caption { margin-top: 18px; font-size: 14px; color: var(--muted-light); text-align: center; min-height: 1.6em; }
+.dots { display: flex; gap: 6px; justify-content: center; margin-top: 10px; direction: ltr; }
+.dots button { width: 22px; height: 4px; border-radius: 4px; border: 0; padding: 0; background: rgba(11, 30, 56, .18); cursor: pointer; }
+.dots button.on { background: var(--blue); }
+
+/* Screen 5: contact */
+.ways { display: grid; gap: 12px; max-width: 560px; }
+.way { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 16px 18px; border-radius: 18px; border: 1px solid rgba(234, 243, 251, .14); background: rgba(14, 37, 70, .6); text-decoration: none; transition: border-color .25s ease; }
+.way:hover { border-color: var(--cyan); }
+.way .wi { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: rgba(56, 211, 220, .12); color: var(--cyan); }
+.way .wi svg { width: 24px; height: 24px; }
+.way b { display: block; font-weight: 500; font-size: 17px; }
+.way .addr { display: block; font-size: 14px; color: var(--muted-dark); direction: ltr; overflow-wrap: anywhere; }
+html[dir="rtl"] .way .addr { text-align: right; }
+.copybtn { font-family: var(--f); font-size: 13px; color: inherit; background: none; border: 1px solid rgba(234, 243, 251, .25); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.foot { position: absolute; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); inset-inline: 0; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted-dark); }
+
+/* Screen index on the side */
+.rail { position: fixed; z-index: 30; inset-inline-end: max(20px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); display: grid; gap: 10px; transition: color .6s ease; }
+.rail button { width: 10px; height: 10px; border-radius: 50%; border: 1px solid currentColor; background: transparent; padding: 0; cursor: pointer; opacity: .55; transition: transform .3s ease, opacity .3s ease, background .3s ease; }
+.rail button.on { background: currentColor; opacity: 1; transform: scale(1.25); }
+.rail.on-light { color: var(--text-light); }
+.counter { position: fixed; z-index: 30; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); inset-inline-end: max(24px, env(safe-area-inset-right, 0px)); font-size: 13px; direction: ltr; opacity: .7; transition: color .6s ease; font-variant-numeric: tabular-nums; }
+.counter.on-light { color: var(--text-light); }
+.hint { position: fixed; z-index: 30; bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); left: 50%; transform: translateX(-50%); font-size: 13px; opacity: .55; display: flex; align-items: center; gap: 8px; transition: opacity .5s ease; }
+.hint svg { width: 14px; height: 14px; }
+
+/* Particle field */
+#field { position: fixed; inset: 0; z-index: 4; pointer-events: none; }
+
+/* Entering content drifts in a little behind the wipe */
+.enter .copy, .enter .visual { animation: drift 1.1s cubic-bezier(.2, .7, .2, 1) both; }
+.enter .visual { animation-delay: .08s; }
+@keyframes drift { from { transform: translateY(26px); opacity: .3; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .enter .copy, .enter .visual { animation: none; } .laptop .glass img { transition: opacity .3s ease; transform: none !important; } }
+
+/* ---------- Scroll mode (phones, short windows) ---------- */
+body.scrollmode #stage { position: static; }
+body.scrollmode .screen { position: relative; visibility: visible; min-height: 100svh; clip-path: none !important; padding-top: calc(env(safe-area-inset-top, 0px) + 88px); padding-bottom: 64px; }
+body.scrollmode .rail, body.scrollmode .hint, body.scrollmode .counter { display: none; }
+body.scrollmode .top { background: rgba(8, 26, 51, .82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding-block: 14px; }
+body.scrollmode .top.on-light { background: rgba(233, 241, 248, .85); }
+body.scrollmode .foot { position: static; margin-top: 40px; }
+@media (max-width: 960px) {
+  .inner { grid-template-columns: 1fr; }
+  .visual.shape-space { order: -1; }
+  .links { display: none; }
+  .build .cols { grid-template-columns: 1fr; }
+  .build .col { border-inline-start: 0; border-bottom: 1px solid rgba(11, 30, 56, .12); padding-inline: 0; }
+  .shape-space { min-height: 220px; }
+}
+@media (max-width: 520px) {
+  .way { grid-template-columns: 48px minmax(0, 1fr); }
+  .way .copybtn { grid-column: 1 / -1; justify-self: start; }
+  .foot { flex-direction: column; gap: 6px; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="top gut" id="top">
+  <a class="logo" href="#home" data-go="0"><img src="/img/codalix-mark.png" alt=""><b>Codalix</b></a>
+  <nav class="links" aria-label="Sections">
+    <a href="#home" data-go="0" data-t="nav0">الرئيسية</a>
+    <a href="#build" data-go="1" data-t="nav1">بنعمل إيه</a>
+    <a href="#approach" data-go="2" data-t="nav2">طريقتنا</a>
+    <a href="#products" data-go="3" data-t="nav3">المنتجات</a>
+    <a href="#contact" data-go="4" data-t="nav4">تواصل</a>
+  </nav>
+  <button class="lang" id="lang" type="button">English</button>
+</header>
+
+<canvas id="field" aria-hidden="true"></canvas>
+
+<div id="stage">
+  <!-- 1 -->
+  <section class="screen dark cur gut" id="home" data-shape="x" aria-labelledby="h-home">
+    <div class="inner">
+      <div class="copy">
+        <span class="kicker" data-t="k0">شركة برمجيات مصرية</span>
+        <h1 class="display" id="h-home" data-t="h0">بنكتب software <strong>بيشتغل في الواقع.</strong></h1>
+        <p class="lede" data-t="l0">بنبني منتجات وأنظمة جوه مكان الشغل نفسه، قاعدين جنب الناس اللي هتستعملها، لحد ما البرنامج يمشي زي ما شغلهم بيمشي.</p>
+        <div class="actions">
+          <a class="btn btn-fill" href="#products" data-go="3" data-t="a0">شوف منتجاتنا</a>
+          <a class="btn btn-line" href="#contact" data-go="4" data-t="a1">كلّمنا</a>
+        </div>
+      </div>
+      <div class="visual shape-space" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="screen light gut" id="build" data-shape="code" aria-labelledby="h-build">
+    <div class="inner"><div class="build">
+      <div class="copy" style="max-width: 760px">
+        <span class="kicker" data-t="k1">بنعمل إيه</span>
+        <h2 class="h2" id="h-build" data-t="h1">برامج بتتعمل <strong>لشغل حقيقي</strong>، مش لعرض تقديمي.</h2>
+      </div>
+      <div class="cols visual">
+        <div class="col"><h3 data-t="c1t">منتجات جاهزة</h3><p data-t="c1p">برامج كاملة لمجال واحد، بتتسطّب وتشتغل من أول يوم، وبتكبر بالتحديثات.</p><span class="eg" data-t="c1e">زي The Clinic لعيادات العيون</span></div>
+        <div class="col"><h3 data-t="c2t">أنظمة على مقاسك</h3><p data-t="c2p">لو شغلك ليه طريقة خاصة، بنبني النظام حواليها بدل ما نغيّرها.</p><span class="eg" data-t="c2e">Desktop · Web · شبكة داخلية</span></div>
+        <div class="col"><h3 data-t="c3t">من غير نت، وبذكاء</h3><p data-t="c3p">برامجنا بتشتغل على أجهزتك من غير إنترنت، والداتا بتفضل عندك. وفيها ذكاء اصطناعي شغال على الجهاز نفسه.</p><span class="eg" data-t="c3e">قراءة الصور · بحث ذكي · Offline</span></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="screen dark gut" id="approach" data-shape="free" aria-labelledby="h-approach">
+    <div class="inner">
+      <div class="copy">
+        <span class="kicker" data-t="k2">طريقتنا</span>
+        <h2 class="h2" id="h-approach" data-t="h2">البرنامج بيتعمل <strong>جوه الشغل</strong>، مش جنبه.</h2>
+        <p class="lede" data-t="l2">The Clinic اتعمل جوه عيادة عيون شغالة، والدكتور راجع كل شاشة بإيده. وده نفس اللي بنعمله مع أي حد بنشتغل معاه.</p>
+      </div>
+      <ol class="flow visual">
+        <li><div><b data-t="f1t">نقعد في مكان الشغل</b><span data-t="f1p">نشوف اليوم بيمشي إزاي، ومين بيعمل إيه، وإيه اللي بيعطّل.</span></div></li>
+        <li><div><b data-t="f2t">نبني أول نسخة بسرعة</b><span data-t="f2p">نسخة بتشتغل فعلاً، مش رسومات، عشان تجرّبها على شغلك.</span></div></li>
+        <li><div><b data-t="f3t">نراجعها معاك شاشة شاشة</b><span data-t="f3p">كل ملاحظة بتتنفذ، لحد ما البرنامج يبقى زي ما إنت عايزه.</span></div></li>
+        <li><div><b data-t="f4t">نسلّم ونفضل معاك</b><span data-t="f4p">تحديثات موقّعة بتتركب بضغطة، ودعم بنفس الناس اللي بنوا البرنامج.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="screen light gut" id="products" data-shape="eye" aria-labelledby="h-products">
+    <div class="inner">
+      <div class="copy product">
+        <span class="kicker" data-t="k3">المنتجات</span>
+        <span class="badge"><img src="/img/clinic-icon.png" alt="">Ophthalmology EMR</span>
+        <h2 class="name" id="h-products">The Clinic</h2>
+        <p class="lede" data-t="l3">برنامج عيادات العيون: الحجز، والـ Reception، والـ Exam sheet، والقطرة، والتقرير، على جهازين في نفس العيادة ومن غير نت.</p>
+        <div class="facts"><span data-t="t1">عربي وإنجليزي</span><span data-t="t2">من غير نت</span><span data-t="t3">جهاز الدكتور والـ Reception</span><span data-t="t4">نقل من البرامج القديمة</span></div>
+        <div class="actions"><a class="btn btn-fill" href="/ar/the-clinic/" data-t="a3">صفحة The Clinic</a><a class="btn btn-line" href="#contact" data-go="4" data-t="a4">اطلب Demo</a></div>
+        <p class="next" data-t="nx">ده أول منتج. <b>اللي جاي ممكن يكون لمجالك.</b></p>
+      </div>
+      <div class="visual">
+        <div class="laptop" id="laptop">
+          <div class="lid"><div class="glass" id="glass">
+            <img class="on" src="/img/reception.jpg" alt="" data-cap="capA">
+            <img src="/img/acuity.jpg" alt="" data-cap="capB" loading="lazy">
+            <img src="/img/refraction.jpg" alt="" data-cap="capC" loading="lazy">
+            <img src="/img/photo.jpg" alt="" data-cap="capD" loading="lazy">
+            <img src="/img/report.jpg" alt="" data-cap="capE" loading="lazy">
+          </div></div>
+          <div class="base"></div>
+        </div>
+        <p class="caption" id="cap"></p>
+        <div class="dots" id="dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="screen dark gut" id="contact" data-shape="at" aria-labelledby="h-contact">
+    <div class="inner">
+      <div class="copy">
+        <span class="kicker" data-t="k4">تواصل</span>
+        <h2 class="display" id="h-contact" data-t="h4">عندك شغل <strong>محتاج برنامج؟</strong></h2>
+        <p class="lede" data-t="l4">احكيلنا شغلك بيمشي إزاي، أو اطلب Demo لـ The Clinic. بنرد بنفسنا.</p>
+        <div class="ways">
+          <a class="way" id="em" href="#">
+            <span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span>
+            <span><b data-t="emT">إيميل</b><span class="addr" id="emText"></span></span>
+            <button class="copybtn" type="button" data-copy="em" data-t="copy">نسخ</button>
+          </a>
+        </div>
+      </div>
+      <div class="visual shape-space" aria-hidden="true"></div>
+    </div>
+    <div class="foot gut"><span>© <span id="yr"></span> Codalix</span><span data-t="made">اتعمل في مصر</span></div>
+  </section>
+</div>
+
+<nav class="rail" id="rail" aria-label="Screens"></nav>
+<div class="counter" id="counter">01 / 05</div>
+<div class="hint" id="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg><span data-t="hint">انزل عشان الشاشة تتقلب</span></div>
+
+<script>
+/* Contact details: replace when the real number and address arrive. */
+const CONTACT = { whatsapp: '', email: 'support@codalix.org' };
+
+const EN = {
+  nav0: 'Home', nav1: 'What we build', nav2: 'How we work', nav3: 'Products', nav4: 'Contact',
+  k0: 'An Egyptian software company', h0: 'We write software <strong>that works in real life.</strong>',
+  l0: 'We build products and systems inside the place where the work happens, next to the people who will use them, until the software runs the way their work runs.',
+  a0: 'See our products', a1: 'Talk to us',
+  k1: 'What we build', h1: 'Software made <strong>for real work</strong>, not for a slide deck.',
+  c1t: 'Ready products', c1p: 'Complete software for one field that installs and works from day one, and grows with updates.', c1e: 'Like The Clinic for eye clinics',
+  c2t: 'Systems that fit you', c2p: 'If your work has its own way of doing things, we build the system around it instead of changing it.', c2e: 'Desktop · Web · Local network',
+  c3t: 'Offline, and smart', c3p: 'Our software runs on your computers without internet, and your data stays with you. AI features run on the computer itself.', c3e: 'Photo reading · Smart search · Offline',
+  k2: 'How we work', h2: 'Software is built <strong>inside the work</strong>, not beside it.',
+  l2: 'The Clinic was built inside a working eye clinic, and the doctor reviewed every screen by hand. We work the same way with everyone we build for.',
+  f1t: 'We sit where the work happens', f1p: 'We watch how the day runs, who does what, and what slows it down.',
+  f2t: 'We build a first version fast', f2p: 'A version that actually works, not drawings, so you can try it on your own work.',
+  f3t: 'We review it with you, screen by screen', f3p: 'Every note gets done until the software is the way you want it.',
+  f4t: 'We hand over and stay', f4p: 'Signed updates that install in one click, and support from the same people who built it.',
+  k3: 'Products', l3: 'Eye clinic software: bookings, reception, the exam sheet, dilating drops and reports, on two computers in the same clinic and without internet.',
+  t1: 'Arabic and English', t2: 'Works offline', t3: 'Doctor and reception computers', t4: 'Brings in your old data',
+  a3: 'The Clinic page', a4: 'Book a demo', nx: 'This is our first product. <b>The next one could be for your field.</b>',
+  capA: 'Reception: bookings, requests and the queue', capB: 'Visual acuity in the exam order', capC: 'Refraction with SE worked out', capD: 'Bookings read from a photo of paper', capE: 'The report, written from the exam',
+  k4: 'Contact', h4: 'Got work <strong>that needs software?</strong>', l4: 'Tell us how your work runs, or book a demo of The Clinic. We reply ourselves.',
+  waT: 'WhatsApp', emT: 'Email', copy: 'Copy', copied: 'Copied', made: 'Made in Egypt', hint: 'Scroll to turn the screen'
+};
+const AR = { capA: 'الـ Reception: الحجوزات والطلبات والدور', capB: 'الـ Visual acuity بترتيب الكشف', capC: 'الـ Refraction والـ SE بيتحسب لوحده', capD: 'حجوزات مقروءة من صورة ورقة', capE: 'التقرير مكتوب من الكشف نفسه', copied: 'اتنسخ' };
+document.querySelectorAll('[data-t]').forEach((el) => { if (!(el.dataset.t in AR)) AR[el.dataset.t] = el.innerHTML; });
+
+let lang = 'ar';
+const prettyPhone = (n) => n.replace(/^20/, '0').replace(/^(\d{3})(\d{4})(\d{4})$/, '$1 $2 $3');
+function msg() {
+  return lang === 'en'
+    ? { wa: "Hello Codalix, I'd like to talk about:", subject: 'Hello Codalix', body: 'Hello,\n\nName:\nWhat I need:\n' }
+    : { wa: 'أهلاً Codalix، عايز أتكلم معاكم بخصوص:', subject: 'أهلاً Codalix', body: 'أهلاً،\n\nالاسم:\nمحتاج إيه:\n' };
+}
+function applyLang() {
+  const d = lang === 'en' ? EN : AR;
+  document.documentElement.lang = lang; document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+  document.querySelectorAll('[data-t]').forEach((el) => { if (d[el.dataset.t] != null) el.innerHTML = d[el.dataset.t]; });
+  document.getElementById('lang').textContent = lang === 'en' ? 'عربي' : 'English';
+  const m = msg();
+  if (document.getElementById('wa')) document.getElementById('wa').href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(m.wa)}`;
+  document.getElementById('em').href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
+  if (document.getElementById('waText')) document.getElementById('waText').textContent = prettyPhone(CONTACT.whatsapp);
+  document.getElementById('emText').textContent = CONTACT.email;
+  setCaption();
+  if (window.particles) window.particles.retarget();
+}
+document.getElementById('lang').addEventListener('click', () => { location.href = '/' + location.hash; });
+document.querySelectorAll('.copybtn').forEach((b) => b.addEventListener('click', (e) => {
+  e.preventDefault(); e.stopPropagation();
+  const text = b.dataset.copy === 'wa' ? prettyPhone(CONTACT.whatsapp) : CONTACT.email;
+  const d = () => (lang === 'en' ? EN : AR);
+  try { navigator.clipboard.writeText(text).then(() => { b.textContent = d().copied; setTimeout(() => { b.textContent = d().copy; }, 1600); }, () => {}); } catch (err) {}
+}));
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const screens = [...document.querySelectorAll('.screen')];
+const names = screens.map((s) => s.id);
+let cur = 0, busy = false;
+const scrollMode = () => innerWidth < 960 || innerHeight < 620;
+
+/* ---------- Laptop: the screens flip like pages ---------- */
+const glassImgs = [...document.querySelectorAll('#glass img')];
+const dots = document.getElementById('dots');
+let shot = 0, shotTimer = null;
+glassImgs.forEach((_, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', String(i + 1)); b.addEventListener('click', () => showShot(i, true)); dots.appendChild(b); });
+function setCaption() { const d = lang === 'en' ? EN : AR; document.getElementById('cap').textContent = d[glassImgs[shot].dataset.cap] || ''; [...dots.children].forEach((b, i) => b.classList.toggle('on', i === shot)); }
+function showShot(i, user) {
+  if (i === shot) return;
+  const prev = glassImgs[shot]; prev.classList.remove('on'); prev.classList.add('out');
+  setTimeout(() => prev.classList.remove('out'), 950);
+  shot = i; glassImgs[shot].classList.add('on'); setCaption();
+  if (user) startShots();
+}
+function startShots() { clearInterval(shotTimer); if (!reduce) shotTimer = setInterval(() => showShot((shot + 1) % glassImgs.length), 3200); }
+startShots(); setCaption();
+
+/* ---------- Screen changes: a diagonal wipe along the X ---------- */
+const rail = document.getElementById('rail');
+screens.forEach((s, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', s.querySelector('h1, h2').textContent); b.addEventListener('click', () => go(i)); rail.appendChild(b); });
+function chrome() {
+  const light = screens[cur].classList.contains('light');
+  ['top', 'rail', 'counter'].forEach((id) => document.getElementById(id).classList.toggle('on-light', light));
+  [...rail.children].forEach((b, i) => b.classList.toggle('on', i === cur));
+  document.querySelectorAll('.links a').forEach((a) => a.classList.toggle('cur', Number(a.dataset.go) === cur));
+  document.getElementById('counter').textContent = `0${cur + 1} / 0${screens.length}`;
+  document.getElementById('counter').style.visibility = cur === screens.length - 1 ? 'hidden' : 'visible';
+  document.getElementById('hint').style.opacity = cur === 0 ? '.55' : '0';
+  if (window.particles) window.particles.setShape(screens[cur].dataset.shape, light);
+}
+const CLIP = {
+  fwdFrom: 'polygon(0% 0%, 0% 0%, -40% 100%, -40% 100%)', fwdTo: 'polygon(0% 0%, 140% 0%, 100% 100%, -40% 100%)',
+  backFrom: 'polygon(140% 0%, 140% 0%, 100% 100%, 100% 100%)', backTo: 'polygon(-40% 0%, 140% 0%, 140% 100%, -40% 100%)'
+};
+function go(i, fromHash) {
+  i = Math.max(0, Math.min(screens.length - 1, i));
+  if (scrollMode()) { screens[i].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); return; }
+  if (i === cur || busy) return;
+  busy = true;
+  const from = screens[cur], to = screens[i], fwd = i > cur;
+  const flip = (lang === 'en') === fwd; // the stroke direction follows reading direction
+  to.style.transition = 'none'; to.style.clipPath = flip ? CLIP.fwdFrom : CLIP.backFrom;
+  to.classList.add('enter'); from.classList.remove('cur'); from.classList.add('leave');
+  from.style.transition = reduce ? 'none' : 'transform 1s cubic-bezier(.7,0,.2,1), filter 1s ease';
+  from.style.transform = 'scale(.94)'; from.style.filter = 'brightness(.55)';
+  void to.offsetWidth;
+  to.style.transition = reduce ? 'none' : 'clip-path 1s cubic-bezier(.75,0,.2,1)';
+  to.style.clipPath = flip ? CLIP.fwdTo : CLIP.backTo;
+  cur = i; chrome();
+  if (!fromHash) { try { history.replaceState(null, '', '#' + names[i]); } catch (e) {} }
+  setTimeout(() => {
+    from.classList.remove('leave'); from.style.transform = ''; from.style.filter = ''; from.style.transition = '';
+    to.classList.remove('enter'); to.classList.add('cur'); to.style.clipPath = ''; to.style.transition = '';
+    busy = false;
+  }, reduce ? 30 : 1050);
+}
+document.querySelectorAll('[data-go]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); go(Number(a.dataset.go)); }));
+
+let wheelAcc = 0, wheelT = 0;
+addEventListener('wheel', (e) => {
+  if (scrollMode()) return;
+  e.preventDefault();
+  const now = performance.now();
+  if (now - wheelT > 250) wheelAcc = 0;
+  wheelT = now; wheelAcc += e.deltaY;
+  if (Math.abs(wheelAcc) > 60 && !busy) { go(cur + (wheelAcc > 0 ? 1 : -1)); wheelAcc = 0; }
+}, { passive: false });
+addEventListener('keydown', (e) => {
+  if (scrollMode()) return;
+  if (['ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(cur + 1); }
+  if (['ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); go(cur - 1); }
+  if (e.key === 'Home') go(0); if (e.key === 'End') go(screens.length - 1);
+});
+let ty = null;
+addEventListener('touchstart', (e) => { ty = e.touches[0].clientY; }, { passive: true });
+addEventListener('touchend', (e) => { if (ty == null || scrollMode()) return; const d = ty - e.changedTouches[0].clientY; if (Math.abs(d) > 50) go(cur + (d > 0 ? 1 : -1)); ty = null; }, { passive: true });
+
+function mode() {
+  const sm = scrollMode();
+  document.body.classList.toggle('scrollmode', sm);
+  if (sm) screens.forEach((s) => { s.classList.remove('enter', 'leave'); s.style.clipPath = ''; });
+  else screens.forEach((s, k) => s.classList.toggle('cur', k === cur));
+}
+addEventListener('resize', mode);
+/* In scroll mode, the screen in view drives the chrome and the particle shape. */
+document.body.addEventListener('scroll', () => {
+  if (!scrollMode()) return;
+  let best = 0, bd = Infinity;
+  screens.forEach((s, k) => { const r = s.getBoundingClientRect(); const d = Math.abs(r.top + r.height * 0.3 - innerHeight * 0.3); if (d < bd) { bd = d; best = k; } });
+  if (best !== cur) { cur = best; chrome(); }
+  const atTop = document.body.scrollTop < 260;
+  if (window.particles) window.particles.setShape(atTop ? 'x' : 'free', screens[cur].classList.contains('light'));
+}, { passive: true });
+addEventListener('hashchange', () => { const i = names.indexOf(location.hash.slice(1)); if (i >= 0) go(i, true); });
+
+/* ---------- Particle field ---------- */
+window.particles = (function () {
+  const cv = document.getElementById('field'), ctx = cv.getContext('2d');
+  let W = 0, H = 0, dpr = 1, shape = 'x', light = false;
+  const N = () => (innerWidth < 700 ? 700 : 1500);
+  let P = [];
+  const mouse = { x: -9999, y: -9999 };
+  const mark = new Image(); mark.src = '/img/codalix-mark.png';
+  function size() { dpr = Math.min(2, devicePixelRatio || 1); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px'; }
+  /* Where the shape sits: the empty half of the screen, opposite the text. */
+  function box() {
+    if (W < 960) return { x: W * 0.5, y: Math.min(H * 0.24, 200) + 40, s: Math.min(W * 0.62, 260) };
+    const rtl = document.documentElement.dir === 'rtl';
+    const cx = rtl ? W * 0.27 : W * 0.73;
+    return { x: cx, y: H * 0.52, s: Math.min(W * 0.34, H * 0.62) };
+  }
+  function sample(kind) {
+    const S = 220, o = document.createElement('canvas'); o.width = S; o.height = S; const c = o.getContext('2d');
+    c.fillStyle = '#fff'; c.strokeStyle = '#fff'; c.textAlign = 'center'; c.textBaseline = 'middle';
+    if (kind === 'x') {
+      if (mark.complete && mark.naturalWidth) { const r = Math.min(S / mark.naturalWidth, S / mark.naturalHeight) * 0.92; const w = mark.naturalWidth * r, h = mark.naturalHeight * r; c.drawImage(mark, (S - w) / 2, (S - h) / 2, w, h); }
+      else { c.lineWidth = 34; c.lineCap = 'round'; c.beginPath(); c.moveTo(40, 40); c.lineTo(180, 180); c.moveTo(180, 40); c.lineTo(40, 180); c.stroke(); }
+    } else if (kind === 'code') {
+      c.font = '600 120px "Readex Pro", sans-serif'; c.fillText('</>', S / 2, S / 2 + 6);
+    } else if (kind === 'orbit') {
+      c.lineWidth = 5; [30, 62, 96].forEach((r) => { c.beginPath(); c.arc(S / 2, S / 2, r, 0, Math.PI * 2); c.stroke(); });
+      [[0.4, 96], [2.3, 62], [4.1, 30], [5.2, 96]].forEach(([a, r]) => { c.beginPath(); c.arc(S / 2 + Math.cos(a) * r, S / 2 + Math.sin(a) * r, 11, 0, Math.PI * 2); c.fill(); });
+    } else if (kind === 'eye') {
+      c.lineWidth = 6; c.beginPath(); c.moveTo(14, S / 2); c.quadraticCurveTo(S / 2, 18, S - 14, S / 2); c.quadraticCurveTo(S / 2, S - 18, 14, S / 2); c.stroke();
+      c.beginPath(); c.arc(S / 2, S / 2, 48, 0, Math.PI * 2); c.stroke(); c.beginPath(); c.arc(S / 2, S / 2, 20, 0, Math.PI * 2); c.fill();
+    } else if (kind === 'at') {
+      c.font = '500 190px "Readex Pro", sans-serif'; c.fillText('@', S / 2, S / 2 + 10);
+    }
+    let d; try { d = c.getImageData(0, 0, S, S).data; } catch (e) { if (kind === 'x') { mark.src = ''; } return sample2(kind); }
+    const pts = [];
+    for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2) if (d[(y * S + x) * 4 + 3] > 120) pts.push([x / S - 0.5, y / S - 0.5]);
+    return pts;
+  }
+  function sample2(kind) { // fallback when the logo image cannot be read: two strokes
+    const pts = [];
+    for (let i = 0; i < 900; i++) { const u = Math.random() - 0.5, w = (Math.random() - 0.5) * 0.14; if (i % 2) pts.push([u + w * 0.7, u - w * 0.7]); else pts.push([u + w * 0.7, -u + w * 0.7]); }
+    return pts;
+  }
+  function targets() {
+    const pts = sample(shape), b = box(), n = P.length;
+    if (shape === 'free' || (shape === 'eye' && W >= 960) || (W < 960 && shape !== 'x')) { // the screen's own content owns the space: drift as a faint field
+      for (let i = 0; i < n; i++) { P[i].tx = Math.random() * W; P[i].ty = Math.random() * H; P[i].free = true; }
+      return;
+    }
+    for (let i = 0; i < n; i++) {
+      const p = pts[(i * 7919) % pts.length] || [0, 0];
+      P[i].tx = b.x + p[0] * b.s + (Math.random() - 0.5) * 2; P[i].ty = b.y + p[1] * b.s + (Math.random() - 0.5) * 2; P[i].free = false;
+    }
+  }
+  function init() {
+    size(); const n = N();
+    P = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: 0, vy: 0, tx: 0, ty: 0, r: Math.random() * 1.4 + 0.5, h: Math.random(), free: false }));
+    targets();
+    if (reduce) P.forEach((p) => { p.x = p.tx; p.y = p.ty; });
+  }
+  function tick(t) {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    for (const p of P) {
+      const k = p.free ? 0.004 : 0.055;
+      let ax = (p.tx - p.x) * k, ay = (p.ty - p.y) * k;
+      if (p.free) { ax += Math.sin(t / 2400 + p.h * 9) * 0.04; ay += Math.cos(t / 2700 + p.h * 7) * 0.04; }
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
+      if (d2 < 9000) { const f = (9000 - d2) / 9000 * 2.2; const d = Math.sqrt(d2) || 1; ax += dx / d * f; ay += dy / d * f; }
+      p.vx = (p.vx + ax) * 0.82; p.vy = (p.vy + ay) * 0.82;
+      p.x += p.vx; p.y += p.vy;
+      const tw = 0.65 + 0.35 * Math.sin(t / 600 + p.h * 20);
+      if (light) ctx.fillStyle = p.h > 0.5 ? `rgba(28,99,183,${(p.free ? .18 : .75) * tw})` : `rgba(8,26,51,${(p.free ? .12 : .55) * tw})`;
+      else ctx.fillStyle = p.h > 0.5 ? `rgba(56,211,220,${(p.free ? .3 : .9) * tw})` : `rgba(120,170,235,${(p.free ? .25 : .75) * tw})`;
+      ctx.fillRect(p.x, p.y, p.r * 1.6, p.r * 1.6);
+    }
+    if (!reduce) requestAnimationFrame(tick);
+  }
+  addEventListener('pointermove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+  addEventListener('resize', () => { size(); targets(); });
+  mark.onload = () => { if (shape === 'x') targets(); };
+  init(); requestAnimationFrame(tick);
+  return {
+    setShape(s, l) { if (s === shape && l === light) return; shape = s; light = l; targets(); if (reduce) { P.forEach((p) => { p.x = p.tx; p.y = p.ty; }); tick(performance.now()); } },
+    retarget() { targets(); }
+  };
+})();
+
+applyLang(); mode();
+{ const i = names.indexOf(location.hash.slice(1)); if (i > 0 && !scrollMode()) { screens[0].classList.remove('cur'); screens[i].classList.add('cur'); cur = i; } }
+chrome();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => window.particles.retarget());
+</script>
+
+</body>
+</html>
