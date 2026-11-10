@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<link rel="icon" type="image/png" href="/img/codalix-mark.png">
+<link rel="icon" href="/img/codalix-icon.svg">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="canonical" href="https://codalix.org/ar/">
 <link rel="alternate" hreflang="ar" href="https://codalix.org/ar/">
 <link rel="alternate" hreflang="en" href="https://codalix.org/">
@@ -46,6 +47,20 @@ h1, h2, h3, p { margin: 0; }
 img { display: block; max-width: 100%; }
 :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
 .gut { padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+
+/* ---------- Intro (first visit) ---------- */
+.intro { position: fixed; inset: 0; z-index: 100; background: var(--ink); display: none; place-items: center; }
+.intro.show { display: grid; }
+.intro svg { width: min(34vw, 260px); height: auto; overflow: visible; }
+.intro .bl { transform: translateX(-70vw); } .intro .br { transform: translateX(70vw); }
+.intro.go .bl { animation: brL .6s cubic-bezier(.2, .9, .25, 1) forwards; }
+.intro.go .br { animation: brR .6s cubic-bezier(.2, .9, .25, 1) forwards; }
+.intro.go svg { animation: brGlow 1.4s ease forwards; }
+.intro.go { animation: introOut .6s cubic-bezier(.75, 0, .2, 1) .8s forwards; }
+@keyframes brL { to { transform: none; } }
+@keyframes brR { to { transform: none; } }
+@keyframes brGlow { 0%, 40% { filter: none; transform: scale(1); } 55% { filter: drop-shadow(0 0 24px rgba(56, 211, 220, .8)); transform: scale(1.06); } 100% { filter: none; transform: scale(1.5); opacity: 0; } }
+@keyframes introOut { from { clip-path: polygon(0 0, 140% 0, 100% 100%, -40% 100%); } to { clip-path: polygon(140% 0, 140% 0, 100% 100%, 100% 100%); } }
 
 /* ---------- Top bar ---------- */
 .prodline { display: flex; align-items: center; gap: 12px; margin-top: 18px; text-decoration: none; font-size: 15.5px; color: var(--muted-dark); padding: 10px 16px 10px 12px; border-radius: 14px; border: 1px solid rgba(234, 243, 251, .14); justify-self: start; max-width: 100%; }
@@ -194,8 +209,19 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
 <body>
 
 
+<div class="intro" id="intro" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1C63B7"/><stop offset="1" stop-color="#38D3DC"/></linearGradient></defs><path class="bl" d="M16 16 L44 50 L16 84" fill="none" stroke="url(#ig)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path class="br" d="M84 16 L56 50 L84 84" fill="none" stroke="url(#ig)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<script>
+(function () {
+  var seen = false; try { seen = localStorage.getItem('codalix.intro') === '1'; localStorage.setItem('codalix.intro', '1'); } catch (e) { seen = true; }
+  if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var el = document.getElementById('intro'); el.className = 'intro show';
+  requestAnimationFrame(function () { el.className = 'intro show go'; });
+  var end = function () { el.className = 'intro'; }; el.addEventListener('click', end); setTimeout(end, 1500);
+})();
+</script>
+
 <header class="top gut" id="top">
-  <a class="logo" href="#home" data-go="0"><img src="/img/codalix-mark.png" alt=""><b>Codalix</b></a>
+  <a class="logo" href="#home" data-go="0"><img src="/img/codalix-mark.svg" alt=""><b>Codalix</b></a>
   <nav class="links" aria-label="Sections">
     <a href="#home" data-go="0" data-t="nav0">الرئيسية</a>
     <a href="#build" data-go="1" data-t="nav1">بنعمل إيه</a>
