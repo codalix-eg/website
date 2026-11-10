@@ -48,6 +48,9 @@ img { display: block; max-width: 100%; }
 .gut { padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
 
 /* ---------- Top bar ---------- */
+.prodline { display: flex; align-items: center; gap: 12px; margin-top: 18px; text-decoration: none; font-size: 15.5px; color: var(--muted-dark); padding: 10px 16px 10px 12px; border-radius: 14px; border: 1px solid rgba(234, 243, 251, .14); justify-self: start; max-width: 100%; }
+.prodline:hover { border-color: var(--clinic); color: var(--text-dark); }
+.prodline img { width: 28px; height: 28px; flex: none; } .prodline b { color: var(--text-dark); font-weight: 600; }
 .top { position: fixed; z-index: 30; top: env(safe-area-inset-top, 0px); left: 0; right: 0; display: flex; align-items: center; gap: 24px; padding-block: 22px; transition: color .6s ease; }
 .top.on-light { color: var(--text-light); }
 .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; direction: ltr; margin-inline-end: auto; }
@@ -58,6 +61,11 @@ img { display: block; max-width: 100%; }
 .links a:hover { opacity: 1; }
 .links a.cur { opacity: 1; background: rgba(56, 211, 220, .14); }
 .top.on-light .links a.cur { background: rgba(28, 99, 183, .12); }
+.snd { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid currentColor; background: none; color: inherit; cursor: pointer; opacity: .75; padding: 0; }
+.snd:hover { opacity: 1; } .snd svg { width: 18px; height: 18px; }
+.snd .w1, .snd .w2 { display: none; } .snd[aria-pressed="true"] .w1, .snd[aria-pressed="true"] .w2 { display: inline; } .snd[aria-pressed="true"] .x { display: none; }
+@media (prefers-reduced-motion: no-preference) { .snd[aria-pressed="true"] .w2 { animation: sndpulse 1.6s ease-in-out infinite; } }
+@keyframes sndpulse { 50% { opacity: .3; } }
 .lang { font-family: var(--f); font-size: 14px; color: inherit; background: none; border: 1px solid currentColor; border-radius: 999px; padding: 6px 14px; cursor: pointer; opacity: .8; }
 .lang:hover { opacity: 1; }
 
@@ -195,6 +203,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
     <a href="#products" data-go="3" data-t="nav3">المنتجات</a>
     <a href="#contact" data-go="4" data-t="nav4">تواصل</a>
   </nav>
+  <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Music"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="w1" d="M16.5 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M19 7a7 7 0 0 1 0 10"/><path class="x" d="M17 9l5 6M22 9l-5 6"/></svg></button>
   <button class="lang" id="lang" type="button">English</button>
 </header>
 
@@ -212,6 +221,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
           <a class="btn btn-fill" href="#products" data-go="3" data-t="a0">شوف منتجاتنا</a>
           <a class="btn btn-line" href="#contact" data-go="4" data-t="a1">كلّمنا</a>
         </div>
+        <a class="prodline" href="#products" data-go="3"><img src="/img/clinic-icon.png" alt=""><span data-t="pl"><b>The Clinic:</b> برامج العيادات القديمة اتعملت بإيد مهندسين. ده عمله دكتور.</span></a>
       </div>
       <div class="visual shape-space" aria-hidden="true"></div>
     </div>
@@ -313,7 +323,7 @@ const EN = {
   nav0: 'Home', nav1: 'What we build', nav2: 'How we work', nav3: 'Products', nav4: 'Contact',
   k0: 'An Egyptian software company', h0: 'We write software <strong>that works in real life.</strong>',
   l0: 'We build products and systems inside the place where the work happens, next to the people who will use them, until the software runs the way their work runs.',
-  a0: 'See our products', a1: 'Talk to us',
+  a0: 'See our products', a1: 'Talk to us', pl: '<b>The Clinic:</b> old clinic software was built by engineers. This one was built by a doctor.',
   k1: 'What we build', h1: 'Software made <strong>for real work</strong>, not for a slide deck.',
   c1t: 'Ready products', c1p: 'Complete software for one field that installs and works from day one, and grows with updates.', c1e: 'Like The Clinic for eye clinics',
   c2t: 'Made to fit, with your fingerprint', c2p: "We tailor the software to the way you work, so it carries your fingerprint, not someone else's. If your work has its own way, we build around it.", c2e: 'Customization · Your workflow',
@@ -551,6 +561,19 @@ window.particles = (function () {
   };
 })();
 
+
+/* Quiet music, off until the visitor turns it on. */
+(function () {
+  const btn = document.getElementById('snd'); if (!btn) return;
+  let audio = null, fade = null;
+  const ramp = (to, done) => { clearInterval(fade); fade = setInterval(() => { const v = audio.volume + (to > audio.volume ? 0.02 : -0.03); if ((to > audio.volume && v >= to) || (to <= audio.volume && v <= to)) { audio.volume = Math.max(0, to); clearInterval(fade); if (done) done(); } else audio.volume = Math.max(0, Math.min(1, v)); }, 60); };
+  window.__musicOff = () => { if (audio && !audio.paused) { btn.setAttribute('aria-pressed', 'false'); ramp(0, () => audio.pause()); } };
+  btn.addEventListener('click', () => {
+    if (!audio) { audio = new Audio('/media/ambient.m4a'); audio.loop = true; audio.volume = 0; }
+    if (audio.paused) { audio.play().then(() => { btn.setAttribute('aria-pressed', 'true'); ramp(0.22); }).catch(() => {}); }
+    else window.__musicOff();
+  });
+})();
 applyLang(); mode();
 { const i = names.indexOf(location.hash.slice(1)); if (i > 0 && !scrollMode()) { screens[0].classList.remove('cur'); screens[i].classList.add('cur'); cur = i; } }
 chrome();

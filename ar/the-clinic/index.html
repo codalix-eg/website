@@ -68,6 +68,11 @@ bdi, .ltr { direction: ltr; unicode-bidi: isolate; }
 .brand img { width: 30px; height: 30px; }
 .brand b { font-family: var(--f-display); font-weight: 800; font-size: 19px; letter-spacing: -0.01em; }
 .brand small { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.snd { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line-2); background: none; color: inherit; cursor: pointer; opacity: .75; padding: 0; }
+.snd:hover { opacity: 1; } .snd svg { width: 18px; height: 18px; }
+.snd .w1, .snd .w2 { display: none; } .snd[aria-pressed="true"] .w1, .snd[aria-pressed="true"] .w2 { display: inline; } .snd[aria-pressed="true"] .x { display: none; }
+@media (prefers-reduced-motion: no-preference) { .snd[aria-pressed="true"] .w2 { animation: sndpulse 1.6s ease-in-out infinite; } }
+@keyframes sndpulse { 50% { opacity: .3; } }
 .lang { font-family: var(--f-mono); font-size: 13px; background: transparent; border: 1px solid var(--line-2); color: var(--text); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
 .lang:hover { border-color: var(--text); }
 .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 600; font-size: 16px; text-decoration: none; border: 0; cursor: pointer; border-radius: 999px; padding: 14px 26px; transition: transform .25s ease, box-shadow .25s ease, background .25s ease; white-space: nowrap; }
@@ -177,6 +182,19 @@ html[lang="en"] .notes li span { font-size: 29px; line-height: 1.15; }
 .film-frame .soon { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); font-family: var(--f-mono); font-size: 14px; }
 .film-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; color: var(--dim); font-family: var(--f-mono); font-size: 13px; direction: ltr; justify-content: flex-start; }
 html[dir="rtl"] .film-meta { justify-content: flex-end; }
+
+.shorts { display: grid; gap: 16px; margin-top: 18px; }
+.shorts h3 { font-size: 22px; font-weight: 600; }
+.short-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 900px; }
+.short { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); background: #000; padding: 0; cursor: pointer; color: #fff; text-align: start; font: inherit; }
+.short img, .short video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.short::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(0, 0, 0, .75)); pointer-events: none; }
+.short .pl { position: absolute; z-index: 2; top: 50%; left: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px; border-radius: 50%; background: rgba(69, 215, 182, .92); }
+.short .pl::before { content: ""; position: absolute; left: 23px; top: 18px; border-left: 17px solid #04241D; border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+.short b { position: absolute; z-index: 2; inset-inline: 14px; bottom: 30px; font-family: var(--f-display); font-weight: 600; font-size: 16px; line-height: 1.3; }
+.short i { position: absolute; z-index: 2; inset-inline-start: 14px; bottom: 10px; font-style: normal; font-family: var(--f-mono); font-size: 12px; opacity: .8; }
+.short.playing::after, .short.playing .pl, .short.playing b, .short.playing i { display: none; }
+@media (max-width: 640px) { .short-row { grid-template-columns: repeat(3, 72%); overflow-x: auto; scroll-snap-type: x mandatory; } .short { scroll-snap-align: start; } }
 
 /* ---------- One clinic day (sticky story) ---------- */
 .day { background: var(--deep); border-block: 1px solid var(--line); }
@@ -289,6 +307,7 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="The Clinic by Codalix"><img src="/img/clinic-icon.png" alt=""><b>The Clinic</b><small>by Codalix</small></a>
+    <button class="snd" id="snd" type="button" aria-pressed="false" aria-label="Music"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="w1" d="M16.5 9.5a3.5 3.5 0 0 1 0 5"/><path class="w2" d="M19 7a7 7 0 0 1 0 10"/><path class="x" d="M17 9l5 6M22 9l-5 6"/></svg></button>
     <a class="home" href="/ar/" title="Codalix"><img src="/img/codalix-mark.png" alt="">Codalix</a>
     <button class="lang" id="lang" type="button">English</button>
     <a class="btn btn-mint" href="#demo" data-t="cta">اطلب Demo</a>
@@ -406,6 +425,14 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
       </div>
       <div class="film-frame rv" id="filmFrame">
         <div class="soon" id="filmSoon">The Clinic · 1:00</div>
+      </div>
+      <div class="shorts rv">
+        <h3 data-t="shTitle">فيديوهات قصيرة</h3>
+        <div class="short-row">
+          <button class="short" type="button" data-src="/media/children.mp4"><img src="/img/poster-children.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh1">للأطفال كمان</b><i>0:16</i></button>
+          <button class="short" type="button" data-src="/media/prescription.mp4"><img src="/img/poster-prescription.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh2">الروشتة في ثواني</b><i>0:16</i></button>
+          <button class="short" type="button" data-src="/media/patient-file.mp4"><img src="/img/poster-patient-file.jpg" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span><b data-t="sh3">ملف المريض كله قدامك</b><i>0:16</i></button>
+        </div>
       </div>
     </div>
   </section>
@@ -596,6 +623,7 @@ const EN = {
   fitEyebrow: 'Made to fit', fitTitle: "Software that carries your fingerprint, not someone else's.",
   fitP: "Just as The Clinic was shaped by one doctor's hand, we shape it around your clinic: the exam order, the medications you write, how your printouts look, your prices and hours. If you need something that isn't there, we'll talk about it.",
   fc1: 'Exam order', fc2: 'Medication stamps', fc3: 'Printouts with your name and logo', fc4: 'Prices and hours', fc5: 'Your reference books',
+  shTitle: 'Short films', sh1: 'Children too', sh2: 'Prescription in seconds', sh3: 'The whole patient file',
   fmEyebrow: 'The film', fmTitle: 'The Clinic in one minute.',
   dyEyebrow: 'One clinic day', dyTitle: 'From the first booking in the morning to the last report at night.',
   b1t: 'Bookings arrive on their own.', b1p: 'Your assistant books from their phone while away from the clinic, and the booking waits for reception to confirm it with one click.',
@@ -671,6 +699,29 @@ if (FILM.src) {
   f.appendChild(v);
 }
 apply();
+
+/* Quiet music, off until the visitor turns it on. */
+(function () {
+  const btn = document.getElementById('snd'); if (!btn) return;
+  let audio = null, fade = null;
+  const ramp = (to, done) => { clearInterval(fade); fade = setInterval(() => { const v = audio.volume + (to > audio.volume ? 0.02 : -0.03); if ((to > audio.volume && v >= to) || (to <= audio.volume && v <= to)) { audio.volume = Math.max(0, to); clearInterval(fade); if (done) done(); } else audio.volume = Math.max(0, Math.min(1, v)); }, 60); };
+  window.__musicOff = () => { if (audio && !audio.paused) { btn.setAttribute('aria-pressed', 'false'); ramp(0, () => audio.pause()); } };
+  btn.addEventListener('click', () => {
+    if (!audio) { audio = new Audio('/media/ambient.m4a'); audio.loop = true; audio.volume = 0; }
+    if (audio.paused) { audio.play().then(() => { btn.setAttribute('aria-pressed', 'true'); ramp(0.22); }).catch(() => {}); }
+    else window.__musicOff();
+  });
+})();
+
+/* Short films: a card turns into its video when tapped; only one plays at a time, and the music steps aside. */
+document.querySelectorAll('.short').forEach((card) => card.addEventListener('click', () => {
+  if (card.classList.contains('playing')) return;
+  document.querySelectorAll('.short.playing video, #filmFrame video').forEach((v) => v.pause());
+  if (window.__musicOff) window.__musicOff();
+  const v = document.createElement('video'); v.src = card.dataset.src; v.controls = true; v.playsInline = true; v.autoplay = true;
+  card.classList.add('playing'); card.appendChild(v); v.play().catch(() => {});
+}));
+document.addEventListener('play', (e) => { if (e.target.tagName !== 'VIDEO') return; if (window.__musicOff) window.__musicOff(); document.querySelectorAll('video').forEach((v) => { if (v !== e.target) v.pause(); }); }, true);
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
