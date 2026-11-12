@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/img/osm-icon.png">
+<link rel="canonical" href="https://codalix.org/ar/privacy/">
+<link rel="alternate" hreflang="en" href="https://codalix.org/privacy/">
+<link rel="alternate" hreflang="ar" href="https://codalix.org/ar/privacy/">
+<title>سياسة الخصوصية · ONTAP Share Manager · Codalix</title>
+<meta name="description" content="سياسة الخصوصية لبرنامج ONTAP Share Manager من Codalix: البرنامج يعمل على جهازك وCodalix لا تستلم بياناتك.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap">
+<style>
+:root {
+  --ink: #081A33; --panel: #0E2546; --line: rgba(234, 243, 251, .12);
+  --text: #EAF3FB; --muted: #9DB2C8; --blue: #1C63B7; --cyan: #38D3DC;
+  --grad: linear-gradient(110deg, #1C63B7, #38D3DC);
+  --f: "Readex Pro", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ink); color: var(--text); font-family: var(--f); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--cyan); }
+.wrap { width: min(780px, 100% - 40px); margin: 0 auto; }
+.top { border-bottom: 1px solid var(--line); background: rgba(8, 26, 51, .82); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+.top .lang { font-size: 14px; color: var(--muted); }
+.top a { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 600; }
+.top img { width: 26px; }
+main { padding: 48px 0 72px; }
+h1 { font-size: 32px; line-height: 1.2; margin: 0 0 6px; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h2 { font-size: 20px; margin: 34px 0 8px; }
+ul { padding-inline-start: 22px; }
+li { margin: 4px 0; }
+.mut { color: var(--muted); font-size: 14px; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
+footer { border-top: 1px solid var(--line); padding: 26px 0 36px; color: var(--muted); font-size: 13px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+footer a { color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+footer a img { width: 18px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a href="/ar/"><img src="/img/codalix-mark.svg" alt="">Codalix</a><a class="lang" href="/privacy/">English</a></div></header>
+<div class="wrap"><main><h1>سياسة الخصوصية</h1>
+<p class="mut">ONTAP Share Manager · أحد منتجات Codalix<br>تاريخ السريان: 12 نوفمبر 2026</p>
+
+<p>توضح هذه السياسة ما يفعله برنامج ONTAP Share Manager ("البرنامج") بالمعلومات. باختصار: البرنامج يعمل على جهازك أنت، ويتصل فقط بالخوادم التي تختارها. وCodalix لا تستلم بياناتك.</p>
+
+<h2>من نحن</h2>
+<p>برنامج ONTAP Share Manager من تطوير Codalix (codalix.org). للتواصل: <a href="mailto:support@codalix.org">support@codalix.org</a></p>
+
+<h2>مع ماذا يتعامل البرنامج</h2>
+<p>يساعد البرنامج مسؤولي الأنظمة على إدارة مشاركات الملفات على NetApp ONTAP. ولتحقيق ذلك يتصل، من جهاز المسؤول، بكل من:</p>
+<ul>
+  <li>جهاز NetApp ONTAP الخاص بالمسؤول (عبر واجهة REST API)،</li>
+  <li>خادم Active Directory (Domain Controller) الخاص بالمسؤول (عبر LDAPS)،</li>
+  <li>واختياريًا: خادم ملفات Windows الجاري نقله، وخادم البريد الخاص بالمسؤول.</li>
+</ul>
+<p>من خلال هذه الاتصالات يستطيع البرنامج قراءة وعرض معلومات تخص مؤسستك، وقد تتضمن بيانات شخصية: أسماء المستخدمين والمجموعات، وعناوين البريد الإلكتروني، وأسماء ومسارات المجلدات والملفات، ومَن غيّر أو حذف ملفًا (من سجل التدقيق في NetApp).</p>
+
+<h2>ما الذي يُرسل إلى Codalix</h2>
+<p>لا شيء. البرنامج لا يحتوي على أدوات تحليل أو تتبع أو إعلانات. ولا يرسل بياناتك أو بيانات دخولك أو طريقة استخدامك إلى Codalix أو إلى أي طرف ثالث. وباستثناء الخوادم التي تحددها كما سبق، لا يتصل البرنامج بالإنترنت. ويتم تفعيل التراخيص من خلال كود، دون الاتصال بخادم تابع لـ Codalix.</p>
+
+<h2>ما الذي يُخزَّن وأين</h2>
+<ul>
+  <li><strong>على جهاز المسؤول:</strong> إعدادات البرنامج (مثل المظهر وأسماء الخوادم وأسماء المستخدمين) وبيانات التشغيل. كلمات مرور NetApp وActive Directory لا تُحفظ. وإذا اخترت استخدام كلمة مرور لخادم البريد، فإنها تُخزَّن مشفّرة على ذلك الجهاز.</li>
+  <li><strong>على جهاز NetApp الخاص بك:</strong> لمشاركة سجل تدقيق المسؤولين وإعدادات البريد بين المسؤولين، يكتبها البرنامج في مجلد على جهاز NetApp الخاص بك. وكلمة مرور خادم البريد لا تُشارَك هناك.</li>
+  <li><strong>في رسائل البريد:</strong> عند استخدام إشعارات البريد، يرسل البرنامج الرسائل عبر خادم البريد الخاص بك إلى الأشخاص الذين تحددهم. وقد تتضمن هذه الرسائل أسماء وعناوين بريد ومسارات مجلدات.</li>
+</ul>
+<p>كل ذلك يبقى داخل أنظمة مؤسستك وتحت سيطرتك.</p>
+
+<h2>المشاركة</h2>
+<p>لا نبيع المعلومات الشخصية ولا نشاركها، لأننا لا نستلمها أصلًا.</p>
+
+<h2>الأمان</h2>
+<p>يستمع البرنامج على الجهاز المحلي فقط (127.0.0.1) ويرفض الطلبات القادمة من مواقع أخرى. ويعمل بصلاحيات حسابات NetApp وActive Directory التي يسجّل المسؤول الدخول بها، ويسجّل كل تغيير يجريه في سجل التدقيق.</p>
+
+<h2>اختياراتك</h2>
+<p>أنت من يحدد الخوادم التي يتصل بها البرنامج، وأي إشعارات بريد تعمل، وما الذي يُحفظ. وإزالة البرنامج تحذفه من الجهاز. أما البيانات التي كتبها البرنامج على جهاز NetApp الخاص بك (مجلد التدقيق المشترك) فيمكن لمسؤوليك حذفها.</p>
+
+<h2>الأطفال</h2>
+<p>البرنامج أداة عمل لمسؤولي تقنية المعلومات، وليس موجّهًا للأطفال.</p>
+
+<h2>التغييرات</h2>
+<p>إذا تغيّرت هذه السياسة فسنحدّث التاريخ أعلى هذه الصفحة.</p>
+
+<h2>التواصل</h2>
+<p>للاستفسار عن هذه السياسة: <a href="mailto:support@codalix.org">support@codalix.org</a></p></main></div>
+<footer>
+  <div class="wrap">
+    <a href="/ar/"><img src="/img/codalix-mark.svg" alt="">Codalix</a>
+    <span>NetApp وONTAP علامتان تجاريتان مملوكتان لشركة NetApp, Inc. وCodalix غير تابعة لها.</span>
+  </div>
+</footer>
+</body>
+</html>
