@@ -190,11 +190,11 @@ html[dir="rtl"] .product .name { text-align: right; }
 .dots button.on { background: var(--blue); }
 
 /* Screen 5: contact */
-.ways { display: grid; gap: 12px; max-width: 560px; }
-.way { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 16px 18px; border-radius: 18px; border: 1px solid rgba(234, 243, 251, .14); background: rgba(14, 37, 70, .6); text-decoration: none; transition: border-color .25s ease; }
+.ways { display: grid; gap: 8px; max-width: 560px; }
+.way { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 10px 16px; border-radius: 18px; border: 1px solid rgba(234, 243, 251, .14); background: rgba(14, 37, 70, .6); text-decoration: none; transition: border-color .25s ease; }
 .way:hover { border-color: var(--cyan); }
-.way .wi { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: rgba(56, 211, 220, .12); color: var(--cyan); }
-.way .wi svg { width: 24px; height: 24px; }
+.way .wi { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: rgba(56, 211, 220, .12); color: var(--cyan); }
+.way .wi svg { width: 22px; height: 22px; }
 .way b { display: block; font-weight: 500; font-size: 17px; }
 .way .addr { display: block; font-size: 14px; color: var(--muted-dark); direction: ltr; overflow-wrap: anywhere; }
 html[dir="rtl"] .way .addr { text-align: right; }
@@ -251,8 +251,6 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
   .shape-space { min-height: 220px; }
 }
 @media (max-width: 520px) {
-  .way { grid-template-columns: 48px minmax(0, 1fr); }
-  .way .copybtn { grid-column: 1 / -1; justify-self: start; }
   .foot { flex-direction: column; gap: 6px; }
 }
 </style>
@@ -390,6 +388,8 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
         <h2 class="display" id="h-contact" data-t="h4">عندك شغل <strong>محتاج برنامج؟</strong></h2>
         <p class="lede" data-t="l4">احكيلنا شغلك بيمشي إزاي، أو اطلب Demo لـ The Clinic. بنرد بنفسنا</p>
         <div class="ways">
+          <a class="way" id="wa" href="#" hidden><span class="wi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.6-4.1A8 8 0 1 1 20 11.5z"/><path d="M9 9.2c.2 2.2 2.6 4.6 4.8 4.8l1.2-1.1-1.7-1-.7.6c-.8-.4-1.4-1-1.8-1.8l.6-.7-1-1.7z"/></svg></span><span><b data-t="waT">WhatsApp</b><span class="addr" id="waText"></span></span><button class="copybtn" type="button" data-copy="wa" data-t="copy">Copy</button></a>
+          <a class="way" id="ph" href="#" hidden><span class="wi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span><b data-t="phT">Phone</b><span class="addr" id="phText"></span></span><button class="copybtn" type="button" data-copy="ph" data-t="copy">Copy</button></a>
         </div>
         <a class="mailbig" id="em" href="#"><span class="mb-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span><span class="mb-addr" id="emText"></span></a>
         <ol class="nextsteps">
@@ -410,7 +410,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
 
 <script>
 /* Contact details: replace when the real number and address arrive. */
-const CONTACT = { whatsapp: '', email: 'support@codalix.org' };
+const CONTACT = { whatsapp: '', phone: '', email: 'support@codalix.org' }; // digits only with country code, e.g. 201012345678
 
 const EN = {
   nav0: 'Home', nav1: 'What we build', nav2: 'How we work', nav3: 'Products', nav4: 'Contact',
@@ -432,9 +432,9 @@ const EN = {
   a3: 'The Clinic page', a4: 'Book a demo', nx: 'Two products so far. <b>The next one could be for your field</b>', pt1: 'Eye clinics', pt2: 'File shares on NetApp', osl: 'ONTAP file shares. Finally simple', ol: 'One Windows app to create shares, set permissions from Active Directory, migrate Windows file servers to ONTAP and see who deleted or changed what.', oa: 'ONTAP Share Manager page', oc1: 'Folders: capacity, size limits and the last backup', oc2: 'New Group Folder: one permission per person', oc3: 'A Windows file server migration plan', oc4: 'Share Auditing: who deleted what, from which PC',
   capR: 'ROP screening on the ICROP3 clock', capA: 'Reception: bookings, requests and the queue', capB: 'Visual acuity in the exam order', capC: 'Refraction with SE worked out', capD: 'Bookings read from a photo of paper', capE: 'The report, written from the exam',
   k4: 'Contact', h4: 'Got work <strong>that needs software?</strong>', l4: 'Tell us how your work runs, or book a demo of The Clinic. We reply ourselves',
-  nx1: 'Tell us what you need in a couple of lines', nx2: 'We reply ourselves, not a bot', nx3: 'We set up a call and show you the software', waT: 'WhatsApp', emT: 'Email', copy: 'Copy', copied: 'Copied', made: 'Made in Egypt', hint: 'Scroll to turn the screen'
+  nx1: 'Tell us what you need in a couple of lines', nx2: 'We reply ourselves, not a bot', nx3: 'We set up a call and show you the software', waT: 'WhatsApp', phT: 'Phone', emT: 'Email', copy: 'Copy', copied: 'Copied', made: 'Made in Egypt', hint: 'Scroll to turn the screen'
 };
-const AR = { capR: 'فحص المبتسرين (ROP) على ساعة الـ ICROP3', capA: 'الـ Reception: الحجوزات والطلبات والدور', capB: 'الـ Visual acuity بترتيب الكشف', capC: 'الـ Refraction والـ SE بيتحسب لوحده', capD: 'حجوزات مقروءة من صورة ورقة', capE: 'التقرير مكتوب من الكشف نفسه', osl: 'الـ File Shares على ONTAP بقت سهلة', oc1: 'الفولدرات: المساحة والحد الأقصى وآخر Backup', oc2: 'New Group Folder: صلاحية لكل واحد', oc3: 'خطة نقل Windows File Server', oc4: 'Share Auditing: مين مسح إيه ومن أنهي جهاز', copied: 'اتنسخ' };
+const AR = { capR: 'فحص المبتسرين (ROP) على ساعة الـ ICROP3', capA: 'الـ Reception: الحجوزات والطلبات والدور', capB: 'الـ Visual acuity بترتيب الكشف', capC: 'الـ Refraction والـ SE بيتحسب لوحده', capD: 'حجوزات مقروءة من صورة ورقة', capE: 'التقرير مكتوب من الكشف نفسه', osl: 'الـ File Shares على ONTAP بقت سهلة', oc1: 'الفولدرات: المساحة والحد الأقصى وآخر Backup', oc2: 'New Group Folder: صلاحية لكل واحد', oc3: 'خطة نقل Windows File Server', oc4: 'Share Auditing: مين مسح إيه ومن أنهي جهاز', copied: 'اتنسخ', waT: 'واتساب', phT: 'مكالمة', emT: 'إيميل', copy: 'نسخ' };
 document.querySelectorAll('[data-t]').forEach((el) => { if (!(el.dataset.t in AR)) AR[el.dataset.t] = el.innerHTML; });
 
 let lang = 'ar';
@@ -450,9 +450,13 @@ function applyLang() {
   document.querySelectorAll('[data-t]').forEach((el) => { if (d[el.dataset.t] != null) el.innerHTML = d[el.dataset.t]; });
   document.getElementById('lang').textContent = lang === 'en' ? 'عربي' : 'English';
   const m = msg();
-  if (document.getElementById('wa')) document.getElementById('wa').href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(m.wa)}`;
+  const waEl = document.getElementById('wa'), phEl = document.getElementById('ph');
+  waEl.hidden = !CONTACT.whatsapp; phEl.hidden = !CONTACT.phone;
+  if (CONTACT.whatsapp) waEl.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(m.wa)}`;
+  if (CONTACT.phone) phEl.href = `tel:+${CONTACT.phone}`;
   document.getElementById('em').href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
-  if (document.getElementById('waText')) document.getElementById('waText').textContent = prettyPhone(CONTACT.whatsapp);
+  document.getElementById('waText').textContent = prettyPhone(CONTACT.whatsapp);
+  document.getElementById('phText').textContent = prettyPhone(CONTACT.phone);
   document.getElementById('emText').textContent = CONTACT.email;
   setCaption();
   if (window.particles) window.particles.retarget();
@@ -460,7 +464,7 @@ function applyLang() {
 document.getElementById('lang').addEventListener('click', () => { location.href = '/' + location.hash; });
 document.querySelectorAll('.copybtn').forEach((b) => b.addEventListener('click', (e) => {
   e.preventDefault(); e.stopPropagation();
-  const text = b.dataset.copy === 'wa' ? prettyPhone(CONTACT.whatsapp) : CONTACT.email;
+  const text = b.dataset.copy === 'wa' ? prettyPhone(CONTACT.whatsapp) : b.dataset.copy === 'ph' ? prettyPhone(CONTACT.phone) : CONTACT.email;
   const d = () => (lang === 'en' ? EN : AR);
   try { navigator.clipboard.writeText(text).then(() => { b.textContent = d().copied; setTimeout(() => { b.textContent = d().copy; }, 1600); }, () => {}); } catch (err) {}
 }));
