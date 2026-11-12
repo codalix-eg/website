@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/img/osm-icon.png">
+<link rel="canonical" href="https://codalix.org/privacy/">
+<title>Privacy Policy · ONTAP Share Manager · Codalix</title>
+<meta name="description" content="Privacy policy for ONTAP Share Manager by Codalix: the app runs on your computer and Codalix does not receive your data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap">
+<style>
+:root {
+  --ink: #081A33; --panel: #0E2546; --line: rgba(234, 243, 251, .12);
+  --text: #EAF3FB; --muted: #9DB2C8; --blue: #1C63B7; --cyan: #38D3DC;
+  --grad: linear-gradient(110deg, #1C63B7, #38D3DC);
+  --f: "Readex Pro", "Segoe UI", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ink); color: var(--text); font-family: var(--f); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--cyan); }
+.wrap { width: min(780px, 100% - 40px); margin: 0 auto; }
+.top { border-bottom: 1px solid var(--line); background: rgba(8, 26, 51, .82); }
+.top .wrap { display: flex; align-items: center; height: 66px; }
+.top a { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 600; }
+.top img { width: 26px; }
+main { padding: 48px 0 72px; }
+h1 { font-size: 32px; line-height: 1.2; margin: 0 0 6px; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h2 { font-size: 20px; margin: 34px 0 8px; }
+ul { padding-left: 22px; }
+li { margin: 4px 0; }
+.mut { color: var(--muted); font-size: 14px; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
+footer { border-top: 1px solid var(--line); padding: 26px 0 36px; color: var(--muted); font-size: 13px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+footer a { color: var(--text); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+footer a img { width: 18px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a href="/"><img src="/img/codalix-mark.svg" alt="">Codalix</a></div></header>
+<div class="wrap"><main>
+<h1>Privacy Policy</h1>
+<p class="mut">ONTAP Share Manager · a Codalix product<br>Effective date: November 12, 2026</p>
+
+<p>This policy explains what ONTAP Share Manager ("the app") does with information. In short: the app runs on your own computer and connects only to servers that you choose. Codalix does not receive your data.</p>
+
+<h2>Who we are</h2>
+<p>ONTAP Share Manager is made by Codalix (codalix.org). Contact: <a href="mailto:support@codalix.org">support@codalix.org</a>.</p>
+
+<h2>What the app works with</h2>
+<p>The app helps administrators manage NetApp ONTAP file shares. To do that it connects, from the administrator's computer, to:</p>
+<ul>
+  <li>the administrator's NetApp ONTAP cluster (over its REST API),</li>
+  <li>the administrator's Active Directory domain controller (over LDAPS),</li>
+  <li>optionally, a Windows file server being migrated, and the administrator's own mail server.</li>
+</ul>
+<p>Through these connections the app can read and show information that belongs to your organization, which may include personal information: user and group names, email addresses, folder and file names and paths, and who changed or deleted a file (from the NetApp audit log).</p>
+
+<h2>What is sent to Codalix</h2>
+<p>Nothing. The app has no analytics, no tracking and no advertising. It does not send your data, your sign-in details or your usage to Codalix or to any third party. Apart from the servers you configure above, it makes no connections to the internet. Licenses are activated from a code, without contacting a Codalix server.</p>
+
+<h2>What is stored, and where</h2>
+<ul>
+  <li><strong>On the administrator's computer:</strong> the app's settings (such as theme, server names and user names) and its working data. Passwords for NetApp and Active Directory are not saved. If you choose to use a mail server password, it is stored encrypted on that computer.</li>
+  <li><strong>On your NetApp:</strong> to share the Admin Audit Log and the email settings between administrators, the app writes them to a folder on your own NetApp. The mail server password is not shared there.</li>
+  <li><strong>In emails:</strong> when you use the email notifications, the app sends messages through your mail server to the people you choose. Those emails can include names, email addresses and folder paths.</li>
+</ul>
+<p>All of this stays inside your organization's systems and under your control.</p>
+
+<h2>Sharing</h2>
+<p>We do not sell or share personal information, because we do not receive it.</p>
+
+<h2>Security</h2>
+<p>The app listens only on the local computer (127.0.0.1) and rejects requests from other sites. It acts with the permissions of the NetApp and Active Directory accounts that the administrator signs in with, and it logs every change it makes in the audit log.</p>
+
+<h2>Your choices</h2>
+<p>You decide which servers the app connects to, which mail notifications are on, and what is kept. Uninstalling the app removes it from the computer. Data that the app wrote to your own NetApp (the shared audit folder) can be removed by your administrators.</p>
+
+<h2>Children</h2>
+<p>The app is a business tool for IT administrators and is not directed at children.</p>
+
+<h2>Changes</h2>
+<p>If this policy changes, we will update the date at the top of this page.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="mailto:support@codalix.org">support@codalix.org</a></p>
+</main></div>
+<footer>
+  <div class="wrap">
+    <a href="/"><img src="/img/codalix-mark.svg" alt="">Codalix</a>
+    <span>NetApp and ONTAP are trademarks of NetApp, Inc. Codalix is not affiliated with NetApp.</span>
+  </div>
+</footer>
+</body>
+</html>
