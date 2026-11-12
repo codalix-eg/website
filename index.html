@@ -448,7 +448,7 @@ const AR = { capR: 'فحص المبتسرين (ROP) على ساعة الـ ICROP
 document.querySelectorAll('[data-t]').forEach((el) => { if (!(el.dataset.t in AR)) AR[el.dataset.t] = el.innerHTML; });
 
 let lang = 'en';
-const prettyPhone = (n) => n.replace(/^20/, '0').replace(/^(\d{3})(\d{4})(\d{4})$/, '$1 $2 $3');
+const prettyPhone = (n) => n.replace(/^20/, '0').replace(/^(\d{4})(\d{3})(\d{4})$/, '$1 $2 $3');
 function msg() {
   return lang === 'en'
     ? { wa: "Hello Codalix, I'd like to talk about:", subject: 'Hello Codalix', body: 'Hello,\n\nName:\nWhat I need:\n' }
