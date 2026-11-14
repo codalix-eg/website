@@ -125,6 +125,8 @@ html[dir="rtl"] .feat { padding: 28px 0 28px 26px; }
 .final h2 { font-size: clamp(32px, 4vw, 54px); letter-spacing: -0.02em; margin: 0 0 10px; font-weight: 600; }
 .final p { color: var(--muted); margin: 0 0 28px; font-size: 18px; }
 .final .mail { display: block; margin-top: 18px; color: var(--muted); font-size: 15px; direction: ltr; }
+.final .mail .tel { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(157,178,200,.4); }
+.final .mail .tel:hover { color: var(--cyan, #38D3DC); border-color: var(--cyan, #38D3DC); }
 footer { border-top: 1px solid var(--line); padding: 26px 0 36px; color: var(--muted); font-size: 13px; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
 footer a { text-decoration: none; display: inline-flex; align-items: center; gap: 8px; color: var(--text); }
@@ -311,7 +313,7 @@ html[dir="rtl"] .crumb { direction: rtl; }
       <h2 data-t="dh">See it on your own shares</h2>
       <p data-t="dp">Book a demo with the Codalix team. We call you and show it on a test volume</p>
       <div class="ctas" style="justify-content:center"><a class="cta big" id="mailBtn" href="mailto:support@codalix.org" data-t="cta">Book a demo</a><a class="cta big ghost" href="https://apps.microsoft.com/detail/9PDRHZ0FFZ3Q" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M3 3h8.500v8.500H3zM12.500 3H21v8.500h-8.500zM3 12.500h8.500V21H3zM12.500 12.500H21V21h-8.500z"/></svg><span data-t="store">Get it from Microsoft Store</span></a></div>
-      <span class="mail">support@codalix.org</span>
+      <span class="mail">support@codalix.org<span class="sep" aria-hidden="true"> · </span><a class="tel" href="tel:+201558005889">015 5800 5889</a></span>
     </div>
   </section>
 </main>
