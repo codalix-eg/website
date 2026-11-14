@@ -47,6 +47,9 @@ a { color: inherit; }
 .cta { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 600; font-size: 15px; color: #fff; background: var(--grad); border-radius: 999px; padding: 10px 20px; white-space: nowrap; box-shadow: 0 12px 28px -14px rgba(56, 211, 220, .8); transition: transform .2s ease; }
 .cta:hover { transform: translateY(-2px); }
 .cta.big { font-size: 17px; padding: 14px 28px; }
+.cta.ghost { background: transparent; color: var(--text, #EAF3FB); border: 1px solid rgba(157,178,200,.45); box-shadow: none; gap: 10px; }
+.cta.ghost:hover { border-color: var(--cyan, #38D3DC); }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
 /* Hero */
 .hero { padding: 72px 0 40px; position: relative; overflow: hidden; }
@@ -189,7 +192,7 @@ html[dir="rtl"] .crumb { direction: rtl; }
       <div class="copy">
         <h1 data-t="h1">ONTAP file shares. <span>Finally simple</span></h1>
         <p class="lede" data-t="lede">One Windows app to create shares, set permissions from Active Directory, migrate Windows file servers and see who changed what.</p>
-        <a class="cta big" href="#demo" data-t="cta">Book a demo</a>
+        <div class="ctas"><a class="cta big" href="#demo" data-t="cta">Book a demo</a><a class="cta big ghost" href="https://apps.microsoft.com/detail/9PDRHZ0FFZ3Q" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M3 3h8.500v8.500H3zM12.500 3H21v8.500h-8.500zM3 12.500h8.500V21H3zM12.500 12.500H21V21h-8.500z"/></svg><span data-t="store">Get it from Microsoft Store</span></a></div>
         <p class="meta" data-t="meta">Nothing to install on the NetApp · ONTAP 9.11.1 or later · Windows 10/11</p>
       </div>
       <div class="visual">
@@ -307,7 +310,7 @@ html[dir="rtl"] .crumb { direction: rtl; }
     <div class="wrap rv">
       <h2 data-t="dh">See it on your own shares</h2>
       <p data-t="dp">Book a demo with the Codalix team. We call you and show it on a test volume</p>
-      <a class="cta big" id="mailBtn" href="mailto:support@codalix.org" data-t="cta">Book a demo</a>
+      <div class="ctas" style="justify-content:center"><a class="cta big" id="mailBtn" href="mailto:support@codalix.org" data-t="cta">Book a demo</a><a class="cta big ghost" href="https://apps.microsoft.com/detail/9PDRHZ0FFZ3Q" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M3 3h8.500v8.500H3zM12.500 3H21v8.500h-8.500zM3 12.500h8.500V21H3zM12.500 12.500H21V21h-8.500z"/></svg><span data-t="store">Get it from Microsoft Store</span></a></div>
       <span class="mail">support@codalix.org</span>
     </div>
   </section>
@@ -324,7 +327,7 @@ html[dir="rtl"] .crumb { direction: rtl; }
 <script>
 const FILM = { src: '/media/ontap-share-manager.mp4', poster: '/img/osm-poster.jpg' };
 const AR = {
-  cta: 'احجز Demo', shh: 'Shorts', shp: 'كل فيديو شغلانة واحدة في 16 ثانية', sh1: 'فولدر خاص بضغطة واحدة', sh2: 'حد أقصى لحجم الفولدر', sh3: 'رجّع نسخة إمبارح', h1: 'الـ File Shares على ONTAP <span>بقت سهلة</span>',
+  cta: 'احجز Demo', store: 'نزّله من Microsoft Store', shh: 'Shorts', shp: 'كل فيديو شغلانة واحدة في 16 ثانية', sh1: 'فولدر خاص بضغطة واحدة', sh2: 'حد أقصى لحجم الفولدر', sh3: 'رجّع نسخة إمبارح', h1: 'الـ File Shares على ONTAP <span>بقت سهلة</span>',
   lede: 'برنامج واحد على Windows تعمل بيه Shares، وتدي Permissions من الـ Active Directory، وتنقل الـ File Servers، وتعرف مين عمل إيه.',
   meta: 'مفيش حاجة تتسطب على الـ NetApp · ONTAP 9.11.1 أو أحدث · Windows 10/11',
   c1: 'الفولدرات: المساحة، والحد الأقصى، وآخر Backup', c2: 'New Group Folder: صلاحية لكل واحد في الجروب', c3: 'خطة الـ Migration قبل ما تبدأ', c4: 'Share Auditing: مين مسح إيه ومن أنهي جهاز',
