@@ -400,6 +400,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
         <div class="ways">
           <a class="way" id="wa" href="#" hidden><span class="wi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/><path d="M9.2 8.2c-.4.4-.6 1-.4 1.7.5 1.8 2.5 3.9 4.5 4.6.7.2 1.3 0 1.7-.5l.5-.8c.1-.2 0-.4-.2-.5l-1.5-.8c-.2-.1-.4 0-.5.1l-.5.5c-1-.4-1.9-1.300-2.300-2.300l.5-.5c.1-.1.2-.3.1-.5l-.8-1.500c-.1-.2-.3-.3-.5-.2z" fill="currentColor" stroke="none"/></svg></span><span><b data-t="waT">WhatsApp</b><span class="addr" id="waText"></span></span><button class="copybtn" type="button" data-copy="wa" data-t="copy">Copy</button></a>
           <a class="way" id="ph" href="#" hidden><span class="wi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><span><b data-t="phT">Phone</b><span class="addr" id="phText"></span></span><button class="copybtn" type="button" data-copy="ph" data-t="copy">Copy</button></a>
+          <a class="way" id="tg" href="#" hidden><span class="wi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11l5.5 2L10 19l3-3.5 4.5 3.3z"/><path d="M8.5 13 21 4"/></svg></span><span><b>Telegram</b><span class="addr" id="tgText"></span></span><button class="copybtn" type="button" data-copy="tg" data-t="copy">Copy</button></a>
         </div>
         <a class="mailbig" id="em" href="#"><span class="mb-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span><span class="mb-addr" id="emText"></span></a>
         <ol class="nextsteps">
@@ -420,7 +421,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
 
 <script>
 /* Contact details: replace when the real number and address arrive. */
-const CONTACT = { whatsapp: '', phone: '201558005889', email: 'support@codalix.org' }; // digits only with country code, e.g. 201012345678
+const CONTACT = { whatsapp: '', phone: '201558005889', telegram: 'codalix_eg', email: 'support@codalix.org' }; // digits only with country code, e.g. 201012345678
 
 const EN = {
   nav0: 'Home', nav1: 'What we build', nav2: 'How we work', nav3: 'Products', nav4: 'Contact',
@@ -460,7 +461,8 @@ function applyLang() {
   document.querySelectorAll('[data-t]').forEach((el) => { if (d[el.dataset.t] != null) el.innerHTML = d[el.dataset.t]; });
   document.getElementById('lang').textContent = lang === 'en' ? 'عربي' : 'English';
   const m = msg();
-  const waEl = document.getElementById('wa'), phEl = document.getElementById('ph');
+  const waEl = document.getElementById('wa'), phEl = document.getElementById('ph'), tgEl = document.getElementById('tg');
+  tgEl.hidden = !CONTACT.telegram; if (CONTACT.telegram) { tgEl.href = `https://t.me/${CONTACT.telegram}`; tgEl.target = '_blank'; tgEl.rel = 'noopener'; document.getElementById('tgText').textContent = '@' + CONTACT.telegram; }
   waEl.hidden = !CONTACT.whatsapp; phEl.hidden = !CONTACT.phone;
   if (CONTACT.whatsapp) waEl.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(m.wa)}`;
   if (CONTACT.phone) phEl.href = `tel:+${CONTACT.phone}`;
@@ -474,7 +476,7 @@ function applyLang() {
 document.getElementById('lang').addEventListener('click', () => { location.href = '/ar/' + location.hash; });
 document.querySelectorAll('.copybtn').forEach((b) => b.addEventListener('click', (e) => {
   e.preventDefault(); e.stopPropagation();
-  const text = b.dataset.copy === 'wa' ? prettyPhone(CONTACT.whatsapp) : b.dataset.copy === 'ph' ? prettyPhone(CONTACT.phone) : CONTACT.email;
+  const text = b.dataset.copy === 'wa' ? prettyPhone(CONTACT.whatsapp) : b.dataset.copy === 'ph' ? prettyPhone(CONTACT.phone) : b.dataset.copy === 'tg' ? '@' + CONTACT.telegram : CONTACT.email;
   const d = () => (lang === 'en' ? EN : AR);
   try { navigator.clipboard.writeText(text).then(() => { b.textContent = d().copied; setTimeout(() => { b.textContent = d().copy; }, 1600); }, () => {}); } catch (err) {}
 }));
