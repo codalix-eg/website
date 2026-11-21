@@ -5,6 +5,13 @@
   if (window.__codalixChat) return;
   window.__codalixChat = true;
 
+  /* Anonymous counter: set to the Worker address (https://.../e) to turn on. Counts events only: no IP, cookie or text. */
+  var COUNT_URL = 'https://codalix-counter.codalix.workers.dev/e';
+  function count(e) {
+    if (!COUNT_URL) return;
+    try { fetch(COUNT_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ e: e }), keepalive: true }).catch(function () {}); } catch (x) {}
+  }
+
   var EMAIL = 'support@codalix.org';
   var PHONE = '201558005889';
   var TELEGRAM = 'codalix_eg';
@@ -294,7 +301,7 @@
     panel.classList.toggle('on', on); btn.style.display = on ? 'none' : '';
     btn.setAttribute('aria-expanded', on ? 'true' : 'false');
     if (on) {
-      if (!started) { started = true; botSay(T[lang()].hello, START); }
+      if (!started) { started = true; count('open'); botSay(T[lang()].hello, START); }
       setTimeout(function () { input.focus(); }, 30);
     }
   }
@@ -325,7 +332,7 @@
     var body = l === 'ar' ? 'أهلاً،\n\nعايز Demo.\n\nالاسم:\nجهة العمل:\nالبرنامج: ONTAP Share Manager / The Clinic\nالميعاد المناسب للمكالمة:\n'
                           : "Hello,\n\nI'd like a demo.\n\nName:\nWorkplace:\nProduct: ONTAP Share Manager / The Clinic\nA good time for a call:\n";
     var mail = 'mailto:' + EMAIL + (withDemo ? '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body) : '');
-    row.appendChild(linkEl(mail, t.email + ' · ' + EMAIL, true));
+    var ml = linkEl(mail, t.email + ' · ' + EMAIL, true); ml.addEventListener('click', function () { count(withDemo ? 'demo' : 'contact'); }); row.appendChild(ml);
     row.appendChild(linkEl('tel:+' + PHONE, t.call + ' · ' + PHONE.replace(/^20/, '0').replace(/^(\d{3})(\d{4})(\d{4})$/, '$1 $2 $3')));
     row.appendChild(linkEl('https://t.me/' + TELEGRAM, t.tg, false, true));
     return row;
@@ -347,7 +354,7 @@
     say(q, 'cdx-me');
     var it = forced || match(q);
     setTimeout(function () {
-      if (!it) { botSay(t.none, ['osm', 'clinic', 'price', 'demo']); log.appendChild(contactRow(false)); scroll(); return; }
+      if (!it) { count('miss'); botSay(t.none, ['osm', 'clinic', 'price', 'demo']); log.appendChild(contactRow(false)); scroll(); return; }
       if (it.thanks) { botSay(t.thanks, START); return; }
       if (it.greet) { botSay(t.hello, START); return; }
       botSay(it.a[l], it.f || [], it);
