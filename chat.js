@@ -93,8 +93,8 @@
 
     { id: 'clinic', chip: { ar: 'إيه هو The Clinic؟', en: 'What is The Clinic?' },
       k: ['the clinic', 'clinic', 'كلينك', 'عياده', 'عيادات', 'عيون', 'دكتور', 'طبيب', 'ophthalm', 'eye', 'doctor', 'مرضي', 'مريض', 'patient', 'emr'], p: 'clinic',
-      a: { ar: 'The Clinic برنامج لعيادات العيون، لسه قيد التطوير. اتصمم بإيد دكتور، وكل شاشة فيه اتراجعت جوه عيادة شغالة عشان تمشي ورا الكشف بالترتيب.',
-           en: 'The Clinic is software for eye clinics, currently in development. It was shaped by a doctor, and every screen was reviewed inside a working clinic so it follows the exam in order.' },
+      a: { ar: 'The Clinic برنامج للعيادات، لسه قيد التطوير، وأول تخصص بنبدأ بيه هو عيادات العيون. اتصمم بإيد دكتور، وكل شاشة فيه اتراجعت جوه عيادة شغالة عشان تمشي ورا الكشف بالترتيب.',
+           en: 'The Clinic is clinic software, currently in development, starting with eye clinics. It was shaped by a doctor, and every screen was reviewed inside a working clinic so it follows the exam in order.' },
       f: ['clinic-data', 'clinic-custom', 'clinic-status'], link: { ar: ['/ar/the-clinic/', 'صفحة The Clinic'], en: ['/the-clinic/', 'The Clinic page'] } },
 
     { id: 'clinic-status', chip: { ar: 'هو متاح دلوقتي؟', en: 'Is it available now?' },
@@ -159,8 +159,8 @@
 
     { id: 'about', chip: { ar: 'مين هي Codalix؟', en: 'Who is Codalix?' },
       k: ['codalix', 'كودالكس', 'مين انتم', 'من انتم', 'who are you', 'who is', 'about', 'شركه', 'company', 'عنكم'],
-      a: { ar: 'Codalix بتعمل برامج بتحل مشاكل شغل حقيقية. حاليًا عندنا ONTAP Share Manager لمسؤولي NetApp، وThe Clinic لعيادات العيون وهو قيد التطوير.',
-           en: 'Codalix builds software that solves real work problems. Right now we have ONTAP Share Manager for NetApp admins, and The Clinic for eye clinics, which is in development.' },
+      a: { ar: 'Codalix بتعمل برامج بتحل مشاكل شغل حقيقية. حاليًا عندنا ONTAP Share Manager لمسؤولي NetApp، وThe Clinic للعيادات وهو قيد التطوير.',
+           en: 'Codalix builds software that solves real work problems. Right now we have ONTAP Share Manager for NetApp admins, and The Clinic for clinics, which is in development.' },
       f: ['osm', 'clinic'] },
 
     { id: 'contact', chip: { ar: 'تواصل معنا', en: 'Contact us' },
