@@ -159,8 +159,8 @@
 
     { id: 'about', chip: { ar: 'مين هي Codalix؟', en: 'Who is Codalix?' },
       k: ['codalix', 'كودالكس', 'مين انتم', 'من انتم', 'who are you', 'who is', 'about', 'شركه', 'company', 'عنكم'],
-      a: { ar: 'Codalix بتعمل برامج بتحل مشاكل شغل حقيقية. حاليًا عندنا ONTAP Share Manager لمسؤولي NetApp، وThe Clinic للعيادات وهو قيد التطوير.',
-           en: 'Codalix builds software that solves real work problems. Right now we have ONTAP Share Manager for NetApp admins, and The Clinic for clinics, which is in development.' },
+      a: { ar: 'Codalix شركة modern software، بنعمل برامج بتحل مشاكل شغل حقيقية. حاليًا عندنا ONTAP Share Manager لمسؤولي NetApp، وThe Clinic للعيادات وهو قيد التطوير.',
+           en: 'Codalix is a modern software company. We build software that solves real work problems. Right now we have ONTAP Share Manager for NetApp admins, and The Clinic for clinics, which is in development.' },
       f: ['osm', 'clinic'] },
 
     { id: 'contact', chip: { ar: 'تواصل معنا', en: 'Contact us' },
