@@ -23,9 +23,9 @@
       open: 'اسأل Codalix', close: 'إغلاق', title: 'مساعد Codalix', sub: 'إجابات سريعة عن البرنامجين',
       ph: 'اكتب سؤالك…', send: 'إرسال',
       hello: 'أهلاً! أنا مساعد Codalix. اسألني عن ONTAP Share Manager أو The Clinic، أو اختار من هنا:',
-      none: 'مش متأكد إني فهمت سؤالك. ممكن تختار من الأسئلة دي، أو تتواصل مع الفريق مباشرة:',
+      none: 'مش متأكد إني فهمت سؤالك. لو سؤالك مختلف أو محتاج تفاصيل أكتر، اسأل الفريق مباشرة على تيليجرام، أو اختار من الأسئلة دي:',
       thanks: 'العفو! لو عندك سؤال تاني أنا موجود.',
-      contactLabel: 'تواصل مع الفريق', email: 'راسلنا', call: 'اتصل', tg: 'تيليجرام',
+      contactLabel: 'تواصل مع الفريق', email: 'راسلنا', call: 'اتصل', tg: 'تيليجرام', askTg: 'اسأل الفريق على تيليجرام',
       priv: 'سياسة الخصوصية', store: 'افتح في Microsoft Store', page: 'افتح الصفحة',
       dir: 'rtl'
     },
@@ -33,9 +33,9 @@
       open: 'Ask Codalix', close: 'Close', title: 'Codalix assistant', sub: 'Quick answers about both products',
       ph: 'Type your question…', send: 'Send',
       hello: "Hi! I'm the Codalix assistant. Ask me about ONTAP Share Manager or The Clinic, or pick one here:",
-      none: "I'm not sure I understood. Pick one of these, or contact the team directly:",
+      none: "I'm not sure I understood. If your question is different or needs more detail, ask the team directly on Telegram, or pick one of these:",
       thanks: "You're welcome! Ask me anything else.",
-      contactLabel: 'Contact the team', email: 'Email us', call: 'Call', tg: 'Telegram',
+      contactLabel: 'Contact the team', email: 'Email us', call: 'Call', tg: 'Telegram', askTg: 'Ask the team on Telegram',
       priv: 'Privacy policy', store: 'Open in Microsoft Store', page: 'Open the page',
       dir: 'ltr'
     }
@@ -326,15 +326,17 @@
     return a;
   }
 
-  function contactRow(withDemo) {
+  function contactRow(withDemo, tgFirst) {
     var l = lang(), t = T[l], row = el('div', 'cdx-chips');
     var subj = l === 'ar' ? 'طلب Demo' : 'Demo request';
     var body = l === 'ar' ? 'أهلاً،\n\nعايز Demo.\n\nالاسم:\nجهة العمل:\nالبرنامج: ONTAP Share Manager / The Clinic\nالميعاد المناسب للمكالمة:\n'
                           : "Hello,\n\nI'd like a demo.\n\nName:\nWorkplace:\nProduct: ONTAP Share Manager / The Clinic\nA good time for a call:\n";
     var mail = 'mailto:' + EMAIL + (withDemo ? '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body) : '');
-    var ml = linkEl(mail, t.email + ' · ' + EMAIL, true); ml.addEventListener('click', function () { count(withDemo ? 'demo' : 'contact'); }); row.appendChild(ml);
-    row.appendChild(linkEl('tel:+' + PHONE, t.call + ' · ' + PHONE.replace(/^20/, '0').replace(/^(\d{3})(\d{4})(\d{4})$/, '$1 $2 $3')));
-    row.appendChild(linkEl('https://t.me/' + TELEGRAM, t.tg, false, true));
+    var ml = linkEl(mail, t.email + ' \u00b7 ' + EMAIL, !tgFirst); ml.addEventListener('click', function () { count(withDemo ? 'demo' : 'contact'); });
+    var tg = linkEl('https://t.me/' + TELEGRAM, tgFirst ? t.askTg : t.tg, !!tgFirst, true); tg.addEventListener('click', function () { count('contact'); });
+    var ph = linkEl('tel:+' + PHONE, t.call + ' \u00b7 ' + PHONE.replace(/^20/, '0').replace(/^(\d{3})(\d{4})(\d{4})$/, '$1 $2 $3'));
+    if (tgFirst) { row.appendChild(tg); row.appendChild(ml); row.appendChild(ph); }
+    else { row.appendChild(ml); row.appendChild(ph); row.appendChild(tg); }
     return row;
   }
 
@@ -354,7 +356,7 @@
     say(q, 'cdx-me');
     var it = forced || match(q);
     setTimeout(function () {
-      if (!it) { count('miss'); botSay(t.none, ['osm', 'clinic', 'price', 'demo']); log.appendChild(contactRow(false)); scroll(); return; }
+      if (!it) { count('miss'); botSay(t.none, null); log.appendChild(contactRow(false, true)); log.appendChild(chipsRow(['osm', 'clinic', 'price', 'demo'])); scroll(); return; }
       if (it.thanks) { botSay(t.thanks, START); return; }
       if (it.greet) { botSay(t.hello, START); return; }
       botSay(it.a[l], it.f || [], it);
