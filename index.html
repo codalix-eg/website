@@ -17,6 +17,21 @@
 <meta property="og:image" content="https://codalix.org/img/poster.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <style>[hidden]{display:none!important}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}.lilink { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; opacity: .85; } .lilink:hover { opacity: 1; }
+
+.logo .wmk { height: 22px; width: auto; display: block; overflow: visible; }
+.logo .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wmk .g { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.wmk.go .g { animation: wdr .55s cubic-bezier(.3,.6,.2,1) both; animation-delay: calc(var(--i) * .15s); }
+@keyframes wdr { 0% { stroke-dashoffset: 1; opacity: 0; } 1% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+.wmk.go .odot { animation: wpp .45s cubic-bezier(.2,.9,.3,1.5) both; animation-delay: 1.05s; transform-box: fill-box; transform-origin: center; }
+@keyframes wpp { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: scale(1); } }
+.wmk .idot { animation: wbl 1.1s steps(1) infinite; }
+.wmk.go .idot { animation: wpp .35s ease both, wbl 1.1s steps(1) 2.1s infinite; animation-delay: 1.55s, 2.1s; transform-box: fill-box; transform-origin: center; }
+@keyframes wbl { 50% { opacity: .2; } }
+.wmk.go .zl { animation: wzl .6s cubic-bezier(.65,0,.25,1) both; animation-delay: 1.5s; }
+@keyframes wzl { from { transform: translateX(-120px); opacity: 0; } 30% { opacity: 1; } to { transform: none; opacity: 1; } }
+@media (max-width: 560px) { .logo .wmk { height: 18px; } }
+@media (prefers-reduced-motion: reduce) { .wmk.go .g, .wmk.go .odot, .wmk.go .idot, .wmk.go .zl { animation: none; } .wmk .idot { animation: none; } }
 </style>
 <title>Codalix | Modern software, built for real work</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -282,7 +297,7 @@ body.scrollmode .foot { position: static; margin-top: 40px; }
 </script>
 
 <header class="top gut" id="top">
-  <a class="logo" href="#home" data-go="0"><i class="mk" aria-hidden="true"></i><b>Codalix</b></a>
+  <a class="logo" href="#home" data-go="0"><svg class="wmk" viewBox="8 8 634 84" aria-hidden="true"><defs><linearGradient id="cgw" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1C63B7"/><stop offset="1" stop-color="#38D3DC"/></linearGradient></defs><g fill="none" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path class="g" pathLength="1" style="--i:0" transform="translate(4 0)" d="M72 26 A34 34 0 1 0 72 74"/><path class="g" pathLength="1" style="--i:1" transform="translate(100 0)" d="M83 38.4 A34 34 0 1 1 56 16.5"/><path class="g" pathLength="1" style="--i:2" transform="translate(212 0)" d="M24 16 V84 M24 16 H46 A34 34 0 0 1 46 84 H24"/><path class="g" pathLength="1" style="--i:3" transform="translate(318 0)" d="M12 84 L42 16 L72 84 M25 62 H59"/><path class="g" pathLength="1" style="--i:4" transform="translate(410 0)" d="M24 16 V84 H68"/><path class="g" pathLength="1" style="--i:5" transform="translate(482 0)" d="M34 40 V84"/></g><circle class="odot" cx="175" cy="22" r="6.5" fill="#38D3DC"/><rect class="idot" x="509" y="14" width="14" height="14" rx="3" fill="#38D3DC"/><g transform="translate(548 0)" fill="none" stroke="url(#cgw)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><path class="zl" d="M16 16 L44 50 L16 84"/><path d="M84 16 L56 50 L84 84"/></g></svg><span class="sr">Codalix</span></a>
   <nav class="links" aria-label="Sections">
     <a href="#home" data-go="0" data-t="nav0">الرئيسية</a>
     <a href="#build" data-go="1" data-t="nav1">بنعمل إيه</a>
@@ -715,6 +730,10 @@ chrome();
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => window.particles.retarget());
 </script>
 
+<script>
+(function(){var w=document.querySelector('.logo .wmk');if(!w)return;function p(){w.classList.remove('go');void w.getBoundingClientRect();w.classList.add('go');}
+var a=w.parentNode;a.addEventListener('mouseenter',p);a.addEventListener('focus',p);setTimeout(p,300);})();
+</script>
 <script src="/chat.js" defer></script>
 </body>
 </html>
