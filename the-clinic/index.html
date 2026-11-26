@@ -317,10 +317,14 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
 /* ---------- Specialty tabs (Eye | Urology) ---------- */
 .specs { padding-top: clamp(16px, 2.6vw, 28px); scroll-margin-top: 70px; }
 .tabs { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--deep); }
-.tabs button { font-family: var(--f-display); font-weight: 600; font-size: 15px; color: var(--muted); background: none; border: 0; border-radius: 999px; padding: 9px 24px; cursor: pointer; transition: background .2s ease, color .2s ease; }
-.tabs button:hover { color: var(--text); }
-.tabs button[aria-selected="true"] { background: #45D7B6; color: #04241D; }
-.tabs button[data-pane-btn="uro"][aria-selected="true"] { background: #7DA2FF; color: #0A1330; }
+.tabs { gap: 8px; padding: 6px; }
+.tabs button { display: inline-flex; align-items: center; gap: 9px; font-family: var(--f-display); font-weight: 700; font-size: 16px; color: var(--tc); background: rgba(var(--tc-rgb), .10); border: 1px solid rgba(var(--tc-rgb), .35); border-radius: 999px; padding: 10px 26px; cursor: pointer; transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.tabs button[data-pane-btn="eye"] { --tc: #45D7B6; --tc-rgb: 69, 215, 182; }
+.tabs button[data-pane-btn="uro"] { --tc: #7DA2FF; --tc-rgb: 125, 162, 255; }
+.tabs button:hover { background: rgba(var(--tc-rgb), .2); transform: translateY(-1px); }
+.tabs button svg { flex: none; }
+.tabs button[aria-selected="true"] { background: var(--tc); color: #06151A; border-color: var(--tc); box-shadow: 0 8px 26px -8px rgba(var(--tc-rgb), .7); }
+.tabs button[data-pane-btn="uro"][aria-selected="true"] { color: #0A1330; }
 /* Urology has its own colour: blue and violet instead of mint and cyan (the same blue as the app's selected chips) */
 html[data-spec="uro"] { --mint: #7DA2FF; --cyan: #B28CFF; --mint-rgb: 125, 162, 255; --cyan-rgb: 178, 140, 255; }
 html[data-spec="uro"] .btn-mint { color: #0A1330; }
@@ -367,8 +371,8 @@ html[data-spec="uro"] ::selection { background: #7DA2FF; color: #0A1330; }
   <div class="specs" id="specs">
     <div class="wrap">
       <div class="tabs" role="tablist" aria-label="Specialty">
-        <button type="button" role="tab" id="tab-eye" data-pane-btn="eye" aria-selected="true" data-t="tabEye">رمد</button>
-        <button type="button" role="tab" id="tab-uro" data-pane-btn="uro" aria-selected="false" data-t="tabUro">مسالك بولية</button>
+        <button type="button" role="tab" id="tab-eye" data-pane-btn="eye" aria-selected="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3.2"/></svg><span data-t="tabEye">رمد</span></button>
+        <button type="button" role="tab" id="tab-uro" data-pane-btn="uro" aria-selected="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3.5C5.6 3.8 4 7 4 11c0 4.6 2.4 8.5 5.4 8.5 2.2 0 3-1.6 2.6-3.6-.3-1.6-1.9-2.2-1.9-4.1 0-1.9 1.6-2.6 1.9-4.2C11.4 4.9 10.6 3.4 9 3.5z"/><path d="M17.5 13.2c1.5 1.7 2.5 3 2.5 4.4a2.5 2.5 0 0 1-5 0c0-1.4 1-2.7 2.5-4.4z"/></svg><span data-t="tabUro">مسالك بولية</span></button>
       </div>
     </div>
   </div>
@@ -476,6 +480,7 @@ html[data-spec="uro"] ::selection { background: #7DA2FF; color: #0A1330; }
         <p class="uro-note" data-t="uNote">قيد المراجعة مع استشاري مسالك.</p>
         <div class="hero-cta">
           <a class="btn btn-mint" href="#demo" data-t="cta2">اطلب Demo بمكالمة</a>
+          <a class="btn btn-ghost" href="#film-uro"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg><span data-t="uWatch">اتفرج على الجولة</span></a>
         </div>
       </div>
       <div class="iris-stage uro-stage" id="uroStage" aria-hidden="true">
@@ -555,7 +560,7 @@ html[data-spec="uro"] ::selection { background: #7DA2FF; color: #0A1330; }
     </div>
   </section>
 
-  <section id="film" aria-labelledby="film-title" style="padding-top: 0">
+  <section id="film" data-pane="eye" aria-labelledby="film-title" style="padding-top: 0">
     <div class="wrap film">
       <div class="head rv" style="margin-bottom: 0">
         <span class="eyebrow" data-t="fmEyebrow">الفيلم</span>
@@ -770,6 +775,18 @@ html[data-spec="uro"] ::selection { background: #7DA2FF; color: #0A1330; }
   </div>
 </footer>
 
+  <section id="film-uro" data-pane="uro" hidden aria-labelledby="film-uro-title" style="padding-top: 0">
+    <div class="wrap film">
+      <div class="head rv" style="margin-bottom: 0">
+        <span class="eyebrow" data-t="fmEyebrow">الفيلم</span>
+        <h2 id="film-uro-title" data-t="uFmTitle">جولة سريعة في برنامج المسالك</h2>
+      </div>
+      <div class="film-frame rv">
+        <video controls playsinline preload="metadata" poster="/img/poster-urology.jpg" src="/media/urology-tour.mp4"></video>
+      </div>
+    </div>
+  </section>
+
 <script>
 /* Contact details: replace when the real number and address arrive. */
 const CONTACT = { whatsapp: '', phone: '201558005889', telegram: 'codalix_eg', email: 'support@codalix.org' }; // digits only with country code
@@ -796,7 +813,7 @@ const EN = {
   fitP: "Just as The Clinic was shaped by one doctor's hand, we shape it around your clinic: the exam order, the medications you write, how your printouts look, your prices and hours. If you need something that isn't there, we'll talk about it",
   fc1: 'Exam order', fc2: 'Medication stamps', fc3: 'Printouts with your name and logo', fc4: 'Prices and hours', fc5: 'Your reference books',
   shTitle: 'Shorts', sh1: 'Your prescription, without typing a word', sh2: 'From exam to cashier', sh3: 'Close your day in one click',
-  fmEyebrow: 'The film', fmTitle: 'The Clinic in one minute',
+  fmEyebrow: 'The film', fmTitle: 'The Clinic in one minute', uFmTitle: 'A quick tour of the urology sheet', uWatch: 'Watch the tour',
   dyEyebrow: 'One clinic day', dyTitle: 'From the first booking in the morning to the last report at night',
   b1t: 'Bookings arrive on their own', b1p: 'Your assistant books from their phone while away from the clinic, and the booking waits for reception to confirm it with one click',
   b2t: 'Bookings on paper? Take a photo', b2p: 'The program reads the paper, Arabic and English, and lays every row out for you to check before anything is saved',
