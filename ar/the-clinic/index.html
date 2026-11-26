@@ -21,9 +21,9 @@
 
 <title>The Clinic by Codalix</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="The Clinic — برنامج للعيادات اللي كل شاشة فيه راجعها دكتور وغيّرها بإيده. برامج العيادات القديمة اتعملت بإيد مهندسين، وThe Clinic عمله دكتور.">
+<meta name="description" content="The Clinic — برنامج للعيادات. بدأ في عيادة عيون وراجع دكتور كل شاشة فيه بإيده، ودلوقتي فيه شيت مسالك كمان. The Clinic by Codalix.">
 <meta property="og:title" content="The Clinic — made by a doctor, for doctors">
-<meta property="og:description" content="برنامج للعيادات اللي كل شاشة فيه راجعها دكتور وغيّرها بإيده.">
+<meta property="og:description" content="برنامج للعيادات. بدأ في عيادة عيون، ودلوقتي فيه شيت مسالك كمان.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Aref+Ruqaa:wght@700&family=Caveat:wght@600;700&display=swap">
@@ -311,6 +311,34 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
   .readout { font-size: 10.5px; }
   .demo .chartlet { font-size: 110px; }
 }
+
+/* ---------- Specialty tabs (Eye | Urology) ---------- */
+.specs { padding-top: clamp(16px, 2.6vw, 28px); scroll-margin-top: 70px; }
+.tabs { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--deep); }
+.tabs button { font-family: var(--f-display); font-weight: 600; font-size: 15px; color: var(--muted); background: none; border: 0; border-radius: 999px; padding: 9px 24px; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.tabs button:hover { color: var(--text); }
+.tabs button[aria-selected="true"] { background: var(--mint); color: #04241D; }
+.uro-note { margin: 18px 0 0; display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); border: 1px solid var(--line-2); border-radius: 999px; padding: 6px 16px; }
+.uro-note::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex: none; }
+.uro-stage svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.uro-stage .ufill { stroke-dasharray: 0 100; }
+.uro-stage.on .ufill { stroke-dasharray: 62.9 100; transition: stroke-dasharray 1.9s cubic-bezier(.3, .6, .2, 1); }
+.uro-stage .uflow { stroke-dasharray: 1; stroke-dashoffset: 1; }
+@media (prefers-reduced-motion: no-preference) { .uro-stage.on .uflow { animation: uflow 4.6s ease-in-out 1s infinite; } }
+@media (prefers-reduced-motion: reduce) { .uro-stage .ufill { stroke-dasharray: 62.9 100; } .uro-stage .uflow { stroke-dashoffset: 0; } }
+@keyframes uflow { 0% { stroke-dashoffset: 1; } 55%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1; } }
+.uro-blocks { display: grid; gap: clamp(40px, 6vw, 84px); padding-block: clamp(30px, 4vw, 56px) clamp(24px, 3vw, 40px); }
+.uro-row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .6fr); gap: clamp(20px, 3.4vw, 52px); align-items: center; }
+.uro-row:nth-child(even) .uro-media { order: 2; }
+.uro-pair { display: grid; gap: 14px; }
+.uro-row .num { font-family: var(--f-mono); color: var(--mint); font-size: 13px; letter-spacing: .14em; }
+.uro-row h3 { font-size: clamp(24px, 2.6vw, 34px); font-weight: 800; line-height: 1.3; margin-top: 8px; }
+.uro-row p { color: var(--muted); margin-top: 12px; font-size: 17px; }
+.uro-demo { color: var(--dim); font-size: 13.5px; margin: 0 0 clamp(30px, 5vw, 60px); }
+.also.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.also.two .card p { color: var(--text); font-size: 17px; }
+@media (max-width: 980px) { .uro-row { grid-template-columns: 1fr; } .uro-row:nth-child(even) .uro-media { order: 0; } }
+@media (max-width: 640px) { .also.two { grid-template-columns: 1fr; } .tabs button { padding: 9px 18px; } }
 </style>
 <style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}.crumb{flex:none;display:flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);white-space:nowrap;direction:ltr}html[dir=rtl] .crumb{direction:rtl}.crumb a{text-decoration:none;color:var(--muted);display:inline-flex;align-items:center;gap:7px;padding:6px 8px;border-radius:10px}.crumb a:hover{color:var(--text);background:rgba(127,127,127,.12)}.crumb .home img{width:22px;height:22px;max-width:none;flex:none}.crumb .home span{font-weight:600;color:var(--text)}.crumb i{font-style:normal;opacity:.4}@media (max-width:760px){.crumb .home span,.crumb .crumb-p,.crumb i:last-child{display:none}.brand{white-space:nowrap}}@media (max-width:640px){.brand small{display:none}}</style>
 </head>
@@ -328,7 +356,16 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
 </header>
 
 <main id="top">
-  <section class="hero" aria-labelledby="hero-title" style="padding-top: clamp(24px, 5vw, 70px)">
+  <div class="specs" id="specs">
+    <div class="wrap">
+      <div class="tabs" role="tablist" aria-label="Specialty">
+        <button type="button" role="tab" id="tab-eye" data-pane-btn="eye" aria-selected="true" data-t="tabEye">رمد</button>
+        <button type="button" role="tab" id="tab-uro" data-pane-btn="uro" aria-selected="false" data-t="tabUro">مسالك بولية</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero" data-pane="eye" aria-labelledby="hero-title" style="padding-top: clamp(24px, 5vw, 70px)">
     <div class="wrap">
       <div>
         <span class="eyebrow" data-t="eyebrow">برنامج للعيادات</span>
@@ -353,14 +390,14 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
     </div>
   </section>
 
-  <div class="strip" aria-hidden="true">
+  <div class="strip" data-pane="eye" aria-hidden="true">
     <div class="track">
       <span>VA 6/6 · BCVA 6/6</span><span>IOP 14 mmHg · Goldmann</span><span>SPH −1.25 · CYL −0.50 × 180</span><span>Cyclopentolate (Plegica) × 2</span><span>Tropicamide (Optotrope) × 1</span><span>ROP screening</span><span>Ishihara · 38 plates</span><span>Phaco + IOL</span><span>Intravitreal injection</span><span>Fundus · C/D 0.3</span><span>Near ADD +2.00</span><span>Nystagmus</span>
       <span>VA 6/6 · BCVA 6/6</span><span>IOP 14 mmHg · Goldmann</span><span>SPH −1.25 · CYL −0.50 × 180</span><span>Cyclopentolate (Plegica) × 2</span><span>Tropicamide (Optotrope) × 1</span><span>ROP screening</span><span>Ishihara · 38 plates</span><span>Phaco + IOL</span><span>Intravitreal injection</span><span>Fundus · C/D 0.3</span><span>Near ADD +2.00</span><span>Nystagmus</span>
     </div>
   </div>
 
-  <section class="redpen" id="redpen" aria-labelledby="rp-title">
+  <section class="redpen" data-pane="eye" id="redpen" aria-labelledby="rp-title">
     <div class="wrap">
       <div class="head rv">
         <span class="eyebrow" data-t="rpEyebrow">القلم الأحمر</span>
@@ -396,7 +433,7 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
     </div>
   </section>
 
-  <section id="rop" aria-labelledby="rop-title" style="padding-top: 0">
+  <section id="rop" data-pane="eye" aria-labelledby="rop-title" style="padding-top: 0">
     <div class="wrap">
       <div class="head rv">
         <span class="eyebrow" data-t="ropEyebrow">فحص المبتسرين</span>
@@ -413,6 +450,86 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
           <li><b data-t="r5b">بيتكتب لوحده</b><em class="k">Chief complaint</em><span data-t="r5s">ROP screening بتتكتب في الشكوى أول ما تفعّله</span></li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="hero" id="urology" data-pane="uro" hidden aria-labelledby="uro-title" style="padding-top: clamp(24px, 5vw, 70px)">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-t="uEyebrow">برنامج لعيادات المسالك البولية</span>
+        <h1 class="chart focus" id="uro-title">
+          <span class="row r1"><span data-t="ur1">شيت</span><small>IPSS 35</small></span>
+          <span class="row r2"><span data-t="ur2">المسالك</span><small>IPSS 20</small></span>
+          <span class="row r3"><span data-t="ur3">مترتب</span><small>IPSS 8</small></span>
+          <span class="row r4"><span data-t="ur4">زي ما</span><small>IPSS 4</small></span>
+          <span class="row r5"><span data-t="ur5"><em>بتكشف</em></span><small>IPSS 0</small></span>
+        </h1>
+        <p class="lede" data-t="uSub">التاريخ المرضي، الاستبيانات، الفحص، الفحوصات، العمليات والخطة، بنفس ترتيب شغل أخصائي المسالك. اضغط بدل ما تكتب.</p>
+        <p class="uro-note" data-t="uNote">قيد المراجعة مع استشاري مسالك.</p>
+        <div class="hero-cta">
+          <a class="btn btn-mint" href="#demo" data-t="cta2">اطلب Demo بمكالمة</a>
+        </div>
+      </div>
+      <div class="iris-stage uro-stage" id="uroStage" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <defs>
+            <linearGradient id="ugrad" gradientUnits="userSpaceOnUse" x1="94" y1="0" x2="306" y2="0"><stop offset="0" stop-color="#45D7B6"/><stop offset=".55" stop-color="#3CC4E2"/><stop offset="1" stop-color="#F28C28"/></linearGradient>
+            <radialGradient id="uglow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#3CC4E2" stop-opacity=".16"/><stop offset="1" stop-color="#3CC4E2" stop-opacity="0"/></radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="196" fill="url(#uglow)"/>
+          <circle cx="200" cy="200" r="150" fill="#0A1418" stroke="rgba(220,240,240,.09)" stroke-width="1"/>
+          <g id="uticks" stroke="rgba(220,240,240,.28)" stroke-width="1.4" stroke-linecap="round"></g>
+          <path d="M93.93 306.07 A150 150 0 1 1 306.07 306.07" fill="none" stroke="rgba(220,240,240,.09)" stroke-width="16" stroke-linecap="round"/>
+          <path class="ufill" pathLength="100" d="M93.93 306.07 A150 150 0 1 1 306.07 306.07" fill="none" stroke="url(#ugrad)" stroke-width="16" stroke-linecap="round"/>
+          <text x="200" y="146" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" letter-spacing="3" fill="#8DA2A4">IPSS</text>
+          <text id="uipssBig" x="200" y="226" text-anchor="middle" font-family="Alexandria, sans-serif" font-weight="900" font-size="96" fill="#E8F1F0">0</text>
+          <text x="200" y="256" text-anchor="middle" font-family="IBM Plex Sans Arabic, sans-serif" font-size="15" fill="#8DA2A4" data-t="uBand">أعراض شديدة</text>
+          <path class="uflow" pathLength="1" d="M128 306 C 150 306 160 282 200 282 C 240 282 250 306 272 306" fill="none" stroke="#45D7B6" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <span class="lensbadge">IPSS <b id="uipss">0</b> / 35</span>
+        <div class="readout"><span>PSA <b>6.8</b> ng/mL</span><span>CREA <b>1.1</b> mg/dL</span><span>eGFR <b>73.1</b></span></div>
+      </div>
+    </div>
+  </section>
+  <div class="strip" data-pane="uro" hidden aria-hidden="true">
+    <div class="track">
+      <span>IPSS 22 · Severe symptoms</span><span>SHIM-style erectile function</span><span>PSA 6.8 ng/mL</span><span>Creatinine 1.1 mg/dL · eGFR 73.1</span><span>Qmax · Residual urine</span><span>Cystoscopy</span><span>URS / RIRS</span><span>PCNL</span><span>ESWL</span><span>Haematuria · Colic · Retention</span><span>Stricture · Meatal stenosis · Plaque</span><span>Right · Left · Both</span><span>BPH start (stamp)</span>
+      <span>IPSS 22 · Severe symptoms</span><span>SHIM-style erectile function</span><span>PSA 6.8 ng/mL</span><span>Creatinine 1.1 mg/dL · eGFR 73.1</span><span>Qmax · Residual urine</span><span>Cystoscopy</span><span>URS / RIRS</span><span>PCNL</span><span>ESWL</span><span>Haematuria · Colic · Retention</span><span>Stricture · Meatal stenosis · Plaque</span><span>Right · Left · Both</span><span>BPH start (stamp)</span>
+    </div>
+  </div>
+  <section class="uro-blocks-wrap" data-pane="uro" hidden aria-label="Urology">
+    <div class="wrap">
+      <div class="uro-blocks">
+        <div class="uro-row">
+          <div class="uro-media"><div class="monitor rv"><div class="shot"><img src="/img/urology-1-history.jpg" alt="The history screen of the urology sheet" width="1440" height="952" loading="lazy"></div></div></div>
+          <div class="rv"><span class="num">01</span><h3 data-t="u1t">التاريخ المرضي بضغطة</h3><p data-t="u1p">أعراض التبول، دم في البول، مغص كلوي، احتباس... ضغطة لكل واحد ومعاها المدة. الشكوى الأساسية بتتكتب لوحدها. التدخين والسوائل والكافيين والخلفية المرضية كمان أزرار.</p></div>
+        </div>
+        <div class="uro-row">
+          <div class="uro-media"><div class="monitor rv"><div class="shot"><img src="/img/urology-2-ipss.jpg" alt="The IPSS questionnaire with its score" width="1440" height="952" loading="lazy"></div></div></div>
+          <div class="rv"><span class="num">02</span><h3 data-t="u2t">IPSS محسوب لوحده</h3><p data-t="u2p">جاوب بالضغط، والنتيجة ودرجة الشدة بتظهر على طول، وتتطبع للمريض. استبيان الانتصاب (على نمط SHIM) تحتها مباشرة.</p></div>
+        </div>
+        <div class="uro-row">
+          <div class="uro-media"><div class="uro-pair"><div class="monitor rv"><div class="shot"><img src="/img/urology-3-examination.jpg" alt="The examination screen of the urology sheet" width="1440" height="952" loading="lazy"></div></div><div class="monitor rv"><div class="shot"><img src="/img/urology-3b-urethra.jpg" alt="The urethra drawing, where a stricture or plaque is marked" width="1440" height="952" loading="lazy"></div></div></div></div>
+          <div class="rv"><span class="num">03</span><h3 data-t="u3t">الفحص ومعاه رسمة</h3><p data-t="u3p">ضغطة واحدة تخلي البطن والعضو طبيعيين. علّم الضيق أو تضيق الفتحة أو اللويحة على رسمة الإحليل بدل ما توصفها.</p></div>
+        </div>
+        <div class="uro-row">
+          <div class="uro-media"><div class="monitor rv"><div class="shot"><img src="/img/urology-4-investigations.jpg" alt="Investigations: PSA, creatinine, Qmax and residual urine" width="1440" height="952" loading="lazy"></div></div></div>
+          <div class="rv"><span class="num">04</span><h3 data-t="u4t">PSA والكرياتينين وQmax والبول المتبقي فوق</h3><p data-t="u4p">ضيف ورق التحاليل والأشعة والنتايج القديمة كملفات أو صور من الموبايل. البرنامج بيقرا PSA والكرياتينين من ورقة التحليل وإنت بتراجع القيم قبل ما تتحفظ. وeGFR بيتحسب لوحده.</p></div>
+        </div>
+        <div class="uro-row">
+          <div class="uro-media"><div class="monitor rv"><div class="shot"><img src="/img/urology-5-procedures.jpg" alt="A procedure report" width="1440" height="952" loading="lazy"></div></div></div>
+          <div class="rv"><span class="num">05</span><h3 data-t="u5t">تقرير لكل عملية</h3><p data-t="u5p">مناظير المثانة، URS/RIRS، PCNL، ESWL وغيرهم، كل واحدة بالخانات المهمة لها وملاحظات حرة وطباعة.</p></div>
+        </div>
+        <div class="uro-row">
+          <div class="uro-media"><div class="monitor rv"><div class="shot"><img src="/img/urology-6-plan.jpg" alt="The plan: tests, referral and operation" width="1440" height="952" loading="lazy"></div></div></div>
+          <div class="rv"><span class="num">06</span><h3 data-t="u6t">علّم الفحوصات واطبع الطلب</h3><p data-t="u6p">فحوصات البول والدم والأشعة والوظائف أزرار، والطلب بيتطبع على ورقة لوحده. اللي لسه نتيجته ما رجعتش بتظهر معلّقة في الزيارة الجاية.</p></div>
+        </div>
+        <div class="uro-row">
+          <div class="uro-media"><div class="monitor rv"><div class="shot"><img src="/img/urology-7-prescription.jpg" alt="A prescription with safety alerts" width="1440" height="952" loading="lazy"></div></div></div>
+          <div class="rv"><span class="num">07</span><h3 data-t="u7t">روشتة بضغطتين</h3><p data-t="u7p">أكتر أدوية المسالك اللي بتكتبها وأختامك إنت (زي "بداية BPH"). تنبيهات التداخلات والأمان بتظهر قبل الطباعة.</p></div>
+        </div>
+      </div>
+      <p class="uro-demo" data-t="uDemo">المريض في كل الصور مريض تجريبي (اسم وبيانات مش حقيقية).</p>
     </div>
   </section>
 
@@ -450,7 +567,7 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
     </div>
   </section>
 
-  <section class="day" aria-labelledby="day-title">
+  <section class="day" data-pane="eye" aria-labelledby="day-title">
     <div class="wrap">
       <div class="head rv">
         <span class="eyebrow" data-t="dyEyebrow">يوم في العيادة</span>
@@ -505,7 +622,7 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
     </div>
   </section>
 
-  <section aria-labelledby="also-title">
+  <section data-pane="eye" aria-labelledby="also-title">
     <div class="wrap">
       <div class="head rv">
         <span class="eyebrow" data-t="alEyebrow">وكمان</span>
@@ -552,6 +669,21 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
     </div>
   </section>
 
+  <section data-pane="uro" hidden aria-labelledby="uro-also-title">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow" data-t="alEyebrow">وكمان</span>
+        <h2 id="uro-also-title" data-t="alTitle">الحاجات الصغيرة اللي بتفرق في آخر اليوم</h2>
+      </div>
+      <div class="also two rv">
+        <article class="card"><p data-t="uc1">العملية المخططة بتوصل للاستقبال يحجزها بتاريخ وسعر</p></article>
+        <article class="card"><p data-t="uc2">آخر زيارة والمتابعة والإحالة</p></article>
+        <article class="card"><p data-t="uc3">يمين / شمال / الاتنين لكل عملية</p></article>
+        <article class="card"><p data-t="uc4">شغال أوفلاين على جهاز الدكتور والاستقبال</p></article>
+      </div>
+    </div>
+  </section>
+
   <section aria-labelledby="steps-title" style="padding-top: 0">
     <div class="wrap">
       <div class="head rv">
@@ -578,7 +710,7 @@ footer b { color: var(--text); font-family: var(--f-display); font-weight: 600; 
         <details><summary data-t="q3">بينقل الداتا من برنامجي القديم؟</summary><p data-t="q3a">أيوه، بننقل المرضى والزيارات. في المكالمة بنشوف برنامجك إيه، ونقولك بالظبط إيه اللي هيتنقل</p></details>
         <details><summary data-t="q4">محتاج أجهزة معينة؟</summary><p data-t="q4a">أي كمبيوتر Windows عادي للدكتور، وجهاز تاني للـ Reception لو حابب، على نفس شبكة العيادة</p></details>
         <details><summary data-t="q5">البرنامج عربي ولا إنجليزي؟</summary><p data-t="q5a">الاتنين. كل جهاز يختار لغته، والـ Exam sheet بالإنجليزي زي ما الدكاترة بيكتبوا</p></details>
-        <details><summary data-t="q6">هو لعيادات العيون بس؟</summary><p data-t="q6a">لأ، The Clinic للعيادات عموماً. بدأنا بعيادات العيون، وبنكمّل بتخصصات تانية</p></details>
+        <details><summary data-t="q6">هو لعيادات العيون بس؟</summary><p data-t="q6a">لأ. The Clinic بدأ في عيادة رمد ودلوقتي فيه شيت مسالك كمان، بتاريخه المرضي واستبياناته وفحصه وعملياته وخطته. الشيت قيد المراجعة مع استشاري مسالك، فقولنا إيه اللي كنت هتغيّره. التخصصات التانية بتيجي بنفس الطريقة: مع دكتور، شاشة شاشة.</p></details>
       </div>
     </div>
   </section>
@@ -680,10 +812,27 @@ const EN = {
   q3: 'Can it bring in data from my old program?', q3a: 'Yes, we move patients and visits. On the call we look at your program and tell you exactly what will come across',
   q4: 'Do I need special computers?', q4a: 'Any ordinary Windows computer for the doctor, and a second one for reception if you like, on the clinic network',
   q5: 'Arabic or English?', q5a: 'Both. Each computer picks its language, and the exam sheet stays in English the way doctors write',
-  q6: 'Is it only for eye clinics?', q6a: 'No, The Clinic is for clinics in general. We started with eye clinics and are moving on to other specialties',
+  q6: 'Is it only for eye clinics?', q6a: 'No. The Clinic started in an eye clinic and now has a urology sheet too, with its own history, questionnaires, examination, procedures and plan. The sheet is being reviewed with a consulting urologist, so tell us what you would change. Other specialties come the same way: with a doctor, one screen at a time.',
   dmEyebrow: 'Demo by call', dmTitle: 'See it for yourself', dmP: "Send us your name, your clinic and a time that suits you, and we'll call to show you a full clinic day",
   waT: 'WhatsApp', phT: 'Phone', emT: 'Email', copy: 'Copy', copied: 'Copied'
 };
+Object.assign(EN, {
+  tabEye: 'Eye', tabUro: 'Urology',
+  ur1: 'The urology', ur2: 'sheet, laid', ur3: 'out the way', ur4: 'you', ur5: '<em>examine</em>', uBand: 'Severe symptoms',
+  uEyebrow: 'Software for urology clinics', uSub: 'History, questionnaires, examination, investigations, procedures and plan, in the order a urologist works. Tap, don\'t type.',
+  uNote: 'Being reviewed with a consulting urologist.', uDemo: 'The patient in every screenshot is a made-up demo patient.',
+  u1t: "History in taps", u1p: "Voiding symptoms, haematuria, colic, retention... one tap each, plus how long. The chief complaint writes itself. Smoking, fluids, caffeine and background are buttons too.",
+  u2t: "IPSS, worked out for you", u2p: "Answer by tapping. The score and its band appear at once, and the result prints for the patient. SHIM-style erectile function sits right below.",
+  u3t: "Examination, with a drawing", u3p: "One tap marks abdomen and penis normal. Mark a stricture, meatal stenosis or plaque on the urethra drawing instead of describing it.",
+  u4t: "PSA, creatinine, Qmax and residual urine at the top", u4p: "Add the patient's lab sheets, X-rays and old results as files or phone photos. The program can read PSA and creatinine off a lab sheet, and you check the values before they are saved. eGFR works itself out.",
+  u5t: "A report for each procedure", u5p: "Cystoscopy, URS/RIRS, PCNL, ESWL and more, each with the fields that matter, free notes and a printout.",
+  u6t: "Tick the tests, print the request", u6p: "Urine, blood, imaging and function tests are chips; the request prints on its own slip. Results that have not come back show as pending at the next visit.",
+  u7t: "A prescription in two taps", u7p: "Your most used urology drugs and your own stamps (for example \"BPH start\"). Interaction and safety alerts show before you print.",
+  uc1: "Operation planned → reception books it with a date and a price",
+  uc2: "Last visit, follow-up and referral in/out",
+  uc3: "Right / Left / Both for every operation",
+  uc4: "Works offline on the doctor's PC and the reception PC"
+});
 const AR = {};
 document.querySelectorAll('[data-t]').forEach((el) => { AR[el.dataset.t] = el.innerHTML; });
 AR.copied = 'اتنسخ';
@@ -724,6 +873,38 @@ document.querySelectorAll('.copy').forEach((b) => b.addEventListener('click', (e
   const done = () => { b.textContent = label().copied; setTimeout(() => { b.textContent = label().copy; }, 1600); };
   try { navigator.clipboard.writeText(text).then(done, () => {}); } catch (err) {}
 }));
+/* The urology dial: the IPSS arc fills and the score counts up each time the tab opens. */
+(function () {
+  const g = document.getElementById('uticks');
+  if (g) for (let i = 0; i <= 35; i++) { const a = (135 + (270 * i) / 35) * Math.PI / 180, r1 = i % 5 === 0 ? 164 : 168, r2 = 176; g.insertAdjacentHTML('beforeend', `<line x1="${(200 + r1 * Math.cos(a)).toFixed(1)}" y1="${(200 + r1 * Math.sin(a)).toFixed(1)}" x2="${(200 + r2 * Math.cos(a)).toFixed(1)}" y2="${(200 + r2 * Math.sin(a)).toFixed(1)}"/>`); }
+})();
+function uroPlay() {
+  const st = document.getElementById('uroStage'); if (!st) return;
+  const a = document.getElementById('uipss'), b = document.getElementById('uipssBig'), TARGET = 22;
+  const set = (n) => { a.textContent = n; b.textContent = n; };
+  st.classList.remove('on'); void st.getBoundingClientRect(); st.classList.add('on');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { set(TARGET); return; }
+  const t0 = performance.now();
+  (function tick(t) { const k = Math.min(1, (t - t0) / 1900), e = 1 - Math.pow(1 - k, 3); set(Math.round(TARGET * e)); if (k < 1) requestAnimationFrame(tick); })(t0);
+}
+/* Specialty tabs: Eye is the default, Urology opens with #urology */
+const paneBtns = document.querySelectorAll('[data-pane-btn]');
+function setPane(p, push) {
+  document.querySelectorAll('[data-pane]').forEach((el) => { el.hidden = el.dataset.pane !== p; });
+  paneBtns.forEach((b) => b.setAttribute('aria-selected', String(b.dataset.paneBtn === p)));
+  if (push) history.replaceState(null, '', p === 'uro' ? '#urology' : location.pathname + location.search);
+  if (p === 'uro') requestAnimationFrame(uroPlay);
+}
+paneBtns.forEach((b) => b.addEventListener('click', () => setPane(b.dataset.paneBtn, true)));
+function fromHash() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  if (h === 'urology') { setPane('uro'); const s = document.getElementById('specs'); if (s) s.scrollIntoView(); return; }
+  if (h === 'eye') { setPane('eye'); return; }
+  const t = h && document.getElementById(h), host = t && t.closest('[data-pane]');
+  if (host) { setPane(host.dataset.pane); t.scrollIntoView(); }
+}
+window.addEventListener('hashchange', fromHash);
+fromHash();
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 if (FILM.src) {

@@ -99,9 +99,9 @@
       f: ['osm-audit', 'osm-mig'] },
 
     { id: 'clinic', chip: { ar: 'إيه هو The Clinic؟', en: 'What is The Clinic?' },
-      k: ['the clinic', 'clinic', 'كلينك', 'عياده', 'عيادات', 'عيون', 'دكتور', 'طبيب', 'ophthalm', 'eye', 'doctor', 'مرضي', 'مريض', 'patient', 'emr'], p: 'clinic',
-      a: { ar: 'The Clinic برنامج للعيادات، لسه قيد التطوير، وأول تخصص بنبدأ بيه هو عيادات العيون. اتصمم بإيد دكتور، وكل شاشة فيه اتراجعت جوه عيادة شغالة عشان تمشي ورا الكشف بالترتيب.',
-           en: 'The Clinic is clinic software, currently in development, starting with eye clinics. It was shaped by a doctor, and every screen was reviewed inside a working clinic so it follows the exam in order.' },
+      k: ['the clinic', 'clinic', 'كلينك', 'عياده', 'عيادات', 'عيون', 'دكتور', 'طبيب', 'ophthalm', 'eye', 'urology', 'urologist', 'مسالك', 'بولية', 'doctor', 'مرضي', 'مريض', 'patient', 'emr'], p: 'clinic',
+      a: { ar: 'The Clinic برنامج للعيادات، لسه قيد التطوير، وبدأ بعيادات العيون ودلوقتي فيه شيت مسالك بولية كمان. شاشات الرمد اتراجعت جوه عيادة شغالة عشان تمشي ورا الكشف بالترتيب، وشيت المسالك قيد المراجعة مع استشاري مسالك.',
+           en: 'The Clinic is clinic software, currently in development. It started with eye clinics and now has a urology sheet too. The eye screens were reviewed inside a working clinic so they follow the exam in order, and the urology sheet is being reviewed with a consulting urologist.' },
       f: ['clinic-data', 'clinic-custom', 'clinic-status'], link: { ar: ['/ar/the-clinic/', 'صفحة The Clinic'], en: ['/the-clinic/', 'The Clinic page'] } },
 
     { id: 'clinic-status', chip: { ar: 'هو متاح دلوقتي؟', en: 'Is it available now?' },
